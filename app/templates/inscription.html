@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - MentorLink</title>
+<link rel="stylesheet" href="inscription_style.css">
+</head>
+<body>
+    <header class="navbar">
+        <p class="logo">MentorLink</p>
+        <nav class="nav-links" aria-label="Navigation principale">
+            <a href="/Accueil.html">Accueil</a>
+            <a class="active" href="/inscription.html" aria-current="page">Inscription</a>
+            <a href="/connexion.html">Connexion</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="auth-card" aria-labelledby="inscription-title">
+            <h1 id="inscription-title">Inscription</h1>
+            <p class="intro">Creez votre compte pour rejoindre MentorLink.</p>
+
+            <form action="/register" method="post">
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" id="username" name="username" autocomplete="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" autocomplete="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" autocomplete="new-password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm_password">Confirmer le mot de passe</label>
+                    <input type="password" id="confirm_password" name="confirm_password" autocomplete="new-password" required>
+                </div>
+
+                <button class="primary-button" type="submit">S'inscrire</button>
+            </form>
+
+            <a class="secondary-link" href="google">S'inscrire avec Google - bientot disponible</a>
+
+            <p class="auth-switch">
+                Deja un compte ?
+                <a href="/connexion.html">Connectez-vous</a>
+            </p>
+        </section>
+    </main>
+</body>
+</html>
