@@ -1,0 +1,401 @@
+================================================================
+   RAPPORT DES FILIÈRES ET MATIÈRES - IFRI (UAC)
+   Institut de Formation et de Recherche en Informatique
+   Université d'Abomey-Calavi, Bénin
+================================================================
+
+================================================================
+  NIVEAU LICENCE PROFESSIONNELLE (6 semestres)
+================================================================
+
+--------------------------------------------------------------
+  TRONC COMMUN (Semestres 1 et 2) — Commun à toutes les filières
+--------------------------------------------------------------
+
+SEMESTRE 1 :+
+  - Logique, arithmétique et applications
+  - Mathématiques fondamentales
+  - Probabilités et statistiques
+  - Architecture et topologie des réseaux informatiques
+  - Système d'exploitation et outils de bases en informatique
+  - Bases de la programmation
+  - Déontologie et droit liés aux TIC
+  - Technique d''expression écrite et orale
+
+SEMESTRE 2 :
+  - Administration des réseaux sous Windows/Linux
+  - Convergence et calcul différentiel
+  - Projet intégrateur
+  - Mathématiques appliquées
+  - Technologies web et infographie
+  - Bases de données relationnelles
+  - Programmation Python
+  - Anglais technique et discipline
+
+--------------------------------------------------------------
+  SPÉCIALITÉ : GÉNIE LOGICIEL (GL)
+  (Semestres 3 à 6)
+--------------------------------------------------------------
+
+SEMESTRE 3 :
+  - Structures algébriques et leurs applications en informatique
+  - Approche orientée objet
+  - Structures de données et applications avec C/Python
+  - Programmation avancée en Java
+  - Programmation graphique en Qt/C++
+  - Aspects avancés des technologies web
+  - Bases du génie logiciel
+  - Maintenance des appareils électroniques
+
+SEMESTRE 4 :
+  - Programmation avancée en Python et R
+  - Programmation et manipulation des données
+  - Système d'information décisionnelle et sécurité
+  - Génie logiciel
+  - Cycle de vie d'un logiciel et assurance qualité
+  - Gestion des projets
+  - Communication managériale
+  - Anglais pour la communication scientifique
+
+SEMESTRE 5 :
+  - Formation sur une certification en bases de données et en ingénierie logicielle
+  - Applications informatiques et internet
+  - Veille technologique en génie logiciel
+  - Hackathon de développement d'applications
+  - Développement avancé d'applications web
+  - Développement d'applications mobiles
+  - Communication
+  - Techniques entrepreneuriales
+
+SEMESTRE 6 :
+  - Stage en entreprise
+  - Discipline
+  - Rédaction et soutenance de mémoire
+
+--------------------------------------------------------------
+  SPÉCIALITÉ : SÉCURITÉ INFORMATIQUE (SI)
+  (Semestres 3 à 6)
+--------------------------------------------------------------
+
+SEMESTRE 3 :
+  - Structures algébriques et leurs applications en informatique
+  - Approche orientée objet
+  - Structure de données et applications avec C/Python
+  - Administration systèmes et réseaux
+  - Analyse et conception orientées objet
+  - Sécurité des systèmes informatiques
+  - Management de la sécurité du système d'information
+  - Sécurité des réseaux
+  - Maintenance des appareils électroniques
+
+SEMESTRE 4 :
+  - Politique de sécurité des systèmes d'information
+  - Commutation et routage
+  - Audit, normes de sécurité et gestion des risques et incidents
+  - Sécurité des réseaux sans fil
+  - Cryptographie et applications
+  - Communication managériale
+  - Anglais pour la communication scientifique
+
+SEMESTRE 5 :
+  - Formation sur une certification en sécurité
+  - Formation pour des certifications en cyber sécurité et réseaux
+  - Veille Technologique en sécurité informatique
+  - Hackathon de sécurité informatique
+  - Systèmes de détection et de prévention d'intrusions
+  - Applications de la sécurité informatique en entreprise
+  - Communication
+  - Techniques entrepreneuriales
+
+SEMESTRE 6 :
+  - Stage en entreprise
+  - Discipline
+  - Rédaction et soutenance de mémoire
+
+--------------------------------------------------------------
+  SPÉCIALITÉ : INTERNET ET MULTIMÉDIA (IM)
+  (Semestres 3 à 6)
+--------------------------------------------------------------
+
+SEMESTRE 3 :
+  - Structures algébriques et leurs applications en informatique
+  - Approche orientée objet
+  - Structures de données et applications avec C/Python
+  - Programmation graphique, événementielle et Java entreprise
+  - Programmation C#
+  - Aspects avancés des technologies web
+  - Science fondamentale pour le multimédia
+  - Maintenance des appareils électroniques
+
+SEMESTRE 4 :
+  - Ergonomie et applications e-commerce
+  - Expérience utilisateur/Interface utilisateur
+  - Pratique des SGBD avancés et le web
+  - Production audiovisuelle et jeux vidéos
+  - Techniques de dessin et art appliqué
+  - Gestion des projets
+  - Communication managériale
+  - Anglais pour la communication scientifique
+
+SEMESTRE 5 :
+  - Infographie 2D et 3D
+  - Technologies immersives
+  - Veille technologique en internet et multimédia
+  - Hackathon en internet et multimédia
+  - Formation à la certification en outils multimédias et internet
+  - Développement d'applications mobiles
+  - Communication
+  - Techniques entrepreneuriales
+
+SEMESTRE 6 :
+  - Stage en entreprise
+  - Discipline
+  - Rédaction et soutenance de mémoire
+
+--------------------------------------------------------------
+  SPÉCIALITÉ : INTELLIGENCE ARTIFICIELLE (IA)
+  (Semestres 3 à 6)
+--------------------------------------------------------------
+
+SEMESTRE 3 :
+  - Structures algébriques et leurs applications en informatique
+  - Approche orientée objet
+  - Structure de données et applications avec C/Python
+  - Statistiques et probabilités pour le scientifique de la donnée
+  - Concept et application de l'intelligence artificielle
+  - Aspects avancés des technologies web
+  - Bases de génie logiciel
+  - Maintenance des appareils électroniques
+
+SEMESTRE 4 :
+  - Programmation avancée en Python et R
+  - Big data
+  - Outils cloud de collecte et de traitement de données
+  - Concepts et applications de l'apprentissage automatique
+  - Techniques de résolution de problèmes par la recherche
+  - Gestion des projets
+  - Communication managériale
+  - Anglais pour la communication scientifique
+
+SEMESTRE 5 :
+  - Formation sur une certification en sciences de la donnée
+  - Développement d'applications basées sur l'apprentissage automatique
+  - Veille technologique en intelligence artificielle
+  - Hackathon en science des données/Big data
+  - Corporation Data analytics
+  - Outils de résolution de problèmes d'optimisation
+  - Communication
+  - Techniques entrepreneuriales
+
+SEMESTRE 6 :
+  - Stage en entreprise
+  - Discipline
+  - Rédaction et soutenance de mémoire
+
+--------------------------------------------------------------
+  SPÉCIALITÉ : SYSTÈMES EMBARQUÉS ET INTERNET DES OBJETS (SE & IoT)
+  (Semestres 3 à 6)
+--------------------------------------------------------------
+
+SEMESTRE 3 :
+  - Structures algébriques et leurs applications en informatique
+  - Approche orientée objet
+  - Structure de données et applications avec C/Python
+  - Électricité et Électronique
+  - Automates programmables et asservissement
+  - Capteurs et actionneurs
+  - Bases du Génie Logiciel
+  - Maintenance des appareils électroniques
+
+SEMESTRE 4 :
+  - Traitement du signal
+  - Langages de description
+  - Architecture des processeurs et microcontrôleurs
+  - Réseaux sans fil et protocol de communication en IoT
+  - Programmation système, réseau et temps réel
+  - Gestion des projets
+  - Communication managériale
+  - Anglais pour la communication scientifique
+
+SEMESTRE 5 :
+  - Formation sur une certification en systèmes embarqués et internet des objets
+  - Architecture et intercommunication d'un réseau de capteurs et Internet des objets
+  - Veille technologique en systèmes embarqués et internet des objets
+  - Administration d'un réseau de capteurs et Internet des Objets
+  - Systèmes embarqués en entreprise
+  - Hackathon sur systèmes embarqués et internet des objets
+  - Communication
+  - Techniques entrepreneuriales
+
+SEMESTRE 6 :
+  - Stage en entreprise
+  - Discipline
+  - Rédaction et soutenance de mémoire
+
+Débouchés SE & IoT : Concepteurs de solutions embarquées, Développeurs de solutions domotiques, Concepteurs de solutions électroniques, Développeurs de solutions dans différents secteurs, Administrations des réseaux de capteurs, Chef projet de IoT, Architecte de réseau de capteurs, Auto-entrepreneuriat
+
+================================================================
+  NIVEAU MASTER PROFESSIONNEL (4 semestres)
+================================================================
+
+--------------------------------------------------------------
+  MASTER EN GÉNIE LOGICIEL (GL)
+--------------------------------------------------------------
+
+SEMESTRE 1 :
+  - Mathématiques pour informatique
+  - Programmation avancée (Java, Python et R)
+  - Introduction aux technologies émergentes (Blockchain, IoT)
+  - Interfaces homme-machine et méthodes
+  - Recherche opérationnelle
+  - Introduction à l'Intelligence artificielle
+  - Architecture logicielle
+  - Spécification des logiciels
+  - Méthodes d'analyse et de conception
+  - Aspects juridiques liés aux TIC
+
+SEMESTRE 2 :
+  - Traitement du signal et d'image
+  - Fondamentaux des Big Data
+  - Méthodes et outils de visualisation de données
+  - Bases de données avancées
+  - Algorithmes avancés
+  - Théorie des langages
+  - Technologies avancées web
+  - Technologies avancées mobile
+  - Cycle de vie et méthodes de développement de logiciel
+  - Projet d'application
+  - Gestion de projets informatiques
+  - Communication en Anglais
+
+SEMESTRE 3 :
+  - Bases de données multimédia et web sémantique
+  - Assurance qualité et test logiciels
+  - Sécurisation des bases de données et des programmes
+  - Sécurité et évaluation de la fiabilité des systèmes d'information
+  - Systèmes répartis et mobiles
+  - Introduction aux réseaux de neurones artificiels
+  - Techniques avancées avec les réseaux de neurones artificiels
+  - Méthodologie de rédaction de mémoire
+  - Data Mining
+  - Entrepreneuriat et plan d'affaires
+
+SEMESTRE 4 :
+  - Stage (12 semaines)
+  - Discipline
+  - Rédaction de mémoire
+  - Pré-soutenance
+  - Soutenance
+
+--------------------------------------------------------------
+  MASTER EN SÉCURITÉ INFORMATIQUE (SI)
+--------------------------------------------------------------
+
+SEMESTRE 1 :
+  - Mathématiques pour informatique
+  - Programmation avancée (Java, Python et R)
+  - Introduction aux technologies émergentes (Blockchain, IoT)
+  - Cryptographie
+  - Recherche opérationnelle
+  - Introduction à l'Intelligence artificielle
+  - Architecture logicielle
+  - Spécification des logiciels
+  - Méthodes d'analyse et de conception
+  - Déontologie et droit liés aux TIC
+
+SEMESTRE 2 :
+  - Traitement du signal et d'image
+  - Réseaux informatiques : principes, protocoles de routage (CISCO CCNA / Mikrotik MTCNA)
+  - Interconnexion LAN en WAN (CISCO CCNA4)
+  - Sécurité des systèmes d'information
+  - Technologie des Réseaux sans fil (WLAN & WWAN)
+  - Réseaux de capteurs sans fils (RCSF) et application en IoT
+  - Sécurité Web (OWASP)
+  - Sécurité Mobile (OWASP)
+  - Administration des services sous Windows
+  - Administration des services sous Linux/UNIX
+  - Gestion de projets informatiques
+  - Communication en Anglais
+
+SEMESTRE 3 :
+  - Sécurité des applications et reverse engineering
+  - Technologies et pratiques du DevSecOps
+  - Gouvernance de la sécurité du Système d'information
+  - Gestion du risque et des incidents
+  - Technologie de la Blockchain et Applications
+  - Méthodologie d'audit du Système d'Informations
+  - Audit de Sécurité du SI axé sur le risque
+  - Méthodologie de rédaction de mémoire
+  - Technologie et sécurité du Cloud Computing
+  - Entrepreneuriat et plan d'affaires
+
+SEMESTRE 4 :
+  - Stage (12 semaines)
+  - Discipline
+  - Rédaction de mémoire
+  - Pré-soutenance
+  - Soutenance
+
+--------------------------------------------------------------
+  MASTER EN SÉCURITÉ INFORMATIQUE ET RÉSEAUX INTELLIGENTS (SIRI)
+--------------------------------------------------------------
+
+SEMESTRE 1 :
+  - Mathématiques pour informatique
+  - Programmation avancée (Java, Python/R)
+  - Introduction aux technologies émergentes (Blockchain, IoT)
+  - Interfaces homme-machine
+  - Recherche opérationnelle
+  - Introduction à l'intelligence artificielle
+  - Architecture logicielle
+  - Spécification des logiciels
+  - Méthodes d'analyse et de conception
+  - Aspects juridiques liés aux TIC
+
+SEMESTRE 2 :
+  - Traitement du signal et d'image
+  - Réseaux informatiques : principes, protocoles de routage (CISCO CCNA / Mikrotik MTCNA)
+  - Interconnexion LAN en WAN (CISCO CCNA4)
+  - Sécurité des systèmes d'information
+  - Sécurité Web (OWASP)
+  - Bases de données relationnelles et noSQL
+  - Administration de bases de données (ORACLE, PostgreSQL)
+  - Kubernetes, Serverless et Service Mesh
+  - Réseaux de capteurs sans fils (RCSF) et application en IoT
+  - Gestion de projets informatiques
+  - Communication en anglais
+
+SEMESTRE 3 :
+  - Technologies et pratiques du DevSecOps
+  - Audit de systèmes informatiques
+  - Administration des serveurs Windows
+  - Administration des serveurs Linux
+  - Systèmes répartis, embarqués et temps réel
+  - Tests de sécurité
+  - Analyse des événements de sécurité
+  - Méthodologie de rédaction de mémoire
+  - Bases de données distribuées
+  - Entrepreneuriat et plan d'affaires
+
+SEMESTRE 4 :
+  - Stage (12 semaines)
+  - Discipline
+  - Rédaction de mémoire
+  - Pré-soutenance
+  - Soutenance
+
+================================================================
+  RÉCAPITULATIF DES FILIÈRES
+================================================================
+
+  LICENCE (3 ans / 6 semestres) :
+  ├── Génie Logiciel (GL)
+  ├── Sécurité Informatique (SI)
+  ├── Internet et Multimédia (IM)
+  ├── Intelligence Artificielle (IA)
+  └── Systèmes Embarqués et Internet des Objets (SE & IoT)
+
+  MASTER PROFESSIONNEL (2 ans / 4 semestres) :
+  ├── Génie Logiciel (GL)
+  ├── Sécurité Informatique (SI)
+  └── Sécurité Informatique et Réseaux Intelligents(SIRI)
