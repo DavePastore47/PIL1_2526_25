@@ -1,0 +1,102 @@
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6; /* Fond gris/blanc propre */
+        }
+        
+        /* Titre principal */
+        .titre-app {
+            color: #0077cc; 
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        /* La grande bannière bleue */
+        .banniere {
+            background-color: #0077cc;
+            color: white;
+            padding: 30px;
+            border-radius: 12px; 
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Les deux boutons */
+        .btn {
+            background-color: white;
+            color: #0077cc;
+            border: none;
+            padding: 12px 20px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn-secondaire {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        /* Conteneur pour mettre les deux blocs côte à côte */
+        .grille {
+            display: flex;
+            gap: 20px;
+            
+        }
+        
+        /* Style des blocs "Pourquoi nous rejoindre" et "Communauté" */
+        .carte {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .carte h3 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        ul {
+            padding-left: 20px;
+            line-height: 1.8;
+            border-radius: 200px;
+        }
+        footer{
+            text-align: center;
+            padding: 20px;
+            background-color: #0077cc;
+            margin-top: 40px;
+            
+        }
+/* Cela cible UNIQUEMENT l'élément qui a la classe "nav-links" */
+.nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Cela cible UNIQUEMENT les liens à l'intérieur de votre menu */
+.nav-links a {
+    color: blue; /* Vos liens seront blancs */
+    text-decoration: none; /* Supprime le trait de soulignement sous les liens */
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Effet de survol sur les liens du menu uniquement */
+.nav-links a:hover {
+    color: #ffcc00; /* Change en jaune au survol (par exemple) */
+}
+
+
+
+        
+
+             
