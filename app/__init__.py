@@ -35,5 +35,8 @@ def create_app():
     
     from app.routes.matching import matching
     app.register_blueprint(matching)
+    
+    from app.routes.messagerie import messagerie
+    app.register_blueprint(messagerie)
 
     return app
