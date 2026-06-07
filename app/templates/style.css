@@ -1,0 +1,170 @@
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6; /* Fond gris/blanc propre */
+        }
+        
+        /* Titre principal */
+        .titre-app {
+            color: #0077cc; 
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        /* La grande bannière bleue */
+        .banniere {
+            background-color: #0077cc;
+            color: white;
+            padding: 30px;
+            border-radius: 12px; 
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Les deux boutons */
+        .btn {
+            background-color: white;
+            color: #0077cc;
+            border: none;
+            padding: 12px 20px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn-secondaire {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        /* Conteneur pour mettre les deux blocs côte à côte */
+        .grille {
+            display: flex;
+            gap: 20px;
+            
+        }
+        
+        /* Style des blocs "Pourquoi nous rejoindre" et "Communauté" */
+        .carte {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .carte h3 {
+            color: #333;
+            margin-top: 0;
+        }
+        
+
+        ul {
+            padding-left: 20px;
+            line-height: 1.8;
+            border-radius: 200px;
+            list-style: none;
+        }
+        footer{
+            text-align: center;
+            padding: 20px;
+            background-color: #0077cc;
+            margin-top: 40px;
+            
+        }
+
+
+.bandeau-defilant {
+  width: 100%;
+  overflow: hidden; /* Cache le texte qui dépasse du cadre */
+  white-space: nowrap; /* Empêche le texte de passer à la ligne */
+  background-color: darkkhaki;
+  color: white;
+  padding: 10px 0;
+}
+
+.bandeau-defilant h1 {
+  display: inline-block;
+  padding-left: 100%;
+  animation: defilement 10s linear infinite;
+}
+
+@keyframes defilement {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
+        
+
+             /* Style de la barre de navigation */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background-color: #0077cc;
+  position: relative;
+}
+
+/* Style des 3 tirets (Burger) */
+.burger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+}
+
+.burger-menu span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: #0d3b66; /* Le bleu de votre thème */
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Style de la liste des liens */
+.nav-links {
+  display: none; /* Caché par défaut */
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: azure;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 10px 0;
+  list-style: none;
+}
+
+.nav-links li {
+  text-align: center;
+  padding: 15px 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #0d3b66;
+  font-weight: bold;
+}
+
+/* Classe active qui sera ajoutée en JavaScript pour afficher le menu */
+.nav-links.active {
+  display: flex;
+}
+        img {
+    width: 50px;       /* Donne une taille minuscule à l'image */
+    height: auto;      /* Empêche la déformation et évite le rognage */
+    object-fit: contain; /* Sécurité absolue : force l'image à rester entière */
+    display: block;    /* Enlève les espaces invisibles sous l'image */
+    margin-left: 0px;  /* Colle l'image tout à fait à gauche */
+    padding-left: 0px; /* Supprime toute marge interne gauche */
+}
