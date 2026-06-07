@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profil</title>
+    <link rel="stylesheet" href="../../static/css/profil_style.css">
+
+</head>
+<body>
+
+
+  <div id="page">
+
+    <!-- Bannière + infos principales -->
+    <div id="banniere">
+      <div id="photo-container">
+        <div id="photo">?</div>
+      </div>
+    </div>
+
+    <!-- Infos utilisateur -->
+    <div id="infos-principales">
+      <h1 id="nom-utilisateur">Chargement...</h1>
+      <p id="bio-utilisateur"></p>
+    </div>
+
+    <!-- Compétences -->
+    <div id="section-competences">
+
+      <div class="bloc-competences">
+        <h3>Points forts</h3>
+        <div id="competences-fortes"></div>
+      </div>
+
+      <div class="bloc-competences">
+        <h3>À améliorer</h3>
+        <div id="competences-faibles"></div>
+      </div>
+
+    </div>
+
+    <!-- Bouton envoyer un message -->
+    <div id="actions">
+      <button id="btn-message" onclick="contacter()">
+        Envoyer un message
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    // on récupère l'id depuis l'URL : /profil?id=3
+    const params = new URLSearchParams(window.location.search);
+    const userId = params.get('id');
+
+    async function chargerProfil() {
+      const url = userId ? '/profil/' + userId : '/profil';
+      const reponse = await fetch(url);
+      const data = await reponse.json();
+
+      // Nom
+      document.getElementById('nom-utilisateur').textContent =
+        data.prenom + ' ' + data.nom;
+
+      // Initiales dans le cercle
+      const initiales = (data.prenom[0] + data.nom[0]).toUpperCase();
+      document.getElementById('photo').textContent = initiales;
+
+      // Bio
+      document.getElementById('bio-utilisateur').textContent =
+        data.bio || 'Aucune bio renseignée.';
+
+      // Compétences
+      const fortes = document.getElementById('competences-fortes');
+      const faibles = document.getElementById('competences-faibles');
+
+      data.competences.forEach(function(comp) {
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = comp.nom;
+
+        if (comp.type === 'fort') {
+          fortes.appendChild(tag);
+        } else {
+          faibles.appendChild(tag);
+        }
+      });
+    }
+
+    function contacter() {
+      if (userId) {
+        window.location.href = '/chat?avec=' + userId;
+      }
+    }
+
+    chargerProfil();
+  </script>
+
+
+</body>
+</html>

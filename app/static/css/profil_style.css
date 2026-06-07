@@ -1,0 +1,127 @@
+/* === RESET & BASE === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background: #f3f4f6;
+  min-height: 100vh;
+}
+
+/* === PAGE === */
+#page {
+  max-width: 680px;
+  margin: 0 auto;
+  background: #fff;
+  min-height: 100vh;
+}
+
+/* === BANNIÈRE === */
+#banniere {
+  width: 100%;
+  height: 200px;
+  background: #3b82f6;
+  position: relative;
+}
+
+#photo-container {
+  position: absolute;
+  bottom: -50px;
+  left: 32px;
+}
+
+#photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #fff;
+  color: #3b82f6;
+  border: 4px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+/* === INFOS PRINCIPALES === */
+#infos-principales {
+  padding: 64px 32px 24px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+#nom-utilisateur {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+#bio-utilisateur {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* === COMPÉTENCES === */
+#section-competences {
+  display: flex;
+  gap: 24px;
+  padding: 24px 32px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.bloc-competences {
+  flex: 1;
+}
+
+.bloc-competences h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+/* === TAGS COMPÉTENCES === */
+.tag {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  margin: 4px;
+}
+
+#competences-fortes .tag {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+#competences-faibles .tag {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
+/* === BOUTON MESSAGE === */
+#actions {
+  padding: 24px 32px;
+}
+
+#btn-message {
+  padding: 10px 24px;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+#btn-message:hover {
+  background: #2563eb;
+}
