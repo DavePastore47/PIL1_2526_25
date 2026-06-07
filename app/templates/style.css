@@ -60,11 +60,13 @@ body {
             color: #333;
             margin-top: 0;
         }
+        
 
         ul {
             padding-left: 20px;
             line-height: 1.8;
             border-radius: 200px;
+            list-style: none;
         }
         footer{
             text-align: center;
@@ -73,30 +75,88 @@ body {
             margin-top: 40px;
             
         }
-/* Cela cible UNIQUEMENT l'élément qui a la classe "nav-links" */
-.nav-links {
-    display: flex;
-    gap: 20px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+
+
+.bandeau-defilant {
+  width: 100%;
+  overflow: hidden; /* Cache le texte qui dépasse du cadre */
+  white-space: nowrap; /* Empêche le texte de passer à la ligne */
+  background-color: darkkhaki;
+  color: white;
+  padding: 10px 0;
 }
 
-/* Cela cible UNIQUEMENT les liens à l'intérieur de votre menu */
-.nav-links a {
-    color: blue; /* Vos liens seront blancs */
-    text-decoration: none; /* Supprime le trait de soulignement sous les liens */
-    font-size: 16px;
-    font-weight: bold;
+.bandeau-defilant h1 {
+  display: inline-block;
+  padding-left: 100%;
+  animation: defilement 10s linear infinite;
 }
 
-/* Effet de survol sur les liens du menu uniquement */
-.nav-links a:hover {
-    color: #ffcc00; /* Change en jaune au survol (par exemple) */
+@keyframes defilement {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
 }
-
-
-
         
 
-             
+             /* Style de la barre de navigation */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background-color: #0077cc;
+  position: relative;
+}
+
+/* Style des 3 tirets (Burger) */
+.burger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+}
+
+.burger-menu span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: #0d3b66; /* Le bleu de votre thème */
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Style de la liste des liens */
+.nav-links {
+  display: none; /* Caché par défaut */
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: azure;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 10px 0;
+  list-style: none;
+}
+
+.nav-links li {
+  text-align: center;
+  padding: 15px 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #0d3b66;
+  font-weight: bold;
+}
+
+/* Classe active qui sera ajoutée en JavaScript pour afficher le menu */
+.nav-links.active {
+  display: flex;
+}

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -9,9 +8,9 @@
 </head>
 <body>
     
-    
-
-
+<div class="bandeau-defilant">
+  <h1>IFRI nous bâtissons l'exéllence!</h1>
+</div>
     <h1 class="titre-app">IFRI MentorLink</h1>
     <!-- La bannière bleue -->
     <div class="banniere">
@@ -26,20 +25,24 @@
         
     </div>
     
+    <nav class="navbar">
+  <!-- Le logo ou nom du site -->
+  <div class="logo"></div>
 
-<!-- 1. Le bouton avec les 3 lignes pour le téléphone -->
-<button class="burger-menu" id="burgerBtn">
+  <!-- Le bouton avec les 3 tirets -->
+  <div class="burger-menu" id="burgerBtn">
     <span></span>
     <span></span>
     <span></span>
-</button>
+  </div>
 
-<!-- 2. Les liens de votre menu -->
-<nav class="nav-links" id="navLinks">
-    <a href="#">Accueil</a>
-    <a href="#">À propos</a>
-    <a href="#">Mentorat</a>
-    <a href="#">Contact</a>
+  <!-- Les liens du menu -->
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#">Accueil</a></li>
+    <li><a href="#">À propos</a></li>
+    <li><a href="#">Mentorat</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
 </nav>
     
     <!-- Les blocs d'informations côte à côte -->
@@ -70,28 +73,22 @@
         <div class="carte">
     
     <h2>Comment ça marche ?</h2>
-    <p><b>1.</b> Créez votre compte étudiant.</p>
-    <p><b>2.</b> Trouvez un mentor ou un élève à aider.</p>
-    <p><b>3.</b> Discutez et progressez ensemble.</p>
+    <p><b>.</b> Créez votre compte étudiant.</p>
+    <p><b>.</b> Trouvez un mentor ou un élève à aider.</p>
+    <p><b>.</b> Discutez et progressez ensemble.</p>
 </div>
 </div>
     <footer>
         <p>&copy;2026 IFRI_Mentor_link.Tous droits réservés.</p>
     </footer>
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const navLinks = document.getElementById('navLinks');
 
+  burgerBtn.addEventListener('click', () => {
+    // Ajoute ou enlève la classe 'active' pour afficher/cacher le menu
+    navLinks.classList.toggle('active');
+  });
+</script>
 </body>
 </html>
-=======
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil</title>
-</head>
-<body>
-    <h1>Bienvenue dans MentorLInk</h1>
-    
-    
-</body>
-</html>
->>>>>>> e7477f730607834a59c12c83fd227120daa33782
