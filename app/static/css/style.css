@@ -1,102 +1,159 @@
-body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f7f6; /* Fond gris/blanc propre */
-        }
-        
-        /* Titre principal */
-        .titre-app {
-            color: #0077cc; 
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-
-        /* La grande bannière bleue */
-        .banniere {
-            background-color: #0077cc;
-            color: white;
-            padding: 30px;
-            border-radius: 12px; 
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        /* Les deux boutons */
-        .btn {
-            background-color: white;
-            color: #0077cc;
-            border: none;
-            padding: 12px 20px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            margin: 5px;
-        }
-        .btn-secondaire {
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        /* Conteneur pour mettre les deux blocs côte à côte */
-        .grille {
-            display: flex;
-            gap: 20px;
-            
-        }
-        
-        /* Style des blocs "Pourquoi nous rejoindre" et "Communauté" */
-        .carte {
-            background-color: white;
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #e0e0e0;
-            flex: 1;
-            min-width: 280px;
-        }
-
-        .carte h3 {
-            color: #333;
-            margin-top: 0;
-        }
-
-        ul {
-            padding-left: 20px;
-            line-height: 1.8;
-            border-radius: 200px;
-        }
-        footer{
-            text-align: center;
-            padding: 20px;
-            background-color: #0077cc;
-            margin-top: 40px;
-            
-        }
-/* Cela cible UNIQUEMENT l'élément qui a la classe "nav-links" */
-.nav-links {
-    display: flex;
-    gap: 20px;
-    list-style: none;
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* Cela cible UNIQUEMENT les liens à l'intérieur de votre menu */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 65px;
+    background-color: #e4e6e4;;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.titre-app {
+    color: rgb(0, 0, 0);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    list-style: none;
+    margin-left: auto;
+    padding: 0;
+}
+
 .nav-links a {
-    color: blue; /* Vos liens seront blancs */
-    text-decoration: none; /* Supprime le trait de soulignement sous les liens */
-    font-size: 16px;
+    color: rgba(0, 0, 0, 0.85);
+    text-decoration: none;
+    font-size: 0.9rem;
     font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.2s;
 }
 
-/* Effet de survol sur les liens du menu uniquement */
 .nav-links a:hover {
-    color: #ffcc00; /* Change en jaune au survol (par exemple) */
+    color: #003cff;
 }
 
+.nav-links a.btn-connexion {
+    border: 1px solid white;
+    color: white;
+}
 
+.nav-links a.btn-inscrire {
+    background-color: #0077cc;
+    color: white;
+}
 
-        
+.nav-links a.btn-inscrire:hover {
+    background-color: #005fa3;
+    color: white;
+}
 
-             
+/* BANNIÈRE */
+.banniere {
+    background-color: #0077cc;
+    color: white;
+    padding: 60px 30px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.banniere h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.banniere p {
+    font-size: 1rem;
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+/* BOUTONS */
+.btn {
+    background-color: white;
+    color: #0077cc;
+    border: none;
+    padding: 12px 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 5px;
+    transition: all 0.2s;
+}
+
+.btn:hover {
+    background-color: #e0e0e0;
+}
+
+.btn-secondaire {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-secondaire:hover {
+    background-color: white;
+    color: #0077cc;
+}
+
+/* GRILLE */
+.grille {
+    display: flex;
+    gap: 20px;
+    padding: 20px 30px;
+    flex-wrap: wrap;
+}
+
+/* CARTES */
+.carte {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    flex: 1;
+    min-width: 280px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.carte h2, .carte h3 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+ul {
+    padding-left: 20px;
+    line-height: 1.8;
+}
+
+/* FOOTER */
+footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #0077cc;
+    color: white;
+    font-size: 0.85rem;
+}
