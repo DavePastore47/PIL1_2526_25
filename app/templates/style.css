@@ -160,7 +160,7 @@ body {
 .nav-links.active {
   display: flex;
 }
-        img {
+        img { 
     width: 50px;       /* Donne une taille minuscule à l'image */
     height: auto;      /* Empêche la déformation et évite le rognage */
     object-fit: contain; /* Sécurité absolue : force l'image à rester entière */
