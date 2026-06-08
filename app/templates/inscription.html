@@ -1,57 +1,154 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription - MentorLink</title>
-<link rel="stylesheet" href="/app/static/css/inscription_style.css ">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inscription - IFRI MentorLink</title>
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/css/inscription_style.css">
 </head>
 <body>
-    <header class="navbar">
-        <p class="logo">MentorLink</p>
-        <nav class="nav-links" aria-label="Navigation principale">
-            <a href="/Accueil.html">Accueil</a>
-            <a class="active" href="/inscription.html" aria-current="page">Inscription</a>
-            <a href="/connexion.html">Connexion</a>
-        </nav>
-    </header>
 
-    <main>
-        <section class="auth-card" aria-labelledby="inscription-title">
-            <h1 id="inscription-title">Inscription</h1>
-            <p class="intro">Creez votre compte pour rejoindre MentorLink.</p>
+<!-- NAVBAR -->
+<nav class="navbar navbar-blue">
+  <h1 class="titre-app">IFRI MentorLink</h1>
+  <button class="burger-menu" id="burgerBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="/accueil">Accueil</a>
+    <a href="#">À propos</a>
+    <a href="/page-connexion">Connexion</a>
+    <a href="/page-inscription" class="active">S'inscrire</a>
+  </div>
+</nav>
 
-            <form action="/register" method="post">
-                <div class="form-group">
-                    <label for="username">Nom d'utilisateur</label>
-                    <input type="text" id="username" name="username" autocomplete="username" required>
-                </div>
+<main>
+  <section class="auth-card">
+    <h1>Inscription</h1>
+    <p class="intro">Créez votre compte pour rejoindre MentorLink.</p>
+    <form id="form-inscription">
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="nom" placeholder="Ex : NOm" required>
+      </div>
+      <div class="form-group">
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenom" name="prenom" placeholder="Ex : Prenom" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Ex : email@..." required>
+      </div>
+      <div class="form-group">
+        <label for="telephone">Téléphone</label>
+        <input type="text" id="telephone" name="telephone" placeholder="+229 0129000000" required>
+        <small style="color:#7a7870">Format : +229 suivi de 10 chiffres</small>
+      </div>
+      <div class="form-group">
+        <label for="filiere">Filière</label>
+        <select id="filiere" name="filiere">
+          <option value="">-- Choisir votre filière --</option>
+          <option value="GL">Génie Logiciel (GL)</option>
+          <option value="SI">Sécurité Informatique (SI)</option>
+          <option value="IM">Internet et Multimédia (IM)</option>
+          <option value="IA">Intelligence Artificielle (IA)</option>
+          <option value="SE&IoT">Systèmes Embarqués & IoT</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="niveau">Niveau</label>
+        <select id="niveau" name="niveau">
+          <option value="">-- Choisir votre niveau --</option>
+          <option value="L1">Licence 1</option>
+          <option value="L2">Licence 2</option>
+          <option value="L3">Licence 3</option>
+          <option value="M1">Master 1</option>
+          <option value="M2">Master 2</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="mot_de_passe">Mot de passe</label>
+        <input type="password" id="mot_de_passe" name="mot_de_passe" placeholder="Minimum 6 caractères" required>
+      </div>
+      <div class="form-group">
+        <label for="confirm">Confirmer le mot de passe</label>
+        <input type="password" id="confirm" name="confirm" placeholder="Répétez le mot de passe" required>
+      </div>
+      <button class="primary-button" type="submit">S'inscrire</button>
+    </form>
+    <p class="auth-switch">
+      Déjà un compte ? <a href="/page-connexion">Connectez-vous</a>
+    </p>
+  </section>
+</main>
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" autocomplete="email" required>
-                </div>
+<footer>
+  <p>&copy;2026 IFRI_Mentor_link. Tous droits réservés.</p>
+</footer>
 
-                <div class="form-group">
-                    <label for="password">Mot de passe</label>
-                    <input type="password" id="password" name="password" autocomplete="new-password" required>
-                </div>
+<script>
+// Burger menu
+const burgerBtn = document.getElementById('burgerBtn');
+const navLinks = document.getElementById('navLinks');
+if (burgerBtn) {
+    burgerBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('open');
+    });
+}
 
-                <div class="form-group">
-                    <label for="confirm_password">Confirmer le mot de passe</label>
-                    <input type="password" id="confirm_password" name="confirm_password" autocomplete="new-password" required>
-                </div>
+// Formulaire inscription
+document.getElementById('form-inscription').addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-                <button class="primary-button" type="submit">S'inscrire</button>
-            </form>
+    const mot_de_passe = document.getElementById('mot_de_passe').value;
+    const confirm = document.getElementById('confirm').value;
+    const telephone = document.getElementById('telephone').value;
 
-            <a class="secondary-link" href="google">S'inscrire avec Google - bientot disponible</a>
+    if (mot_de_passe !== confirm) {
+        alert('Les mots de passe ne correspondent pas !');
+        return;
+    }
 
-            <p class="auth-switch">
-                Deja un compte ?
-                <a href="/connexion.html">Connectez-vous</a>
-            </p>
-        </section>
-    </main>
+    if (mot_de_passe.length < 6) {
+        alert('Le mot de passe doit contenir au moins 6 caractères !');
+        return;
+    }
+
+    const formatTel = /^\+\d{3}\s\d{10}$/.test(telephone);
+    if (!formatTel) {
+        alert('Format du téléphone invalide.\nExemple : +229 0129000000');
+        return;
+    }
+
+    const data = {
+        nom: document.getElementById('nom').value,
+        prenom: document.getElementById('prenom').value,
+        email: document.getElementById('email').value,
+        telephone: telephone,
+        filiere: document.getElementById('filiere').value,
+        niveau: document.getElementById('niveau').value,
+        mot_de_passe: mot_de_passe
+    };
+
+    const response = await fetch('/inscription', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+        alert('Inscription réussie ! Vous pouvez vous connecter.');
+        window.location.href = '/page-connexion';
+    } else {
+        alert('Erreur : ' + result.erreur);
+    }
+});
+</script>
+
 </body>
 </html>

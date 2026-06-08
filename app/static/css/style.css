@@ -6,7 +6,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
+    background-color: #f4f7f6;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -19,17 +19,19 @@ body {
     justify-content: space-between;
     padding: 0 20px;
     height: 65px;
-    background-color: #e4e6e4;;
+    background-color: #ffffff;
     position: sticky;
     top: 0;
     z-index: 100;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .titre-app {
-    color: rgb(0, 0, 0);
+    color: #0077cc;
     font-size: 1.3rem;
     font-weight: 700;
     margin: 0;
+    flex: 1;
 }
 
 .nav-links {
@@ -37,12 +39,11 @@ body {
     gap: 15px;
     align-items: center;
     list-style: none;
-    margin-left: auto;
     padding: 0;
 }
 
 .nav-links a {
-    color: rgba(0, 0, 0, 0.85);
+    color: #0077cc;
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: bold;
@@ -52,22 +53,62 @@ body {
 }
 
 .nav-links a:hover {
-    color: #003cff;
+    color: #005fa3;
+    background: rgba(0, 119, 204, 0.1);
 }
 
-.nav-links a.btn-connexion {
-    border: 1px solid white;
-    color: white;
-}
-
-.nav-links a.btn-inscrire {
+.nav-links a.active {
     background-color: #0077cc;
     color: white;
 }
 
-.nav-links a.btn-inscrire:hover {
-    background-color: #005fa3;
+/* NAVBAR BLEUE (connexion et inscription) */
+.navbar-blue {
+    background-color: #0077cc;
+    border-bottom: none;
+}
+
+.navbar-blue .titre-app {
     color: white;
+}
+
+.navbar-blue .nav-links a {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.navbar-blue .nav-links a:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.navbar-blue .nav-links a.active {
+    background-color: white;
+    color: #0077cc;
+}
+
+.navbar-blue .burger-menu span {
+    background: white;
+}
+
+/* BURGER MENU */
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    order: 2;
+}
+
+.burger-menu span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: #0077cc;
+    border-radius: 2px;
+    transition: all 0.3s;
 }
 
 /* BANNIÈRE */
@@ -90,7 +131,7 @@ body {
     opacity: 0.9;
 }
 
-/* BOUTONS */
+/* BOUTONS BANNIÈRE */
 .btn {
     background-color: white;
     color: #0077cc;
@@ -156,4 +197,102 @@ footer {
     background-color: #0077cc;
     color: white;
     font-size: 0.85rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 12px 15px;
+        gap: 10px;
+    }
+
+    .titre-app {
+        font-size: 1.1rem;
+    }
+
+    .burger-menu {
+        display: flex;
+    }
+
+    .nav-links {
+        order: 3;
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #f0f0f0;
+        padding: 10px 0;
+        gap: 0;
+        margin-top: 5px;
+        border-radius: 8px;
+    }
+
+    .navbar-blue .nav-links {
+        background-color: #005fa3;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 12px 20px;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        font-size: 0.95rem;
+        border-radius: 0;
+        color: #0077cc;
+    }
+
+    .navbar-blue .nav-links a {
+        color: white;
+        border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+
+    .banniere {
+        padding: 40px 15px;
+    }
+
+    .banniere h2 {
+        font-size: 1.3rem;
+    }
+
+    .banniere p {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+    }
+
+    .grille {
+        flex-direction: column;
+        padding: 20px 15px;
+    }
+
+    .carte {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .auth-card {
+        margin: 20px 15px;
+        padding: 20px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .titre-app {
+        font-size: 1rem;
+    }
+
+    .banniere h2 {
+        font-size: 1.1rem;
+    }
 }

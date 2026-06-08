@@ -1,46 +1,90 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion - MentorLink</title>
-    <link rel="stylesheet" href="/app/static/css/connexion_style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connexion - IFRI MentorLink</title>
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/css/connexion_style.css">
 </head>
 <body>
-    <header class="navbar">
-        <p class="logo">MentorLink</p>
-        <nav class="nav-links" aria-label="Navigation principale">
-            <a href="/Accueil.html">Accueil</a>
-            <a href="/inscription.html">Inscription</a>
-            <a class="active" href="/connexion.html" aria-current="page">Connexion</a>
-        </nav>
-    
-    </header>
 
-    <main>
-        <section class="auth-card" aria-labelledby="connexion-title">
-            <h1 id="connexion-title">Connexion</h1>
-            <p class="intro">Accedez a votre espace MentorLink.</p>
+<!-- NAVBAR -->
+<nav class="navbar navbar-blue">
+  <h1 class="titre-app">IFRI MentorLink</h1>
+  <button class="burger-menu" id="burgerBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="/accueil">Accueil</a>
+    <a href="#">À propos</a>
+    <a href="/page-connexion" class="active">Connexion</a>
+    <a href="/page-inscription">S'inscrire</a>
+  </div>
+</nav>
 
-            <form action="/login" method="post">
-                <div class="form-group">
-                    <label for="username">Nom d'utilisateur</label>
-                    <input type="text" id="username" name="username" autocomplete="username" required>
-                </div>
+<main>
+  <section class="auth-card">
+    <h1>Connexion</h1>
+    <p class="intro">Accédez à votre espace MentorLink.</p>
+    <form id="form-connexion">
+      <div class="form-group">
+        <label for="email">Email ou téléphone</label>
+        <input type="text" id="email" name="email" placeholder="Ex : david@ifri.bj" required />
+      </div>
+      <div class="form-group">
+        <label for="mot_de_passe">Mot de passe</label>
+        <input type="password" id="mot_de_passe" name="mot_de_passe" placeholder="Votre mot de passe" required />
+      </div>
+      <button class="primary-button" type="submit">Se connecter</button>
+    </form>
+    <p class="auth-switch">
+      Pas encore de compte ? <a href="/page-inscription">Créer un compte</a>
+    </p>
+  </section>
+</main>
 
-                <div class="form-group">
-                    <label for="password">Mot de passe</label>
-                    <input type="password" id="password" name="password" autocomplete="current-password" required>
-                </div>
+<footer>
+  <p>&copy;2026 IFRI_Mentor_link. Tous droits réservés.</p>
+</footer>
 
-                <button class="primary-button" type="submit">Se connecter</button>
-            </form>
+<script>
+// Burger menu
+const burgerBtn = document.getElementById('burgerBtn');
+const navLinks = document.getElementById('navLinks');
+if (burgerBtn) {
+    burgerBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('open');
+    });
+}
 
-            <p class="auth-switch">
-                Pas encore de compte ?
-                <a href="/inscription.html">Creer un compte</a>
-            </p>
-        </section>
-    </main>
+// Formulaire connexion
+document.getElementById('form-connexion').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const data = {
+        email: document.getElementById('email').value,
+        mot_de_passe: document.getElementById('mot_de_passe').value
+    };
+
+    const response = await fetch('/connexion', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+        alert('Connexion réussie ! Bienvenue ' + result.nom);
+        window.location.href = '/accueil';
+    } else {
+        alert('Erreur : ' + result.erreur);
+    }
+});
+</script>
+
 </body>
 </html>
