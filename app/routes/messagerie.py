@@ -103,11 +103,11 @@ def voir_profil_utilisateur(user_id):
 def page_chat():
     if 'utilisateur_id' not in session:
         return redirect('/page-connexion')
-    return render_template('interface /chat.html')
+    return render_template('interface/chat.html')
 
 
 @messagerie.route('/profil-page')
 def page_profil():
     if 'utilisateur_id' not in session:
         return redirect('/page-connexion')
-    return render_template('interface /profil.html')
+    return render_template('interface/profil.html')

@@ -3,173 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vos messages</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat_style.css') }}">
+    <title>Messagerie - IFRI MentorLink</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/chat_style.css">
     <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
 </head>
-
 <body>
 
-    <div id="app">     
+<!-- NAVBAR -->
+<nav class="navbar" style="position:relative;z-index:200">
+  <h1 class="titre-app">IFRI MentorLink</h1>
+  <button class="burger-menu" id="burgerBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="/accueil">Accueil</a>
+    <a href="/profil-page">Mon profil</a>
+    <a href="/chat" class="active">Messages</a>
+    <a href="#" onclick="deconnexion()">Déconnexion</a>
+  </div>
+</nav>
 
-        <div id="sidebar">
-                <div id="sidebar-header">
-                    <h1>MentorLink</h1>
-                    <h2>Mes messages</h2>
-                </div>
-                
-            <div id="conv-list">
-                Chargement de vos conversations...
-            </div>
+<div id="app">
 
+    <!-- SIDEBAR : liste des conversations -->
+    <div id="sidebar">
+        <div id="sidebar-header">
+            <h1>IFRI MentorLink</h1>
+            <h2>Mes messages</h2>
         </div>
-        <!-- Colonne droite : le chat -->
-        <div id="chat">
-
-            <!-- Nom d'utilisateur en haut -->
-            <div id="chat-header">
-                <div id="chat-titre">Sélectionnez une conversation</div>
-            </div>
-
-            <!-- Bulles de messages -->
-            <div id="messages"></div>
-
-            <!-- Zone pour écrire un message -->
-            <div id="input-zone">
-                <input id="msg-input" type="text" placeholder="Écrire un message..." disabled/>
-                <button id="btn-envoyer" disabled>Envoyer</button>  
-            </div>   
-        </div>  
+        <div id="conv-list">
+            <p class="loading">Chargement...</p>
+        </div>
     </div>
-   
-    <script>
-      // === LES VARIABLES GLOBALES ===
-      const socket = io();
-      let convActive = null;
-      let monId = null;
 
-      // === ETAPE 1 : Au chargement, on récupère qui on est ===
-      async function init() {
+    <!-- CHAT : zone de messages -->
+    <div id="chat">
+        <div id="chat-header">
+            <div id="chat-titre">Sélectionne une conversation</div>
+        </div>
+        <div id="messages"></div>
+        <div id="input-zone">
+            <input id="msg-input" type="text" placeholder="Écrire un message..." disabled/>
+            <button id="btn-envoyer" disabled>Envoyer</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const socket = io();
+    let convActive = null;
+    let monId = null;
+
+    async function init() {
         const reponse = await fetch('/profil');
         const profil = await reponse.json();
-
         if (profil.erreur) {
-          window.location.href = '/connexion';
-          return;
+            window.location.href = '/page-connexion';
+            return;
         }
-
         monId = profil.id;
         chargerConversations();
-      }
+    }
 
-      // === ETAPE 2 : On charge la liste des conversations ===
-      async function chargerConversations() {
+    async function chargerConversations() {
         const reponse = await fetch('/conversations');
         const data = await reponse.json();
-
         const container = document.getElementById('conv-list');
         container.innerHTML = '';
 
-        data.conversations.forEach(function(conv) {
-          const el = document.createElement('div');
-          el.className = 'conv-item';
-          el.textContent = conv.interlocuteur_nom;
-          el.onclick = function() {
-            ouvrirConversation(conv.conversation_id, conv.interlocuteur_nom);
-          };
-          container.appendChild(el);
-        });
-      }
-
-      // === ETAPE 3 : On ouvre une conversation ===
-      async function ouvrirConversation(convId, nom) {
-        if (convActive) {
-          socket.emit('quitter_conversation', { conversation_id: convActive });
+        if (!data.conversations || data.conversations.length === 0) {
+            container.innerHTML = '<p class="empty">Aucune conversation</p>';
+            return;
         }
 
+        data.conversations.forEach(function(conv) {
+            const el = document.createElement('div');
+            el.className = 'conv-item';
+            el.innerHTML = `
+                <div class="conv-nom">${conv.interlocuteur}</div>
+                <div class="conv-dernier">${conv.dernier_message || 'Aucun message'}</div>
+                ${conv.non_lus > 0 ? `<span class="badge">${conv.non_lus}</span>` : ''}
+            `;
+            el.onclick = function() {
+                ouvrirConversation(conv.id, conv.interlocuteur);
+            };
+            container.appendChild(el);
+        });
+    }
+
+    async function ouvrirConversation(convId, nom) {
+        if (convActive) {
+            socket.emit('quitter_conversation', { conversation_id: convActive });
+        }
         convActive = convId;
         document.getElementById('chat-titre').textContent = nom;
         document.getElementById('msg-input').disabled = false;
         document.getElementById('btn-envoyer').disabled = false;
-
         socket.emit('rejoindre_conversation', { conversation_id: convId });
 
         const reponse = await fetch('/conversations/' + convId + '/messages');
         const data = await reponse.json();
         afficherMessages(data.messages);
-      }
+        chargerConversations();
+    }
 
-      // === ETAPE 4 : On affiche tous les messages ===
-      function afficherMessages(messages) {
+    function afficherMessages(messages) {
         const container = document.getElementById('messages');
         container.innerHTML = '';
-
+        if (!messages || messages.length === 0) {
+            container.innerHTML = '<p class="empty">Aucun message. Commencez la conversation !</p>';
+            return;
+        }
         messages.forEach(function(msg) {
-          ajouterBulle(msg);
+            ajouterBulle(msg);
         });
-
         container.scrollTop = container.scrollHeight;
-      }
+    }
 
-      // === ETAPE 5 : On crée une bulle pour un message ===
-      function ajouterBulle(msg) {
+    function ajouterBulle(msg) {
         const container = document.getElementById('messages');
         const el = document.createElement('div');
-
-        if (msg.expediteur_id === monId) {
-          el.className = 'msg moi';
-        } else {
-          el.className = 'msg autre';
-        }
-
+        el.className = msg.expediteur_id === monId ? 'msg moi' : 'msg autre';
         const heure = new Date(msg.envoye_a).toLocaleTimeString('fr-FR', {
-          hour: '2-digit',
-          minute: '2-digit'
+            hour: '2-digit', minute: '2-digit'
         });
-
-        el.innerHTML = '<div class="bubble">' + msg.contenu + '</div>'
-                     + '<div class="msg-time">' + heure + '</div>';
-
+        el.innerHTML = `<div class="bubble">${msg.contenu}</div><div class="msg-time">${heure}</div>`;
         container.appendChild(el);
         container.scrollTop = container.scrollHeight;
-      }
+    }
 
-      // === ETAPE 6 : Envoyer un message ===
-      function envoyerMessage() {
+    function envoyerMessage() {
         const input = document.getElementById('msg-input');
         const contenu = input.value.trim();
-
         if (!contenu || !convActive) return;
 
+        // Afficher immédiatement le message côté expéditeur
+        ajouterBulle({
+            expediteur_id: monId,
+            contenu: contenu,
+            envoye_a: new Date().toISOString()
+        });
+
+        // Envoyer via SocketIO
         socket.emit('envoyer_message', {
-          conversation_id: convActive,
-          contenu: contenu
+            conversation_id: convActive,
+            contenu: contenu
         });
 
         input.value = '';
-      }
+    }
 
-      // === ETAPE 7 : Écouter les messages entrants en temps réel ===
-      socket.on('nouveau_message', function(msg) {
-        if (msg.conversation_id === convActive) {
-          ajouterBulle(msg);
+    socket.on('nouveau_message', function(msg) {
+        // N'afficher que les messages des autres
+        if (msg.conversation_id === convActive && msg.expediteur_id !== monId) {
+            ajouterBulle(msg);
         }
-      });
+        chargerConversations();
+});
+    document.getElementById('msg-input').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') envoyerMessage();
+    });
 
-      // === ETAPE 8 : Envoyer avec la touche Entrée ===
-      document.getElementById('msg-input').addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-          envoyerMessage();
-        }
-      });
+    document.getElementById('btn-envoyer').addEventListener('click', envoyerMessage);
 
-      // === ETAPE 9 : Envoyer avec le bouton ===
-      document.getElementById('btn-envoyer').addEventListener('click', function() {
-        envoyerMessage();
-      });
+    // Burger menu
+    const burgerBtn = document.getElementById('burgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    if (burgerBtn) {
+        burgerBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('open');
+        });
+    }
 
-      // === LANCEMENT ===
-      init();
-    </script>
+    async function deconnexion() {
+        await fetch('/deconnexion', { method: 'POST' });
+        window.location.href = '/accueil';
+    }
+    init();
+</script>
+
 </body>
 </html>

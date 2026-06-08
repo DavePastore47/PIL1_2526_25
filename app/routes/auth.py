@@ -9,8 +9,12 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/', methods=['GET'])
 @auth.route('/accueil', methods=['GET'])
+@auth.route('/', methods=['GET'])
+@auth.route('/accueil', methods=['GET'])
 def accueil():
-    return render_template('accueil.html')
+    connecte = 'utilisateur_id' in session
+    nom = session.get('nom', '')
+    return render_template('accueil.html', connecte=connecte, nom=nom)
 
 @auth.route('/page-connexion', methods=['GET'])
 def page_connexion():

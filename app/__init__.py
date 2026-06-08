@@ -1,6 +1,9 @@
 from flask import Flask, g
 import psycopg2
 from psycopg2.extras import RealDictCursor
+from flask_socketio import SocketIO
+
+socketio = SocketIO()
 
 def create_app():
     app = Flask(__name__)
@@ -32,11 +35,13 @@ def create_app():
 
     from app.routes.auth import auth
     app.register_blueprint(auth)
-    
+
     from app.routes.matching import matching
     app.register_blueprint(matching)
-    
+
     from app.routes.messagerie import messagerie
     app.register_blueprint(messagerie)
+
+    socketio.init_app(app)
 
     return app

@@ -16,11 +16,18 @@
     <span></span>
     <span></span>
   </button>
- <div class="nav-links" id="navLinks">
+<div class="nav-links" id="navLinks">
     <a href="/accueil">Accueil</a>
-    <a href="#">À propos</a>
-    <a href="/page-connexion">Connexion</a>
-    <a href="/page-inscription">S'inscrire</a>
+    {% if connecte %}
+        <a href="/profil-page">Mon profil</a>
+        <a href="/chat">Messages</a>
+        <a href="/matching">Matching</a>
+        <a href="#" onclick="deconnexion()">Déconnexion</a>
+    {% else %}
+        <a href="#">À propos</a>
+        <a href="/page-connexion">Connexion</a>
+        <a href="/page-inscription">S'inscrire</a>
+    {% endif %}
 </div>
 </nav>
 
@@ -62,6 +69,21 @@
 <footer>
   <p>&copy;2026 IFRI_Mentor_link. Tous droits réservés.</p>
 </footer>
+
+<script>
+const burgerBtn = document.getElementById('burgerBtn');
+const navLinks = document.getElementById('navLinks');
+if (burgerBtn) {
+    burgerBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('open');
+    });
+}
+
+async function deconnexion() {
+    await fetch('/deconnexion', { method: 'POST' });
+    window.location.href = '/accueil';
+}
+</script>
 
 </body>
 </html>

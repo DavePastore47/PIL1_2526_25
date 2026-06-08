@@ -29,6 +29,7 @@
   <section class="auth-card">
     <h1>Connexion</h1>
     <p class="intro">Accédez à votre espace MentorLink.</p>
+    <div id="message-zone"></div>
     <form id="form-connexion">
       <div class="form-group">
         <label for="email">Email ou téléphone</label>
@@ -60,6 +61,31 @@ if (burgerBtn) {
     });
 }
 
+// Fonction toast
+function showToast(message, type) {
+    const toast = document.createElement('div');
+    toast.textContent = message;
+    toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#0077cc' : '#dc2626'};
+        color: white;
+        padding: 14px 20px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        z-index: 9999;
+        transition: opacity 0.5s;
+    `;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 500);
+    }, type === 'success' ? 1500 : 3000);
+}
+
 // Formulaire connexion
 document.getElementById('form-connexion').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -78,10 +104,12 @@ document.getElementById('form-connexion').addEventListener('submit', async funct
     const result = await response.json();
 
     if (response.ok) {
-        alert('Connexion réussie ! Bienvenue ' + result.nom);
-        window.location.href = '/accueil';
+        showToast('Connexion réussie ! Bienvenue ' + result.nom, 'success');
+        setTimeout(() => {
+            window.location.href = '/accueil';
+        }, 1500);
     } else {
-        alert('Erreur : ' + result.erreur);
+        showToast('Erreur : ' + result.erreur, 'error');
     }
 });
 </script>

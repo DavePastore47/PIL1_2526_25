@@ -1,99 +1,158 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/profil_style.css') }}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil - IFRI MentorLink</title>
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/css/profil_style.css">
 </head>
 <body>
 
-  <div id="page">
+<!-- NAVBAR -->
+<nav class="navbar">
+  <h1 class="titre-app">IFRI MentorLink</h1>
+  <button class="burger-menu" id="burgerBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="/accueil">Accueil</a>
+    <a href="/chat">Messages</a>
+    <a href="/profil-page" class="active">Mon profil</a>
+    <a href="#" onclick="deconnexion()">Déconnexion</a>
+  </div>
+</nav>
 
-    <!-- Bannière + infos principales -->
-    <div id="banniere">
-      <div id="photo-container">
-        <div id="photo">?</div>
-      </div>
+<div id="page">
+
+  <!-- Bannière + photo -->
+  <div id="banniere">
+    <div id="photo-container">
+      <div id="photo">?</div>
     </div>
-
-    <!-- Infos utilisateur -->
-    <div id="infos-principales">
-      <h1 id="nom-utilisateur">Chargement...</h1>
-      <p id="bio-utilisateur"></p>
-    </div>
-
-    <!-- Compétences -->
-    <div id="section-competences">
-
-      <div class="bloc-competences">
-        <h3>Points forts</h3>
-        <div id="competences-fortes"></div>
-      </div>
-
-      <div class="bloc-competences">
-        <h3>À améliorer</h3>
-        <div id="competences-faibles"></div>
-      </div>
-
-    </div>
-
-    <!-- Bouton envoyer un message -->
-    <div id="actions">
-      <button id="btn-message" onclick="contacter()">
-        Envoyer un message
-      </button>
-    </div>
-
   </div>
 
-  <script>
-    // On récupère l'id depuis l'URL : /profil?id=3
-    const params = new URLSearchParams(window.location.search);
-    const userId = params.get('id');
+  <!-- Infos principales -->
+  <div id="infos-principales">
+    <h1 id="nom-utilisateur">Chargement...</h1>
+    <p id="filiere-niveau"></p>
+    <p id="bio-utilisateur"></p>
+    <p id="disponibilites-utilisateur"></p>
+  </div>
 
-    async function chargerProfil() {
-      const url = userId ? '/profil/' + userId : '/profil';
-      const reponse = await fetch(url);
-      const data = await reponse.json();
+  <!-- Compétences -->
+  <div id="section-competences">
+    <div class="bloc-competences">
+      <h3>✅ Points forts</h3>
+      <div id="competences-fortes"><p class="empty">Aucun</p></div>
+    </div>
+    <div class="bloc-competences">
+      <h3>📚 À améliorer</h3>
+      <div id="competences-faibles"><p class="empty">Aucun</p></div>
+    </div>
+  </div>
 
-      // Nom
-      document.getElementById('nom-utilisateur').textContent =
-        data.prenom + ' ' + data.nom;
+  <!-- Actions -->
+  <div id="actions">
+    <button id="btn-message" onclick="contacter()">
+      💬 Envoyer un message
+    </button>
+    <button id="btn-modifier" onclick="window.location.href='/page-modifier-profil'">
+      ✏️ Modifier mon profil
+    </button>
+  </div>
 
-      // Initiales dans le cercle
-      const initiales = (data.prenom[0] + data.nom[0]).toUpperCase();
-      document.getElementById('photo').textContent = initiales;
+</div>
 
-      // Bio
-      document.getElementById('bio-utilisateur').textContent =
+<script>
+// Burger menu
+const burgerBtn = document.getElementById('burgerBtn');
+const navLinks = document.getElementById('navLinks');
+if (burgerBtn) {
+    burgerBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('open');
+    });
+}
+
+const params = new URLSearchParams(window.location.search);
+const userId = params.get('id');
+
+async function chargerProfil() {
+    const url = userId ? '/profil/' + userId : '/profil';
+    const reponse = await fetch(url);
+    const data = await reponse.json();
+
+    if (data.erreur) {
+        window.location.href = '/page-connexion';
+        return;
+    }
+
+    // Nom
+    document.getElementById('nom-utilisateur').textContent = data.prenom + ' ' + data.nom;
+
+    // Initiales
+    const initiales = (data.prenom[0] + data.nom[0]).toUpperCase();
+    document.getElementById('photo').textContent = initiales;
+
+    // Filière et niveau
+    if (data.filiere || data.niveau) {
+        document.getElementById('filiere-niveau').textContent =
+            (data.filiere || '') + ' — ' + (data.niveau || '');
+    }
+
+    // Bio
+    document.getElementById('bio-utilisateur').textContent =
         data.bio || 'Aucune bio renseignée.';
 
-      // Compétences
-      const fortes = document.getElementById('competences-fortes');
-      const faibles = document.getElementById('competences-faibles');
-
-      data.competences.forEach(function(comp) {
-        const tag = document.createElement('span');
-        tag.className = 'tag';
-        tag.textContent = comp.nom;
-
-        if (comp.type === 'fort') {
-          fortes.appendChild(tag);
-        } else {
-          faibles.appendChild(tag);
-        }
-      });
+    // Disponibilités
+    if (data.disponibilites) {
+        document.getElementById('disponibilites-utilisateur').textContent =
+            '🕐 ' + data.disponibilites;
     }
 
-    function contacter() {
-      if (userId) {
+    // Compétences
+    const fortes = document.getElementById('competences-fortes');
+    const faibles = document.getElementById('competences-faibles');
+    fortes.innerHTML = '';
+    faibles.innerHTML = '';
+
+    if (data.competences.length === 0) {
+        fortes.innerHTML = '<p class="empty">Aucune</p>';
+        faibles.innerHTML = '<p class="empty">Aucune</p>';
+    } else {
+        data.competences.forEach(function(comp) {
+            const tag = document.createElement('span');
+            tag.className = 'tag ' + comp.type;
+            tag.textContent = comp.nom;
+            if (comp.type === 'fort') {
+                fortes.appendChild(tag);
+            } else {
+                faibles.appendChild(tag);
+            }
+        });
+    }
+
+    // Cacher le bouton message si c'est mon propre profil
+    if (!userId) {
+        document.getElementById('btn-message').style.display = 'none';
+    }
+}
+
+function contacter() {
+    if (userId) {
         window.location.href = '/chat?avec=' + userId;
-      }
     }
+}
 
-    chargerProfil();
-  </script>
+async function deconnexion() {
+    await fetch('/deconnexion', { method: 'POST' });
+    window.location.href = '/accueil';
+}
+
+chargerProfil();
+</script>
 
 </body>
 </html>
