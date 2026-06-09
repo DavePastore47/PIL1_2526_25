@@ -1,138 +1,125 @@
--- ============================================================
--- IFRI MentorLink — Insertion des matières
--- PIL1_2526_25 · IFRI · Université d'Abomey-Calavi
--- ============================================================
+-- Matières IFRI (EC) sans accents
+-- Generé automatiquement — 119 matieres
 
--- Suppression et réinsertion propre
 TRUNCATE TABLE competences RESTART IDENTITY CASCADE;
 
--- ============================================================
--- TRONC COMMUN (Semestres 1 et 2)
--- ============================================================
 INSERT INTO competences (nom, categorie) VALUES
-('Logique, arithmétique et applications', 'Tronc commun'),
-('Mathématiques fondamentales', 'Tronc commun'),
-('Probabilités et statistiques', 'Tronc commun'),
-('Architecture et topologie des réseaux informatiques', 'Tronc commun'),
-('Système d exploitation et outils de bases en informatique', 'Tronc commun'),
-('Bases de la programmation', 'Tronc commun'),
-('Déontologie et droit liés aux TIC', 'Tronc commun'),
-('Technique d expression écrite et orale', 'Tronc commun'),
-('Administration des réseaux sous Windows/Linux', 'Tronc commun'),
-('Convergence et calcul différentiel', 'Tronc commun'),
-('Mathématiques appliquées', 'Tronc commun'),
-('Technologies web et infographie', 'Tronc commun'),
-('Bases de données relationnelles', 'Tronc commun'),
-('Programmation Python', 'Tronc commun'),
-('Anglais technique', 'Tronc commun');
-
--- ============================================================
--- GÉNIE LOGICIEL (GL)
--- ============================================================
-INSERT INTO competences (nom, categorie) VALUES
-('Structures algébriques et applications en informatique', 'GL'),
-('Approche orientée objet', 'GL'),
-('Structures de données et applications avec C/Python', 'GL'),
-('Programmation avancée en Java', 'GL'),
-('Programmation graphique en Qt/C++', 'GL'),
-('Aspects avancés des technologies web', 'GL'),
-('Bases du génie logiciel', 'GL'),
-('Programmation avancée en Python et R', 'GL'),
-('Programmation et manipulation des données', 'GL'),
-('Système d information décisionnelle et sécurité', 'GL'),
-('Génie logiciel', 'GL'),
-('Cycle de vie d un logiciel et assurance qualité', 'GL'),
-('Gestion des projets', 'GL'),
-('Développement avancé d applications web', 'GL'),
-('Développement d applications mobiles', 'GL');
-
--- ============================================================
--- SÉCURITÉ INFORMATIQUE (SI)
--- ============================================================
-INSERT INTO competences (nom, categorie) VALUES
-('Administration systèmes et réseaux', 'SI'),
-('Analyse et conception orientées objet', 'SI'),
-('Sécurité des systèmes informatiques', 'SI'),
-('Management de la sécurité du système d information', 'SI'),
-('Sécurité des réseaux', 'SI'),
-('Politique de sécurité des systèmes d information', 'SI'),
-('Commutation et routage', 'SI'),
-('Audit, normes de sécurité et gestion des risques', 'SI'),
-('Sécurité des réseaux sans fil', 'SI'),
-('Cryptographie et applications', 'SI'),
-('Systèmes de détection et de prévention d intrusions', 'SI');
-
--- ============================================================
--- INTERNET ET MULTIMÉDIA (IM)
--- ============================================================
-INSERT INTO competences (nom, categorie) VALUES
-('Programmation graphique, événementielle et Java entreprise', 'IM'),
-('Programmation C#', 'IM'),
-('Science fondamentale pour le multimédia', 'IM'),
-('Ergonomie et applications e-commerce', 'IM'),
-('Expérience utilisateur / Interface utilisateur', 'IM'),
-('Pratique des SGBD avancés et le web', 'IM'),
-('Production audiovisuelle et jeux vidéos', 'IM'),
-('Techniques de dessin et art appliqué', 'IM'),
-('Infographie 2D et 3D', 'IM'),
-('Technologies immersives', 'IM');
-
--- ============================================================
--- INTELLIGENCE ARTIFICIELLE (IA)
--- ============================================================
-INSERT INTO competences (nom, categorie) VALUES
-('Statistiques et probabilités pour la science des données', 'IA'),
-('Concept et application de l intelligence artificielle', 'IA'),
-('Big data', 'IA'),
-('Outils cloud de collecte et de traitement de données', 'IA'),
-('Concepts et applications de l apprentissage automatique', 'IA'),
-('Techniques de résolution de problèmes par la recherche', 'IA'),
-('Développement d applications basées sur l apprentissage automatique', 'IA'),
-('Corporation Data analytics', 'IA'),
-('Outils de résolution de problèmes d optimisation', 'IA');
-
--- ============================================================
--- SYSTÈMES EMBARQUÉS ET IoT (SE & IoT)
--- ============================================================
-INSERT INTO competences (nom, categorie) VALUES
-('Électricité et Électronique', 'SE&IoT'),
-('Automates programmables et asservissement', 'SE&IoT'),
-('Capteurs et actionneurs', 'SE&IoT'),
-('Traitement du signal', 'SE&IoT'),
-('Langages de description', 'SE&IoT'),
-('Architecture des processeurs et microcontrôleurs', 'SE&IoT'),
-('Réseaux sans fil et protocoles de communication en IoT', 'SE&IoT'),
-('Programmation système, réseau et temps réel', 'SE&IoT'),
-('Architecture et intercommunication d un réseau de capteurs', 'SE&IoT'),
-('Administration d un réseau de capteurs et IoT', 'SE&IoT');
-
--- ============================================================
--- MASTER GL
--- ============================================================
-INSERT INTO competences (nom, categorie) VALUES
-('Architecture logicielle', 'Master GL'),
-('Spécification des logiciels', 'Master GL'),
-('Méthodes d analyse et de conception', 'Master GL'),
-('Algorithmes avancés', 'Master GL'),
-('Théorie des langages', 'Master GL'),
-('Assurance qualité et test logiciels', 'Master GL'),
-('Sécurisation des bases de données et des programmes', 'Master GL'),
-('Systèmes répartis et mobiles', 'Master GL'),
-('Introduction aux réseaux de neurones artificiels', 'Master GL'),
-('Data Mining', 'Master GL');
-
--- ============================================================
--- MASTER SI / SIRI
--- ============================================================
-INSERT INTO competences (nom, categorie) VALUES
-('Sécurité des applications et reverse engineering', 'Master SI'),
-('Technologies et pratiques du DevSecOps', 'Master SI'),
-('Gouvernance de la sécurité du SI', 'Master SI'),
-('Gestion du risque et des incidents', 'Master SI'),
-('Technologie de la Blockchain et Applications', 'Master SI'),
-('Audit de Sécurité du SI', 'Master SI'),
-('Technologie et sécurité du Cloud Computing', 'Master SI'),
-('Sécurité Web (OWASP)', 'Master SI'),
-('Sécurité Mobile (OWASP)', 'Master SI'),
-('Administration des serveurs Linux', 'Master SI'),
-('Administration des serveurs Windows', 'Master SI');
+('Administration de bases de donnees', 'General'),
+('Administration des reseaux sous Windows/Linux', 'General'),
+('Administration des serveurs Linux', 'General'),
+('Administration des serveurs Windows', 'General'),
+('Administration des services sous Linux/UNIX', 'General'),
+('Administration des services sous Windows', 'General'),
+('Administration systemes et reseaux sous Linux', 'General'),
+('Administration systemes et reseaux sous Windows', 'General'),
+('Algorithmes avances', 'General'),
+('Algorithmique', 'General'),
+('Algebre lineaire et applications', 'General'),
+('Analyse combinatoire et calcul des probabilites', 'General'),
+('Analyse des evenements de securite', 'General'),
+('Analyse et applications', 'General'),
+('Analyse et conception orientee objet', 'General'),
+('Anglais pour la communication scientifique', 'General'),
+('Anglais technique', 'General'),
+('Application avec les langages Java et C++', 'General'),
+('Architecture et topologie des reseaux informatiques', 'General'),
+('Architecture logicielle', 'General'),
+('Aspects avances des bases de donnees', 'General'),
+('Aspects avances des technologies web', 'General'),
+('Aspects juridiques lies aux TIC', 'General'),
+('Assurance qualite et test logiciel', 'General'),
+('Atelier-Seminaire de developpement logiciel', 'General'),
+('Audit de securite du SI', 'General'),
+('Audit de systemes informatiques', 'General'),
+('Audit et normes de securite', 'General'),
+('Bases de donnees avancees', 'General'),
+('Bases de donnees distribuees', 'General'),
+('Bases de donnees multimedia et web semantique', 'General'),
+('Bases de donnees relationnelles et noSQL', 'General'),
+('Bases du genie logiciel', 'General'),
+('Communication manageriale', 'General'),
+('Communication en Anglais', 'General'),
+('Commutation et routage', 'General'),
+('Conduite de projets informatiques', 'General'),
+('Cryptographie', 'General'),
+('Cryptographie et applications', 'General'),
+('Cycle de vie et methodes de developpement logiciel', 'General'),
+('Data Mining', 'General'),
+('Deontologie et droit lies aux TIC', 'General'),
+('Developpement web', 'General'),
+('Entreprenariat et plan d''affaires', 'General'),
+('Etude des protocoles', 'General'),
+('Filtrage des acces', 'General'),
+('Fondamentaux des big data', 'General'),
+('Gestion de projets informatiques', 'General'),
+('Gestion des risques et incidents', 'General'),
+('Gouvernance de la securite du Systeme d''information', 'General'),
+('Infographie', 'General'),
+('Ingenierie Logicielle et les PGI/ERP', 'General'),
+('Interconnexion LAN en WAN', 'General'),
+('Interfaces homme-machine', 'General'),
+('Introduction aux reseaux de neurones artificiels', 'General'),
+('Introduction a l''Intelligence Artificielle', 'General'),
+('Introduction a l''Internet des Objets', 'General'),
+('Introduction a la Blockchain', 'General'),
+('Kubernetes, Serverless et Service Mesh', 'General'),
+('Langage C', 'General'),
+('Logique et arithmetique', 'General'),
+('Maintenance des appareils electroniques', 'General'),
+('Management de la securite du systeme d''information', 'General'),
+('Mathematiques pour informatique', 'General'),
+('Methode Agile Scrum', 'General'),
+('Methodes d''analyse et de conception', 'General'),
+('Methodes et outils de visualisation de donnees', 'General'),
+('Methodologie d''audit du Systeme d''Informations', 'General'),
+('Methodologie de redaction de memoire', 'General'),
+('Normes et architectures des reseaux sans fil', 'General'),
+('Outils de Java', 'General'),
+('Outils de Python et R', 'General'),
+('Outils de base en informatique', 'General'),
+('Politique de securite des systemes d''information', 'General'),
+('Programmation avancee en Python et R', 'General'),
+('Programmation graphique en Qt/C++', 'General'),
+('Programmation graphique et evenementielle Java', 'General'),
+('Programmation Python', 'General'),
+('Projet d''application', 'General'),
+('Projet de validation des acquis en Java', 'General'),
+('Projet integrateur', 'General'),
+('Protocoles WEP, WPA, WPS', 'General'),
+('Protocoles de routage et securite', 'General'),
+('Recherche operationnelle', 'General'),
+('Routage WAN et securite', 'General'),
+('Reseaux de capteurs sans fils et IoT', 'General'),
+('Reseaux informatiques et protocoles de routage', 'General'),
+('SGBD et langage SQL', 'General'),
+('Specification des logiciels', 'General'),
+('Statistiques inferentielles et applications', 'General'),
+('Structure de donnees avancees', 'General'),
+('Structure de donnees et applications avec C/Python', 'General'),
+('Structures algebriques et leurs applications', 'General'),
+('Suites et series numeriques', 'General'),
+('Systeme d''information decisionnel', 'General'),
+('Systemes repartis et mobiles', 'General'),
+('Systemes repartis, embarques et temps reel', 'General'),
+('Securisation des bases de donnees et des programmes', 'General'),
+('Securite Mobile (OWASP)', 'General'),
+('Securite Web (OWASP)', 'General'),
+('Securite des applications et reverse engineering', 'General'),
+('Securite des systemes d''information', 'General'),
+('Securite des systemes informatiques', 'General'),
+('Securite et fiabilite des systemes d''information', 'General'),
+('Techniques avancees avec les reseaux de neurones', 'General'),
+('Techniques d''expression ecrite et orale', 'General'),
+('Technologie de la Blockchain et Applications', 'General'),
+('Technologie des Reseaux sans fil (WLAN & WWAN)', 'General'),
+('Technologie et securite du Cloud Computing', 'General'),
+('Technologies avancees mobile', 'General'),
+('Technologies avancees web', 'General'),
+('Technologies et pratiques du DevSecOps', 'General'),
+('Tests de securite', 'General'),
+('Theorie des bases de donnees et algebre relationnelle', 'General'),
+('Theorie des graphes et applications', 'General'),
+('Theorie des langages', 'General'),
+('Traitement du signal et d''image', 'General'),
+('Utilisation et administration sous Windows/Linux', 'General'),
+('Equations differentielles et calcul integral', 'General');
