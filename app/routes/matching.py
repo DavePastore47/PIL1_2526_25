@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify, session
+from flask import render_template
 from app.models.matching import (
     get_mentors_potentiels,
     sauvegarder_matching,
@@ -9,7 +10,7 @@ from app.models.matching import (
 matching = Blueprint('matching', __name__)
 
 
-@matching.route('/matching', methods=['GET'])
+@matching.route('/api/matching', methods=['GET'])
 def trouver_mentors():
 
     if 'utilisateur_id' not in session:
@@ -82,3 +83,9 @@ def mettre_a_jour_matching(matching_id):
 
     mettre_a_jour_statut_matching(db, matching_id, statut)
     return jsonify({'message': f'Matching {statut}'}), 200
+
+@matching.route('/matching', methods=['GET'])
+def page_matching():
+    if 'utilisateur_id' not in session:
+        return redirect('/page-connexion')
+    return render_template('matching.html')
