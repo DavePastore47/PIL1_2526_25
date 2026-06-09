@@ -109,9 +109,9 @@ document.getElementById('form-connexion').addEventListener('submit', async funct
     const result = await response.json();
     if (response.ok) {
         showToast('Connexion réussie ! Bienvenue ' + result.nom, 'success');
-        setTimeout(() => { window.location.href = '/accueil'; }, 1500);
-    } else {
-        showToast('Erreur : ' + result.erreur, 'error');
+        setTimeout(() => {
+            window.location.href = '/matching';
+        }, 1500);
     }
 });
 </script>

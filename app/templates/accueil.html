@@ -164,8 +164,21 @@ body {
     <h2>Entraide et mentorat entre étudiants de l'IFRI</h2>
     <p>Allions nos talents et comblons nos faiblesses ; c'est ainsi que nous bâtirons nos succès futurs.</p>
     <div class="banniere-buttons">
-        <button class="btn-banniere btn-banniere-primary" onclick="window.location.href='/page-inscription'">Demander de l'aide</button>
-        <button class="btn-banniere btn-banniere-secondary" onclick="window.location.href='/page-inscription'">Devenir mentor</button>
+        {% if connecte %}
+            <button class="btn-banniere btn-banniere-primary" onclick="window.location.href='/matching'">
+                Trouver un mentor
+            </button>
+            <button class="btn-banniere btn-banniere-secondary" onclick="window.location.href='/profil-page'">
+                Devenir mentor
+            </button>
+        {% else %}
+            <button class="btn-banniere btn-banniere-primary" onclick="window.location.href='/page-inscription'">
+                Demander de l'aide
+            </button>
+            <button class="btn-banniere btn-banniere-secondary" onclick="window.location.href='/page-inscription'">
+                Devenir mentor
+            </button>
+        {% endif %}
     </div>
 </div>
 
