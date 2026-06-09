@@ -133,7 +133,7 @@ def get_competences_liste():
 def page_parametres():
     if 'utilisateur_id' not in session:
         return redirect('/page-connexion')
-    return render_template('parametres.html')
+    return render_template('parametre.html')
 
 @auth.route('/compte/email', methods=['PUT'])
 def changer_email():

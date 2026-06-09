@@ -4,15 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Inscription - IFRI MentorLink</title>
-<link rel="stylesheet" href="/app/static/css/inscription_style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/css/modifie_profil_style.css">
 </head>
 <body>
 
-<style>
-</style>
-
 <!-- NAVBAR -->
-<nav class="navbar navbar-blue">
+<nav class="navbar">
   <h1 class="titre-app">IFRI MentorLink</h1>
   <button class="burger-menu" id="burgerBtn">
     <span></span>
@@ -24,112 +25,130 @@
     <a href="/apropos">À propos</a>
     <a href="/page-connexion">Connexion</a>
     <a href="/page-inscription" class="active">S'inscrire</a>
-    <a href="#">À propos</a>
-    <a href="/app/templates/connexion.html">Connexion</a>
-    <a href="/app/templates/inscription.html" class="active">S'inscrire</a>
-
   </div>
 </nav>
 
-<main>
-  <section class="auth-card">
-
-    <!-- En-tête -->
-    <h1>Créer un compte</h1>
-    <p class="intro">Rejoignez la communauté MentorLink</p>
-
-    <!-- Barre de progression -->
-    <div class="progress-bar">
-      <span></span>
-      <span></span>
-      <span></span>
+<main style="display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 65px);padding:2rem 1rem;background:#f8fafc;">
+  <div style="width:min(100%,520px);">
+    <div style="text-align:center;margin-bottom:2rem;">
+      <div style="width:56px;height:56px;border-radius:12px;background:#1a73e810;border:1px solid #1a73e840;display:grid;place-items:center;color:#1a73e8;margin:0 auto 1rem;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+      </div>
+      <h1 style="font-family:'DM Serif Display',Georgia,serif;font-size:1.9rem;font-weight:400;color:#0f172a;margin-bottom:.3rem">Créer un compte</h1>
+      <p style="color:#475569;font-size:.9rem">Rejoignez la communauté MentorLink</p>
     </div>
 
-    <form id="form-inscription">
+    <div class="card">
+      <div class="card-body">
+        <form id="form-inscription">
 
-      <!-- Section : Informations personnelles -->
-      <p class="section-label">Informations personnelles</p>
+          <!-- Informations personnelles -->
+          <p style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#475569;margin-bottom:1rem">Informations personnelles</p>
+          <div class="field-row" style="margin-bottom:1.2rem">
+            <div class="field-group">
+              <label class="field-label">Nom <span style="color:#ef4444">*</span></label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" id="nom" class="field-input" placeholder="Votre nom" required>
+              </div>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Prénom <span style="color:#ef4444">*</span></label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" id="prenom" class="field-input" placeholder="Votre prénom" required>
+              </div>
+            </div>
+          </div>
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="nom">Nom</label>
-          <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
-        </div>
-        <div class="form-group">
-          <label for="prenom">Prénom</label>
-          <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
-        </div>
+          <div class="field-group" style="margin-bottom:1.2rem">
+            <label class="field-label">Email <span style="color:#ef4444">*</span></label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <input type="email" id="email" class="field-input" placeholder="email@exemple.com" required>
+            </div>
+          </div>
+
+          <div class="field-group" style="margin-bottom:1.5rem">
+            <label class="field-label">Téléphone <span style="color:#ef4444">*</span></label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.82 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 3.12 4.18 2 2 0 0 1 5.09 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L9.91 9.6a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <input type="text" id="telephone" class="field-input" placeholder="+229 0129000000" required>
+            </div>
+            <small style="font-size:.7rem;color:#94a3b8;margin-top:4px;display:block">Format : +229 suivi de 10 chiffres</small>
+          </div>
+
+          <!-- Parcours académique -->
+          <div style="height:1px;background:#e2e8f0;margin-bottom:1.2rem"></div>
+          <p style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#475569;margin-bottom:1rem">Parcours académique</p>
+
+          <div class="field-row" style="margin-bottom:1.5rem">
+            <div class="field-group">
+              <label class="field-label">Filière <span style="color:#ef4444">*</span></label>
+              <div class="select-wrapper">
+                <select id="filiere" class="field-select">
+                  <option value="">Choisir…</option>
+                  <option value="GL">Génie Logiciel (GL)</option>
+                  <option value="SI">Sécurité Informatique (SI)</option>
+                  <option value="IM">Internet et Multimédia (IM)</option>
+                  <option value="IA">Intelligence Artificielle (IA)</option>
+                  <option value="SE&IoT">Systèmes Embarqués & IoT</option>
+                </select>
+                <svg class="select-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Niveau <span style="color:#ef4444">*</span></label>
+              <div class="select-wrapper">
+                <select id="niveau" class="field-select">
+                  <option value="">Choisir…</option>
+                  <option value="L1">Licence 1</option>
+                  <option value="L2">Licence 2</option>
+                  <option value="L3">Licence 3</option>
+                  <option value="M1">Master 1</option>
+                  <option value="M2">Master 2</option>
+                </select>
+                <svg class="select-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sécurité -->
+          <div style="height:1px;background:#e2e8f0;margin-bottom:1.2rem"></div>
+          <p style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#475569;margin-bottom:1rem">Sécurité</p>
+
+          <div class="field-group" style="margin-bottom:1.2rem">
+            <label class="field-label">Mot de passe <span style="color:#ef4444">*</span></label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="mot_de_passe" class="field-input" placeholder="Minimum 6 caractères" required>
+            </div>
+          </div>
+
+          <div class="field-group" style="margin-bottom:1.5rem">
+            <label class="field-label">Confirmer le mot de passe <span style="color:#ef4444">*</span></label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="confirm" class="field-input" placeholder="Répétez le mot de passe" required>
+            </div>
+          </div>
+
+          <button class="btn-primary" type="submit" style="width:100%;justify-content:center;border-radius:12px;padding:.8rem">Créer mon compte</button>
+        </form>
+
+        <p style="text-align:center;margin-top:1.2rem;font-size:.85rem;color:#475569">
+          Déjà un compte ? <a href="/page-connexion" style="color:#1a73e8;font-weight:600;text-decoration:none">Connectez-vous</a>
+        </p>
       </div>
-
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="email@exemple.com" required>
-      </div>
-
-      <div class="form-group">
-        <label for="telephone">Téléphone</label>
-        <input type="text" id="telephone" name="telephone" placeholder="+229 0129000000" required>
-        <small style="font-size:0.6875rem;color:#9ca3af">Format : +229 suivi de 10 chiffres</small>
-      </div>
-
-      <!-- Section : Parcours académique -->
-      <div class="section-divider"></div>
-      <p class="section-label">Parcours académique</p>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="filiere">Filière</label>
-          <select id="filiere" name="filiere">
-            <option value="">Choisir…</option>
-            <option value="GL">Génie Logiciel (GL)</option>
-            <option value="SI">Sécurité Informatique (SI)</option>
-            <option value="IM">Internet et Multimédia (IM)</option>
-            <option value="IA">Intelligence Artificielle (IA)</option>
-            <option value="SE&IoT">Systèmes Embarqués & IoT</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="niveau">Niveau</label>
-          <select id="niveau" name="niveau">
-            <option value="">Choisir…</option>
-            <option value="L1">Licence 1</option>
-            <option value="L2">Licence 2</option>
-            <option value="L3">Licence 3</option>
-            <option value="M1">Master 1</option>
-            <option value="M2">Master 2</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Section : Mot de passe -->
-      <div class="section-divider"></div>
-      <p class="section-label">Sécurité</p>
-
-      <div class="form-group">
-        <label for="mot_de_passe">Mot de passe</label>
-        <input type="password" id="mot_de_passe" name="mot_de_passe" placeholder="Minimum 6 caractères" required>
-      </div>
-
-      <div class="form-group">
-        <label for="confirm">Confirmer le mot de passe</label>
-        <input type="password" id="confirm" name="confirm" placeholder="Répétez le mot de passe" required>
-      </div>
-
-      <button class="primary-button" type="submit">Créer mon compte</button>
-    </form>
-
-    <p class="auth-switch">
-      Déjà un compte ? <a href="/app/templates/connexion.html">Connectez-vous</a>
-    </p>
-  </section>
+    </div>
+  </div>
 </main>
 
 <footer>
-  <p>&copy;2026 IFRI_Mentor_link.</p>
+  <p>&copy;2026 IFRI_Mentor_link. Tous droits réservés.</p>
 </footer>
 
 <script>
-
 const burgerBtn = document.getElementById('burgerBtn');
 const navLinks = document.getElementById('navLinks');
 if (burgerBtn) {
@@ -138,29 +157,33 @@ if (burgerBtn) {
     });
 }
 
+function showToast(message, type) {
+    const toast = document.createElement('div');
+    toast.textContent = message;
+    toast.style.cssText = `
+        position: fixed; top: 20px; right: 20px;
+        background: ${type === 'success' ? '#1a73e8' : '#dc2626'};
+        color: white; padding: 14px 20px; border-radius: 8px;
+        font-size: 0.9rem; font-weight: bold;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; transition: opacity 0.5s;
+    `;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 500);
+    }, type === 'success' ? 1500 : 3000);
+}
 
 document.getElementById('form-inscription').addEventListener('submit', async function(e) {
     e.preventDefault();
-
     const mot_de_passe = document.getElementById('mot_de_passe').value;
     const confirm = document.getElementById('confirm').value;
     const telephone = document.getElementById('telephone').value;
 
-    if (mot_de_passe !== confirm) {
-        alert('Les mots de passe ne correspondent pas !');
-        return;
-    }
-
-    if (mot_de_passe.length < 6) {
-        alert('Le mot de passe doit contenir au moins 6 caractères !');
-        return;
-    }
-
+    if (mot_de_passe !== confirm) { showToast('Les mots de passe ne correspondent pas !', 'error'); return; }
+    if (mot_de_passe.length < 6) { showToast('Le mot de passe doit contenir au moins 6 caractères !', 'error'); return; }
     const formatTel = /^\+\d{3}\s\d{10}$/.test(telephone);
-    if (!formatTel) {
-        alert('Format du téléphone invalide.\nExemple : +229 0129000000');
-        return;
-    }
+    if (!formatTel) { showToast('Format invalide. Exemple : +229 0129000000', 'error'); return; }
 
     const data = {
         nom: document.getElementById('nom').value,
@@ -179,12 +202,11 @@ document.getElementById('form-inscription').addEventListener('submit', async fun
     });
 
     const result = await response.json();
-
     if (response.ok) {
-        alert('Inscription réussie ! Vous pouvez vous connecter.');
-        window.location.href = '/page-connexion';
+        showToast('Inscription réussie !', 'success');
+        setTimeout(() => { window.location.href = '/page-connexion'; }, 1500);
     } else {
-        alert('Erreur : ' + result.erreur);
+        showToast('Erreur : ' + result.erreur, 'error');
     }
 });
 </script>

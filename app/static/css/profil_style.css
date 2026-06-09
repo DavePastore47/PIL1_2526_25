@@ -11,11 +11,7 @@ body {
 }
 
 #page {
-    max-width: 100%;
-    width: 100%;
-    margin: 0;
-    background: #fff;
-    min-height: 100vh;
+    font-family: 'DM Sans', system-ui, sans-serif;
 }
 
 /* BANNIÈRE */
@@ -54,9 +50,10 @@ body {
 
 #nom-utilisateur {
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 400;
     color: #111;
     margin-bottom: 8px;
+    font-family: 'DM Serif Display', Georgia, serif;
 }
 
 #filiere-niveau {

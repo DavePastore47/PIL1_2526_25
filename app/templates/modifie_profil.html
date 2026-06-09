@@ -1,908 +1,392 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IFRI — Édition du Profil</title>
+  <title>Modifier mon profil - IFRI MentorLink</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
-  <style>
-    /* ===================================================
-       IFRI — Édition du Profil | Fond blanc épuré
-       =================================================== */
-
-    /* ── Variables (version claire) ─────────────────── */
-    :root {
-      --bg:           #ffffff;
-      --bg-card:      #ffffff;
-      --bg-input:     #f8fafc;
-      --bg-hover:     #f1f5f9;
-      --border:       #e2e8f0;
-      --border-focus: #1a73e8;
-      --text-primary: #0f172a;
-      --text-secondary: #475569;
-      --text-muted:   #94a3b8;
-      --accent:       #1a73e8;
-      --accent-light: #1a73e810;
-      --accent-glow:  #1a73e840;
-      --green:        #10b981;
-      --green-light:  #10b98110;
-      --red:          #ef4444;
-      --red-light:    #ef444410;
-      --yellow:       #f59e0b;
-      --yellow-light: #f59e0b10;
-      --radius-sm:    8px;
-      --radius-md:    12px;
-      --radius-lg:    20px;
-      --shadow-sm:    0 1px 2px rgba(0,0,0,.04), 0 1px 3px rgba(0,0,0,.06);
-      --shadow-md:    0 4px 16px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
-      --shadow-lg:    0 12px 32px rgba(0,0,0,.08);
-      --font-display: 'DM Serif Display', Georgia, serif;
-      --font-body:    'DM Sans', system-ui, sans-serif;
-      --transition:   all .18s cubic-bezier(.4,0,.2,1);
-    }
-
-    /* ── Reset & Base ───────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { font-size: 15px; scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--font-body);
-      color: var(--text-primary);
-      min-height: 100vh;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      background: var(--bg);
-    }
-
-    /* ── Fond blanc pur, suppression des blobs et grilles ── */
-    .bg-grid, .bg-blob {
-      display: none;
-    }
-
-    /* ── Header (légère ombre) ─────────────────────── */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255,255,255,.96);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .header-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-      flex-shrink: 0;
-    }
-    .logo-badge {
-      background: var(--accent);
-      color: #fff;
-      font-family: var(--font-display);
-      font-size: .9rem;
-      font-weight: 400;
-      padding: .2em .7em;
-      border-radius: var(--radius-sm);
-      letter-spacing: .02em;
-    }
-    .logo-text {
-      font-size: .8rem;
-      color: var(--text-secondary);
-      font-weight: 400;
-      display: none;
-    }
-    @media (min-width: 640px) { .logo-text { display: block; } }
-
-    .breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: .4rem;
-      font-size: .85rem;
-    }
-    .bc-link {
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-    .bc-link:hover { color: var(--accent); }
-    .bc-sep { color: var(--text-muted); }
-    .bc-current { color: var(--text-primary); font-weight: 500; }
-
-    /* ── Main layout ────────────────────────────────── */
-    .page-main {
-      position: relative;
-      z-index: 1;
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem 7rem;
-    }
-
-    /* ── Page Hero ──────────────────────────────────── */
-    .page-hero {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      margin-bottom: 2.2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
-      animation: fadeSlideDown .5s ease both;
-    }
-
-    @keyframes fadeSlideDown {
-      from { opacity: 0; transform: translateY(-12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-icon {
-      width: 56px; height: 56px;
-      border-radius: var(--radius-md);
-      background: var(--accent-light);
-      border: 1px solid var(--accent-glow);
-      display: grid;
-      place-items: center;
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-
-    .hero-text { flex: 1; }
-    .page-title {
-      font-family: var(--font-display);
-      font-size: 1.9rem;
-      font-weight: 400;
-      color: var(--text-primary);
-      line-height: 1.2;
-    }
-    .page-subtitle {
-      color: var(--text-secondary);
-      font-size: .9rem;
-      margin-top: .2rem;
-    }
-
-    .hero-avatar { position: relative; flex-shrink: 0; }
-    .avatar-ring {
-      width: 72px; height: 72px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #e0e7ff, #cbd5e1);
-      padding: 2px;
-      cursor: pointer;
-    }
-    .avatar-initials {
-      width: 100%; height: 100%;
-      border-radius: 50%;
-      background: white;
-      display: grid;
-      place-items: center;
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      color: var(--text-primary);
-      font-weight: 500;
-    }
-    .avatar-edit-btn {
-      position: absolute;
-      bottom: 0; right: 0;
-      width: 26px; height: 26px;
-      border-radius: 50%;
-      background: white;
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      transition: var(--transition);
-      box-shadow: var(--shadow-sm);
-    }
-    .avatar-edit-btn:hover { background: var(--bg-hover); transform: scale(1.05); color: var(--accent); }
-
-    /* ── Editor layout ──────────────────────────────── */
-    .editor-layout {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.8rem;
-      animation: fadeSlideUp .5s .1s ease both;
-    }
-    @media (min-width: 900px) {
-      .editor-layout { grid-template-columns: 1fr 1fr; align-items: start; }
-    }
-
-    @keyframes fadeSlideUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── Card (blanche avec ombre douce) ────────────── */
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      transition: box-shadow .2s ease, border-color .2s;
-      box-shadow: var(--shadow-sm);
-    }
-    .card:hover {
-      border-color: #cbd5e1;
-      box-shadow: var(--shadow-md);
-    }
-
-    .card-header {
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-      padding: 1.2rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-      background: #fefefe;
-    }
-    .card-header-icon {
-      width: 36px; height: 36px;
-      border-radius: var(--radius-sm);
-      background: var(--accent-light);
-      border: 1px solid var(--accent-glow);
-      display: grid;
-      place-items: center;
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-    .card-header-icon--skills {
-      background: var(--yellow-light);
-      border-color: rgba(245,158,11,.2);
-      color: var(--yellow);
-    }
-    .card-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      flex: 1;
-    }
-    .card-badge {
-      font-size: .7rem;
-      font-weight: 500;
-      padding: .2em .75em;
-      border-radius: 30px;
-      background: var(--accent-light);
-      color: var(--accent);
-      border: 1px solid var(--accent-glow);
-    }
-    .card-badge--skills {
-      background: var(--yellow-light);
-      color: var(--yellow);
-      border-color: rgba(245,158,11,.2);
-    }
-
-    .card-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 1.35rem; }
-
-    /* ── Field groups ───────────────────────────────── */
-    .field-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-    @media (max-width: 480px) { .field-row { grid-template-columns: 1fr; } }
-
-    .field-group { display: flex; flex-direction: column; gap: .5rem; }
-
-    .field-label {
-      font-size: .78rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      letter-spacing: .02em;
-      text-transform: uppercase;
-    }
-    .required-dot { color: var(--red); font-size: 1rem; }
-    .field-hint {
-      font-size: .7rem;
-      color: var(--text-muted);
-      font-weight: 400;
-      text-transform: none;
-      margin-left: 0.2rem;
-    }
-
-    /* ── Inputs style blanc/card ───────────────────── */
-    .input-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-    .input-icon {
-      position: absolute;
-      left: .85rem;
-      color: var(--text-muted);
-      pointer-events: none;
-      transition: var(--transition);
-    }
-    .field-input, .field-textarea, .field-select, .skill-search-input {
-      width: 100%;
-      padding: .7rem .85rem .7rem 2.5rem;
-      background: var(--bg-input);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      color: var(--text-primary);
-      font-family: var(--font-body);
-      font-size: .9rem;
-      transition: var(--transition);
-      outline: none;
-    }
-    .field-textarea { padding: .7rem 1rem; }
-    .field-input:focus, .field-textarea:focus, .field-select:focus, .skill-search-input:focus {
-      border-color: var(--border-focus);
-      box-shadow: 0 0 0 3px var(--accent-light);
-    }
-    .field-select { padding: .7rem 2.5rem .7rem 2.5rem; appearance: none; cursor: pointer; }
-    .select-arrow {
-      position: absolute;
-      right: .85rem;
-      color: var(--text-muted);
-      pointer-events: none;
-    }
-    .select-wrapper { position: relative; width: 100%; }
-
-    .textarea-wrapper { position: relative; }
-    .char-count {
-      position: absolute;
-      bottom: .6rem;
-      right: .9rem;
-      font-size: .7rem;
-      color: var(--text-muted);
-      background: rgba(255,255,255,.7);
-      padding: 0 4px;
-      border-radius: 12px;
-    }
-    .char-count.near-limit { color: var(--yellow); }
-    .char-count.at-limit   { color: var(--red); }
-
-    /* ── Skill Search ───────────────────────────────── */
-    .skill-search-block { display: flex; flex-direction: column; gap: .6rem; position: relative; }
-    .search-input-wrap { position: relative; display: flex; align-items: center; }
-    .search-icon {
-      position: absolute;
-      left: .85rem;
-      color: var(--text-muted);
-      pointer-events: none;
-    }
-    .skill-search-input { padding-left: 2.5rem; padding-right: 2.5rem; }
-    .search-clear-btn {
-      position: absolute;
-      right: .6rem;
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      padding: .3rem;
-      border-radius: var(--radius-sm);
-      display: none;
-    }
-    .search-clear-btn.visible { display: flex; }
-    .search-clear-btn:hover { color: var(--text-primary); background: var(--bg-hover); }
-
-    /* Dropdown claire */
-    .skill-dropdown {
-      position: absolute;
-      left: 0; right: 0;
-      top: calc(100% + 6px);
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-lg);
-      z-index: 50;
-      display: none;
-    }
-    .skill-dropdown.open { display: block; }
-    .dropdown-inner { max-height: 260px; overflow-y: auto; padding: .5rem; }
-    .dropdown-item {
-      padding: .6rem .9rem;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      font-size: .85rem;
-      color: var(--text-secondary);
-      display: flex;
-      justify-content: space-between;
-      transition: background .1s;
-    }
-    .dropdown-item:hover, .dropdown-item.focused { background: var(--bg-hover); color: var(--text-primary); }
-    .dropdown-item.already-added { opacity: .5; cursor: default; pointer-events: none; background: #f1f5f9; }
-    .item-cat { font-size: .7rem; color: var(--text-muted); }
-
-    .selected-subject {
-      background: var(--bg-hover);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: .8rem 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .selected-subject-name { font-weight: 500; font-size: .9rem; flex: 1; }
-    .add-buttons { display: flex; gap: .7rem; }
-    .btn-add {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .45rem 1rem;
-      border-radius: 40px;
-      font-size: .8rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .btn-fort { background: var(--green-light); color: var(--green); border: 1px solid rgba(16,185,129,.2); }
-    .btn-faible { background: var(--red-light); color: var(--red); border: 1px solid rgba(239,68,68,.2); }
-    .btn-fort:hover, .btn-faible:hover { transform: translateY(-1px); filter: brightness(0.98); }
-
-    .skills-divider {
-      display: flex;
-      align-items: center;
-      gap: .8rem;
-      font-size: .75rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      margin: .2rem 0;
-    }
-    .skills-divider::before, .skills-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-    .skills-columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-    }
-    @media (max-width: 560px) { .skills-columns { grid-template-columns: 1fr; } }
-    .skills-col { display: flex; flex-direction: column; gap: .7rem; }
-    .skills-col-header {
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      font-size: .75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      padding: .4rem .8rem;
-      border-radius: var(--radius-sm);
-    }
-    .skills-col-header--fort { background: var(--green-light); color: var(--green); }
-    .skills-col-header--faible { background: var(--red-light); color: var(--red); }
-    .skills-count { margin-left: auto; background: rgba(0,0,0,.05); border-radius: 30px; padding: .1rem .6rem; font-size: .7rem; }
-
-    .skills-list { list-style: none; display: flex; flex-direction: column; gap: .45rem; min-height: 70px; }
-    .skills-empty-state {
-      padding: 1.2rem .5rem;
-      color: var(--text-muted);
-      font-size: .8rem;
-      text-align: center;
-      border: 1px dashed var(--border);
-      border-radius: var(--radius-md);
-      background: #fafcff;
-    }
-    .skill-item {
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-      padding: .5rem .7rem;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      font-size: .8rem;
-      transition: all .1s;
-    }
-    .skill-item:hover { border-color: #cbd5e1; background: #fafcff; }
-    .skill-delete-btn {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      padding: 4px;
-      border-radius: 6px;
-      display: grid;
-      place-items: center;
-    }
-    .skill-delete-btn:hover { color: var(--red); background: var(--red-light); }
-
-    /* ── Action Bar (sur fond blanc) ───────────────── */
-    .action-bar {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      background: rgba(255,255,255,.96);
-      backdrop-filter: blur(16px);
-      border-top: 1px solid var(--border);
-      padding: 1rem 1.5rem;
-      box-shadow: 0 -4px 12px rgba(0,0,0,.02);
-      z-index: 90;
-    }
-    .action-bar-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .action-status { font-size: .8rem; color: var(--text-muted); }
-    .action-status.unsaved { color: var(--yellow); font-weight: 500; }
-    .action-buttons { display: flex; gap: 1rem; }
-
-    .btn-primary, .btn-secondary, .btn-danger {
-      display: inline-flex;
-      align-items: center;
-      gap: .6rem;
-      padding: .6rem 1.4rem;
-      border-radius: 40px;
-      font-family: var(--font-body);
-      font-weight: 500;
-      font-size: .85rem;
-      cursor: pointer;
-      transition: var(--transition);
-      border: 1px solid transparent;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: white;
-      box-shadow: var(--shadow-sm);
-    }
-    .btn-primary:hover { background: #0f62c0; transform: translateY(-1px); box-shadow: var(--shadow-md); }
-    .btn-secondary { background: white; border: 1px solid var(--border); color: var(--text-secondary); }
-    .btn-secondary:hover { background: var(--bg-hover); border-color: #cbd5e1; }
-    .btn-danger { background: white; border: 1px solid var(--red-light); color: var(--red); }
-    .btn-danger:hover { background: var(--red-light); }
-
-    /* ── Toast et modal (clair) ───────────────────── */
-    .toast {
-      position: fixed;
-      bottom: 6rem;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 60px;
-      padding: .7rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: .7rem;
-      box-shadow: var(--shadow-lg);
-      opacity: 0;
-      pointer-events: none;
-      transition: all .2s cubic-bezier(.34,1.56,.64,1);
-      z-index: 200;
-    }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.4);
-      backdrop-filter: blur(4px);
-      z-index: 300;
-      display: grid;
-      place-items: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .2s;
-    }
-    .modal-overlay.open { opacity: 1; pointer-events: all; }
-    .modal {
-      background: white;
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      max-width: 400px;
-      width: 90%;
-      text-align: center;
-      box-shadow: var(--shadow-lg);
-      transform: scale(.96);
-      transition: transform .2s;
-    }
-    .modal-overlay.open .modal { transform: scale(1); }
-    .modal-icon {
-      width: 50px; height: 50px;
-      background: var(--yellow-light);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      margin: 0 auto 1rem;
-      color: var(--yellow);
-    }
-    .modal-title { font-family: var(--font-display); font-size: 1.2rem; margin-bottom: .5rem; }
-    .modal-actions { display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; }
-
-    /* minor */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #f1f1f1; }
-    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
-    .spin { animation: spin .8s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-  </style>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/modifie_profil_style.css">
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="header-inner">
-      <div class="logo"><span class="logo-badge">IFRI</span><span class="logo-text">Institut de Formation et de Recherche en Informatique</span></div>
-      <nav class="breadcrumb"><a href="#" class="bc-link">Accueil</a><span class="bc-sep">›</span><a href="#" class="bc-link">Mon Profil</a><span class="bc-sep">›</span><span class="bc-current">Éditer</span></nav>
-    </div>
-  </header>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <h1 class="titre-app">IFRI MentorLink</h1>
+  <button class="burger-menu" id="burgerBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="/accueil">Accueil</a>
+    <a href="/profil-page">Mon profil</a>
+    <a href="/chat">Messages</a>
+    <a href="/matching">Matching</a>
+    <a href="#" onclick="deconnexion()">Déconnexion</a>
+  </div>
+</nav>
 
-  <main class="page-main">
-    <div class="page-hero">
-      <div class="hero-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
-      <div class="hero-text"><h1 class="page-title">Éditer mon profil</h1><p class="page-subtitle">Mettez à jour vos informations personnelles et vos compétences académiques</p></div>
-      <div class="hero-avatar"><div class="avatar-ring"><div class="avatar-initials" id="avatarInitials">--</div></div><button class="avatar-edit-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></button></div>
+<main class="page-main">
+  <div class="page-hero">
+    <div class="hero-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+    <div class="hero-text">
+      <h1 class="page-title">Éditer mon profil</h1>
+      <p class="page-subtitle">Mettez à jour vos informations personnelles et vos compétences académiques</p>
     </div>
+    <div class="hero-avatar">
+      <div class="avatar-ring"><div class="avatar-initials" id="avatarInitials">--</div></div>
+    </div>
+  </div>
 
-    <div class="editor-layout">
-      <div class="editor-left">
-        <section class="card">
-          <div class="card-header"><div class="card-header-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><h2 class="card-title">Informations de base</h2><span class="card-badge">Obligatoire</span></div>
-          <div class="card-body">
-            <div class="field-row"><div class="field-group"><label class="field-label">Nom <span class="required-dot">*</span></label><div class="input-wrapper"><svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><input type="text" id="nom" class="field-input" placeholder="Nom" autocomplete="family-name"></div></div>
-            <div class="field-group"><label class="field-label">Prénom <span class="required-dot">*</span></label><div class="input-wrapper"><svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><input type="text" id="prenom" class="field-input" placeholder="Prénom" autocomplete="given-name"></div></div></div>
-            <div class="field-group"><label class="field-label">Biographie <span class="field-hint">Décrivez-vous</span></label><div class="textarea-wrapper"><textarea id="bio" class="field-textarea" rows="3" maxlength="500"></textarea><span class="char-count"><span id="bioCount">0</span>/500</span></div></div>
-            <div class="field-group"><label class="field-label">Disponibilités <span class="field-hint">Créneaux pour tutorat</span></label><div class="textarea-wrapper"><textarea id="disponibilites" class="field-textarea" rows="3" maxlength="300"></textarea><span class="char-count"><span id="dispoCount">0</span>/300</span></div></div>
-            <div class="field-row"><div class="field-group"><label class="field-label">Filière <span class="required-dot">*</span></label><div class="select-wrapper"><svg class="select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><select id="filiere" class="field-select"><option value="">— Choisir —</option><option value="gl">Génie Logiciel</option><option value="rsi">Réseaux</option><option value="ia">Intelligence Artificielle</option><option value="miage">MIAGE</option></select><svg class="select-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"/></svg></div></div>
-            <div class="field-group"><label class="field-label">Niveau <span class="required-dot">*</span></label><div class="select-wrapper"><svg class="select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><select id="niveau" class="field-select"><option value="">— Niveau —</option><option value="l1">Licence 1</option><option value="l2">Licence 2</option><option value="l3">Licence 3</option><option value="m1">Master 1</option><option value="m2">Master 2</option></select><svg class="select-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"/></svg></div></div></div>
+  <div class="editor-layout">
+    <div class="editor-left">
+      <section class="card">
+        <div class="card-header">
+          <div class="card-header-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <h2 class="card-title">Informations de base</h2>
+          <span class="card-badge">Obligatoire</span>
+        </div>
+        <div class="card-body">
+          <div class="field-row">
+            <div class="field-group">
+              <label class="field-label">Nom <span class="required-dot">*</span></label>
+              <div class="input-wrapper"><svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <input type="text" id="nom" class="field-input" placeholder="Nom"></div>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Prénom <span class="required-dot">*</span></label>
+              <div class="input-wrapper"><svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <input type="text" id="prenom" class="field-input" placeholder="Prénom"></div>
+            </div>
           </div>
-        </section>
-      </div>
-      <div class="editor-right">
-        <section class="card">
-          <div class="card-header"><div class="card-header-icon card-header-icon--skills"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><h2 class="card-title">Compétences</h2><span class="card-badge card-badge--skills">76 matières</span></div>
-          <div class="card-body">
-            <div class="skill-search-block"><label class="field-label">Rechercher une matière</label><div class="skill-search-row"><div class="search-input-wrap"><svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" id="skillSearch" class="skill-search-input" placeholder="Ex: Algorithmique, SQL..." autocomplete="off"/><button class="search-clear-btn" id="clearSearch">✕</button></div></div><div class="skill-dropdown" id="skillDropdown"><div class="dropdown-inner" id="dropdownList"></div></div><div class="selected-subject" id="selectedSubjectPanel" style="display:none;"><div class="selected-subject-name" id="selectedSubjectName"></div><div class="add-buttons"><button class="btn-add btn-fort" id="btnAddFort">+ Point fort</button><button class="btn-add btn-faible" id="btnAddFaible">− Point faible</button></div></div></div>
-            <div class="skills-divider"><span>Compétences enregistrées</span></div>
-            <div class="skills-columns"><div class="skills-col"><div class="skills-col-header skills-col-header--fort">⭐ Points forts <span class="skills-count" id="fortCount">0</span></div><ul class="skills-list" id="listFort"><li class="skills-empty-state" id="emptyFort">Aucun point fort</li></ul></div><div class="skills-col"><div class="skills-col-header skills-col-header--faible">⚠️ Points faibles <span class="skills-count" id="faibleCount">0</span></div><ul class="skills-list" id="listFaible"><li class="skills-empty-state" id="emptyFaible">Aucun point faible</li></ul></div></div>
+          <div class="field-group">
+            <label class="field-label">Biographie <span class="field-hint">Décrivez-vous</span></label>
+            <div class="textarea-wrapper"><textarea id="bio" class="field-textarea" rows="3" maxlength="500"></textarea><span class="char-count"><span id="bioCount">0</span>/500</span></div>
           </div>
-        </section>
+          <div class="field-group">
+            <label class="field-label">Disponibilités <span class="field-hint">Créneaux pour tutorat</span></label>
+            <div class="textarea-wrapper"><textarea id="disponibilites" class="field-textarea" rows="3" maxlength="300"></textarea><span class="char-count"><span id="dispoCount">0</span>/300</span></div>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label class="field-label">Filière <span class="required-dot">*</span></label>
+              <div class="select-wrapper">
+                <select id="filiere" class="field-select">
+                  <option value="">— Choisir —</option>
+                  <option value="GL">Génie Logiciel (GL)</option>
+                  <option value="SI">Sécurité Informatique (SI)</option>
+                  <option value="IM">Internet et Multimédia (IM)</option>
+                  <option value="IA">Intelligence Artificielle (IA)</option>
+                  <option value="SE&IoT">Systèmes Embarqués & IoT</option>
+                </select>
+                <svg class="select-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Niveau <span class="required-dot">*</span></label>
+              <div class="select-wrapper">
+                <select id="niveau" class="field-select">
+                  <option value="">— Niveau —</option>
+                  <option value="L1">Licence 1</option>
+                  <option value="L2">Licence 2</option>
+                  <option value="L3">Licence 3</option>
+                  <option value="M1">Master 1</option>
+                  <option value="M2">Master 2</option>
+                </select>
+                <svg class="select-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="editor-right">
+      <section class="card">
+        <div class="card-header">
+          <div class="card-header-icon card-header-icon--skills"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <h2 class="card-title">Compétences</h2>
+          <span class="card-badge card-badge--skills">76 matières</span>
+        </div>
+        <div class="card-body">
+          <div class="skill-search-block">
+            <label class="field-label">Rechercher une matière</label>
+            <div class="search-input-wrap">
+              <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="skillSearch" class="skill-search-input" placeholder="Ex: Algorithmique, SQL..." autocomplete="off"/>
+              <button class="search-clear-btn" id="clearSearch">✕</button>
+            </div>
+            <div class="skill-dropdown" id="skillDropdown"><div class="dropdown-inner" id="dropdownList"></div></div>
+            <div class="selected-subject" id="selectedSubjectPanel" style="display:none;">
+              <div class="selected-subject-name" id="selectedSubjectName"></div>
+              <div class="add-buttons">
+                <button class="btn-add btn-fort" id="btnAddFort">+ Point fort</button>
+                <button class="btn-add btn-faible" id="btnAddFaible">− Point faible</button>
+              </div>
+            </div>
+          </div>
+          <div class="skills-divider"><span>Compétences enregistrées</span></div>
+          <div class="skills-columns">
+            <div class="skills-col">
+              <div class="skills-col-header skills-col-header--fort">⭐ Points forts <span class="skills-count" id="fortCount">0</span></div>
+              <ul class="skills-list" id="listFort"><li class="skills-empty-state" id="emptyFort">Aucun point fort</li></ul>
+            </div>
+            <div class="skills-col">
+              <div class="skills-col-header skills-col-header--faible">⚠️ Points faibles <span class="skills-count" id="faibleCount">0</span></div>
+              <ul class="skills-list" id="listFaible"><li class="skills-empty-state" id="emptyFaible">Aucun point faible</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="action-bar">
+    <div class="action-bar-inner">
+      <div class="action-status" id="actionStatus"></div>
+      <div class="action-buttons">
+        <button class="btn-secondary" id="btnAnnuler">Annuler</button>
+        <button class="btn-primary" id="btnEnregistrer">Enregistrer</button>
       </div>
     </div>
-    <div class="action-bar"><div class="action-bar-inner"><div class="action-status" id="actionStatus"></div><div class="action-buttons"><button class="btn-secondary" id="btnAnnuler">Annuler</button><button class="btn-primary" id="btnEnregistrer">Enregistrer</button></div></div></div>
-  </main>
-  <div class="toast" id="toast"><div class="toast-icon">✓</div><span id="toastMsg"></span></div>
-  <div class="modal-overlay" id="modalOverlay"><div class="modal"><div class="modal-icon">⚠️</div><h3 class="modal-title">Annuler les modifications ?</h3><p class="modal-body">Toutes les modifications non sauvegardées seront perdues.</p><div class="modal-actions"><button class="btn-secondary" id="modalCancel">Continuer</button><button class="btn-danger" id="modalConfirm">Oui, annuler</button></div></div></div>
+  </div>
+</main>
 
-  <script>
-    (function(){
-        let state = { competences: { forts: [], faibles: [] }, selectedSubject: null, hasUnsavedChanges: false };
-        let MATIERES_IFRI = [];
+<div class="toast" id="toast"><div class="toast-icon">✓</div><span id="toastMsg"></span></div>
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-icon">⚠️</div>
+    <h3 class="modal-title">Annuler les modifications ?</h3>
+    <p>Toutes les modifications non sauvegardées seront perdues.</p>
+    <div class="modal-actions">
+      <button class="btn-secondary" id="modalCancel">Continuer</button>
+      <button class="btn-danger" id="modalConfirm">Oui, annuler</button>
+    </div>
+  </div>
+</div>
 
-        function $(id){ return document.getElementById(id); }
+<script>
+async function deconnexion() {
+    await fetch('/deconnexion', { method: 'POST' });
+    window.location.href = '/accueil';
+}
 
-        const dom = {
-            nom: $("nom"), prenom: $("prenom"), bio: $("bio"), dispo: $("disponibilites"),
-            filiere: $("filiere"), niveau: $("niveau"), skillSearch: $("skillSearch"),
-            clearSearch: $("clearSearch"), dropdown: $("skillDropdown"), dropdownList: $("dropdownList"),
-            subjectPanel: $("selectedSubjectPanel"), subjectName: $("selectedSubjectName"),
-            btnFort: $("btnAddFort"), btnFaible: $("btnAddFaible"), listFort: $("listFort"),
-            listFaible: $("listFaible"), fortCount: $("fortCount"), faibleCount: $("faibleCount"),
-            emptyFort: $("emptyFort"), emptyFaible: $("emptyFaible"), btnSave: $("btnEnregistrer"),
-            btnCancel: $("btnAnnuler"), actionStatus: $("actionStatus"), toast: $("toast"),
-            toastMsg: $("toastMsg"), modal: $("modalOverlay"), modalCancel: $("modalCancel"),
-            modalConfirm: $("modalConfirm"), avatarInitials: $("avatarInitials")
-        };
+const burgerBtn = document.getElementById('burgerBtn');
+const navLinks = document.getElementById('navLinks');
+if (burgerBtn) {
+    burgerBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('open');
+    });
+}
 
-        // Charger le profil actuel
-        async function chargerProfil() {
-            const response = await fetch('/profil');
-            const data = await response.json();
-            if (data.erreur) { window.location.href = '/page-connexion'; return; }
+(function(){
+    let state = { competences: { forts: [], faibles: [] }, selectedSubject: null, hasUnsavedChanges: false };
+    let MATIERES_IFRI = [];
 
-            dom.nom.value = data.nom || '';
-            dom.prenom.value = data.prenom || '';
-            dom.bio.value = data.bio || '';
-            dom.dispo.value = data.disponibilites || '';
-            dom.filiere.value = data.filiere || '';
-            dom.niveau.value = data.niveau || '';
+    function $(id){ return document.getElementById(id); }
 
-            $("bioCount").innerText = (data.bio || '').length;
-            $("dispoCount").innerText = (data.disponibilites || '').length;
+    const dom = {
+        nom: $("nom"), prenom: $("prenom"), bio: $("bio"), dispo: $("disponibilites"),
+        filiere: $("filiere"), niveau: $("niveau"), skillSearch: $("skillSearch"),
+        clearSearch: $("clearSearch"), dropdown: $("skillDropdown"), dropdownList: $("dropdownList"),
+        subjectPanel: $("selectedSubjectPanel"), subjectName: $("selectedSubjectName"),
+        btnFort: $("btnAddFort"), btnFaible: $("btnAddFaible"), listFort: $("listFort"),
+        listFaible: $("listFaible"), fortCount: $("fortCount"), faibleCount: $("faibleCount"),
+        emptyFort: $("emptyFort"), emptyFaible: $("emptyFaible"), btnSave: $("btnEnregistrer"),
+        btnCancel: $("btnAnnuler"), actionStatus: $("actionStatus"), toast: $("toast"),
+        toastMsg: $("toastMsg"), modal: $("modalOverlay"), modalCancel: $("modalCancel"),
+        modalConfirm: $("modalConfirm"), avatarInitials: $("avatarInitials")
+    };
 
-            // Charger les compétences
-            if (data.competences) {
-                data.competences.forEach(c => {
-                    if (c.type === 'fort') {
-                        state.competences.forts.push({id: c.nom, nom: c.nom});
-                    } else {
-                        state.competences.faibles.push({id: c.nom, nom: c.nom});
-                    }
-                });
-            }
-
-            updateAvatar();
-            renderSkills();
-        }
-
-        // Charger les matières depuis la base
-        async function chargerMatieres() {
-            const response = await fetch('/api/competences');
-            const data = await response.json();
-            MATIERES_IFRI = data.competences.map(c => ({
-                id: c.nom,
-                nom: c.nom,
-                cat: c.categorie || 'Général'
-            }));
-        }
-
-        function updateAvatar(){
-            let n=dom.nom.value.trim(), p=dom.prenom.value.trim();
-            dom.avatarInitials.textContent = (p[0]||'')+(n[0]||'')||'--';
-        }
-
-        dom.nom.addEventListener("input", updateAvatar);
-        dom.prenom.addEventListener("input", updateAvatar);
-
-        function markUnsaved(){
-            if(!state.hasUnsavedChanges){
-                state.hasUnsavedChanges=true;
-                dom.actionStatus.textContent="● Modifications non sauvegardées";
-                dom.actionStatus.classList.add("unsaved");
-            }
-        }
-
-        [dom.nom, dom.prenom, dom.bio, dom.dispo, dom.filiere, dom.niveau].forEach(el=>el.addEventListener("input",markUnsaved));
-
-        function getAlreadyAdded(){
-            return new Set([...state.competences.forts.map(c=>c.id),...state.competences.faibles.map(c=>c.id)]);
-        }
-
-        function renderDropdown(q){
-            let query=q.toLowerCase().trim(), added=getAlreadyAdded();
-            let filtered=query.length===0?[]:MATIERES_IFRI.filter(m=>m.nom.toLowerCase().includes(query));
-            dom.dropdownList.innerHTML="";
-            if(filtered.length===0&&query.length){
-                dom.dropdownList.innerHTML='<div style="padding:10px;color:#aaa;text-align:center;font-size:.85rem">Aucune matière trouvée</div>';
-                dom.dropdown.classList.add("open"); return;
-            }
-            if(filtered.length===0){ dom.dropdown.classList.remove("open"); return; }
-            filtered.slice(0,20).forEach(m=>{
-                let div=document.createElement("div");
-                div.className="dropdown-item"+(added.has(m.id)?" already-added":"");
-                div.innerHTML=`<span>${m.nom}</span><span class="item-cat">${m.cat}</span>`;
-                div.onmousedown=(e)=>{ e.preventDefault(); if(!added.has(m.id)) selectSubject(m); };
-                dom.dropdownList.appendChild(div);
+    async function chargerProfil() {
+        const response = await fetch('/profil');
+        const data = await response.json();
+        if (data.erreur) { window.location.href = '/page-connexion'; return; }
+        dom.nom.value = data.nom || '';
+        dom.prenom.value = data.prenom || '';
+        dom.bio.value = data.bio || '';
+        dom.dispo.value = data.disponibilites || '';
+        dom.filiere.value = data.filiere || '';
+        dom.niveau.value = data.niveau || '';
+        $("bioCount").innerText = (data.bio || '').length;
+        $("dispoCount").innerText = (data.disponibilites || '').length;
+        if (data.competences) {
+            data.competences.forEach(c => {
+                if (c.type === 'fort') state.competences.forts.push({id: c.nom, nom: c.nom});
+                else state.competences.faibles.push({id: c.nom, nom: c.nom});
             });
-            dom.dropdown.classList.add("open");
         }
+        updateAvatar();
+        renderSkills();
+    }
 
-        function selectSubject(m){
-            state.selectedSubject=m;
-            dom.subjectName.textContent=m.nom;
-            dom.subjectPanel.style.display="flex";
-            dom.skillSearch.value=m.nom;
-            dom.clearSearch.classList.add("visible");
+    async function chargerMatieres() {
+        const response = await fetch('/api/competences');
+        const data = await response.json();
+        MATIERES_IFRI = data.competences.map(c => ({ id: c.nom, nom: c.nom, cat: c.categorie || 'Général' }));
+    }
+
+    function updateAvatar(){
+        let n=dom.nom.value.trim(), p=dom.prenom.value.trim();
+        dom.avatarInitials.textContent = (p[0]||'')+(n[0]||'')||'--';
+    }
+
+    dom.nom.addEventListener("input", updateAvatar);
+    dom.prenom.addEventListener("input", updateAvatar);
+
+    function markUnsaved(){
+        if(!state.hasUnsavedChanges){
+            state.hasUnsavedChanges=true;
+            dom.actionStatus.textContent="● Modifications non sauvegardées";
+            dom.actionStatus.classList.add("unsaved");
+        }
+    }
+
+    [dom.nom, dom.prenom, dom.bio, dom.dispo, dom.filiere, dom.niveau].forEach(el=>el.addEventListener("input",markUnsaved));
+
+    function getAlreadyAdded(){
+        return new Set([...state.competences.forts.map(c=>c.id),...state.competences.faibles.map(c=>c.id)]);
+    }
+
+    function renderDropdown(q){
+        let query=q.toLowerCase().trim(), added=getAlreadyAdded();
+        let filtered=query.length===0?[]:MATIERES_IFRI.filter(m=>m.nom.toLowerCase().includes(query));
+        dom.dropdownList.innerHTML="";
+        if(filtered.length===0&&query.length){
+            dom.dropdownList.innerHTML='<div style="padding:10px;color:#aaa;text-align:center;font-size:.85rem">Aucune matière trouvée</div>';
+            dom.dropdown.classList.add("open"); return;
+        }
+        if(filtered.length===0){ dom.dropdown.classList.remove("open"); return; }
+        filtered.slice(0,20).forEach(m=>{
+            let div=document.createElement("div");
+            div.className="dropdown-item"+(added.has(m.id)?" already-added":"");
+            div.innerHTML=`<span>${m.nom}</span><span class="item-cat">${m.cat}</span>`;
+            div.onmousedown=(e)=>{ e.preventDefault(); if(!added.has(m.id)) selectSubject(m); };
+            dom.dropdownList.appendChild(div);
+        });
+        dom.dropdown.classList.add("open");
+    }
+
+    function selectSubject(m){
+        state.selectedSubject=m;
+        dom.subjectName.textContent=m.nom;
+        dom.subjectPanel.style.display="flex";
+        dom.skillSearch.value=m.nom;
+        dom.clearSearch.classList.add("visible");
+        dom.dropdown.classList.remove("open");
+    }
+
+    dom.skillSearch.addEventListener("input",()=>{
+        let val=dom.skillSearch.value;
+        dom.clearSearch.classList.toggle("visible",val.length>0);
+        if(!val){ dom.dropdown.classList.remove("open"); dom.subjectPanel.style.display="none"; state.selectedSubject=null; }
+        else renderDropdown(val);
+    });
+
+    dom.clearSearch.addEventListener("click",()=>{
+        dom.skillSearch.value=""; dom.clearSearch.classList.remove("visible");
+        dom.subjectPanel.style.display="none"; state.selectedSubject=null;
+        dom.dropdown.classList.remove("open"); dom.skillSearch.focus();
+    });
+
+    document.addEventListener("mousedown",(e)=>{
+        if(!dom.dropdown.contains(e.target)&&e.target!==dom.skillSearch)
             dom.dropdown.classList.remove("open");
-        }
+    });
 
-        dom.skillSearch.addEventListener("input",()=>{
-            let val=dom.skillSearch.value;
-            dom.clearSearch.classList.toggle("visible",val.length>0);
-            if(!val){ dom.dropdown.classList.remove("open"); dom.subjectPanel.style.display="none"; state.selectedSubject=null; }
-            else renderDropdown(val);
+    function addCompetence(type){
+        let m=state.selectedSubject; if(!m)return;
+        if(getAlreadyAdded().has(m.id)){ showToast("Déjà ajouté"); return; }
+        state.competences[type].push({id:m.id,nom:m.nom});
+        renderSkills(); markUnsaved();
+        dom.skillSearch.value=""; dom.clearSearch.classList.remove("visible");
+        dom.subjectPanel.style.display="none"; state.selectedSubject=null;
+        dom.dropdown.classList.remove("open");
+        showToast(`"${m.nom}" ajouté en ${type==='forts'?'point fort':'point faible'}`);
+    }
+
+    dom.btnFort.onclick=()=>addCompetence("forts");
+    dom.btnFaible.onclick=()=>addCompetence("faibles");
+
+    function removeCompetence(type,id){
+        state.competences[type]=state.competences[type].filter(c=>c.id!==id);
+        renderSkills(); markUnsaved();
+    }
+
+    function renderSkills(){
+        renderList("forts",dom.listFort,dom.fortCount,dom.emptyFort);
+        renderList("faibles",dom.listFaible,dom.faibleCount,dom.emptyFaible);
+    }
+
+    function renderList(type,listEl,countEl,emptyEl){
+        let items=state.competences[type];
+        countEl.innerText=items.length;
+        listEl.querySelectorAll(".skill-item").forEach(el=>el.remove());
+        if(!items.length){ emptyEl.style.display="flex"; return; }
+        emptyEl.style.display="none";
+        items.forEach(m=>{
+            let li=document.createElement("li");
+            li.className="skill-item";
+            li.innerHTML=`<span>${m.nom}</span><button class="skill-delete-btn">🗑️</button>`;
+            li.querySelector(".skill-delete-btn").addEventListener("click",()=>removeCompetence(type,m.id));
+            listEl.appendChild(li);
         });
+    }
 
-        dom.clearSearch.addEventListener("click",()=>{
-            dom.skillSearch.value=""; dom.clearSearch.classList.remove("visible");
-            dom.subjectPanel.style.display="none"; state.selectedSubject=null;
-            dom.dropdown.classList.remove("open"); dom.skillSearch.focus();
+    dom.btnSave.addEventListener("click", async ()=>{
+        if(!dom.nom.value.trim()||!dom.prenom.value.trim()||!dom.filiere.value||!dom.niveau.value){
+            showToast("Veuillez remplir les champs obligatoires"); return;
+        }
+        dom.btnSave.disabled=true; dom.btnSave.innerHTML="⏳ Enregistrement...";
+        const competences = [
+            ...state.competences.forts.map(c=>({nom:c.nom, type:'fort'})),
+            ...state.competences.faibles.map(c=>({nom:c.nom, type:'faible'}))
+        ];
+        const response = await fetch('/profil', {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                nom: dom.nom.value.trim(), prenom: dom.prenom.value.trim(),
+                filiere: dom.filiere.value, niveau: dom.niveau.value,
+                bio: dom.bio.value, disponibilites: dom.dispo.value,
+                competences: competences
+            })
         });
-
-        document.addEventListener("mousedown",(e)=>{
-            if(!dom.dropdown.contains(e.target)&&e.target!==dom.skillSearch)
-                dom.dropdown.classList.remove("open");
-        });
-
-        function addCompetence(type){
-            let m=state.selectedSubject; if(!m)return;
-            if(getAlreadyAdded().has(m.id)){ showToast("Déjà ajouté","warn"); return; }
-            state.competences[type].push({id:m.id,nom:m.nom});
-            renderSkills(); markUnsaved();
-            dom.skillSearch.value=""; dom.clearSearch.classList.remove("visible");
-            dom.subjectPanel.style.display="none"; state.selectedSubject=null;
-            dom.dropdown.classList.remove("open");
-            showToast(`"${m.nom}" ajouté en ${type==='forts'?'point fort':'point faible'}`);
+        const result = await response.json();
+        dom.btnSave.disabled=false; dom.btnSave.innerHTML="Enregistrer";
+        if(response.ok){
+            state.hasUnsavedChanges=false;
+            dom.actionStatus.textContent="✓ Profil sauvegardé";
+            dom.actionStatus.classList.remove("unsaved");
+            showToast("Profil enregistré avec succès !");
+            setTimeout(()=>{ window.location.href='/profil-page'; }, 1500);
+        } else {
+            showToast(result.erreur || "Erreur lors de la sauvegarde");
         }
+    });
 
-        dom.btnFort.onclick=()=>addCompetence("forts");
-        dom.btnFaible.onclick=()=>addCompetence("faibles");
+    dom.btnCancel.addEventListener("click",()=>{
+        if(state.hasUnsavedChanges) dom.modal.classList.add("open");
+        else window.location.href='/profil-page';
+    });
 
-        function removeCompetence(type,id){
-            state.competences[type]=state.competences[type].filter(c=>c.id!==id);
-            renderSkills(); markUnsaved();
-        }
+    dom.modalCancel.addEventListener("click",()=>dom.modal.classList.remove("open"));
+    dom.modalConfirm.addEventListener("click",()=>{ window.location.href='/profil-page'; });
 
-        function renderSkills(){
-            renderList("forts",dom.listFort,dom.fortCount,dom.emptyFort);
-            renderList("faibles",dom.listFaible,dom.faibleCount,dom.emptyFaible);
-        }
+    function showToast(msg){
+        dom.toastMsg.innerText=msg;
+        dom.toast.classList.add("show");
+        setTimeout(()=>dom.toast.classList.remove("show"),2500);
+    }
 
-        function renderList(type,listEl,countEl,emptyEl){
-            let items=state.competences[type];
-            countEl.innerText=items.length;
-            listEl.querySelectorAll(".skill-item").forEach(el=>el.remove());
-            if(!items.length){ emptyEl.style.display="flex"; return; }
-            emptyEl.style.display="none";
-            items.forEach(m=>{
-                let li=document.createElement("li");
-                li.className="skill-item";
-                li.innerHTML=`<span>${m.nom}</span><button class="skill-delete-btn">🗑️</button>`;
-                li.querySelector(".skill-delete-btn").addEventListener("click",()=>removeCompetence(type,m.id));
-                listEl.appendChild(li);
-            });
-        }
+    dom.bio.addEventListener("input",function(){ $("bioCount").innerText=this.value.length; });
+    dom.dispo.addEventListener("input",function(){ $("dispoCount").innerText=this.value.length; });
 
-        // Enregistrer branché sur le backend
-        dom.btnSave.addEventListener("click", async ()=>{
-            if(!dom.nom.value.trim()||!dom.prenom.value.trim()||!dom.filiere.value||!dom.niveau.value){
-                showToast("Veuillez remplir les champs obligatoires","error"); return;
-            }
-            dom.btnSave.disabled=true; dom.btnSave.innerHTML="⏳ Enregistrement...";
-
-            const competences = [
-                ...state.competences.forts.map(c=>({nom:c.nom, type:'fort'})),
-                ...state.competences.faibles.map(c=>({nom:c.nom, type:'faible'}))
-            ];
-
-            const response = await fetch('/profil', {
-                method: 'PUT',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    nom: dom.nom.value.trim(),
-                    prenom: dom.prenom.value.trim(),
-                    filiere: dom.filiere.value,
-                    niveau: dom.niveau.value,
-                    bio: dom.bio.value,
-                    disponibilites: dom.dispo.value,
-                    competences: competences
-                })
-            });
-
-            const result = await response.json();
-            dom.btnSave.disabled=false; dom.btnSave.innerHTML="Enregistrer";
-
-            if(response.ok){
-                state.hasUnsavedChanges=false;
-                dom.actionStatus.textContent="✓ Profil sauvegardé";
-                dom.actionStatus.classList.remove("unsaved");
-                showToast("Profil enregistré avec succès !");
-                setTimeout(()=>{ window.location.href='/profil-page'; }, 1500);
-            } else {
-                showToast(result.erreur || "Erreur lors de la sauvegarde", "error");
-            }
-        });
-
-        dom.btnCancel.addEventListener("click",()=>{
-            if(state.hasUnsavedChanges) dom.modal.classList.add("open");
-            else window.location.href='/profil-page';
-        });
-
-        dom.modalCancel.addEventListener("click",()=>dom.modal.classList.remove("open"));
-        dom.modalConfirm.addEventListener("click",()=>{ window.location.href='/profil-page'; });
-
-        function showToast(msg,type="success"){
-            dom.toastMsg.innerText=msg;
-            dom.toast.classList.add("show");
-            setTimeout(()=>dom.toast.classList.remove("show"),2500);
-        }
-
-        dom.bio.addEventListener("input",function(){ $("bioCount").innerText=this.value.length; });
-        dom.dispo.addEventListener("input",function(){ $("dispoCount").innerText=this.value.length; });
-
-        // Initialisation
-        chargerMatieres().then(()=>chargerProfil());
-    })();
-  </script>
+    chargerMatieres().then(()=>chargerProfil());
+})();
+</script>
 </body>
 </html>

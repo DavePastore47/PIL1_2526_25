@@ -4,11 +4,139 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IFRI MentorLink</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/css/modifie_profil_style.css">
+<style>
+body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: #f8fafc;
+}
+
+.banniere {
+    background: linear-gradient(135deg, #1a73e8, #0f172a);
+    color: white;
+    padding: 80px 30px;
+    text-align: center;
+}
+
+.banniere h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.banniere p {
+    font-size: 1rem;
+    margin-bottom: 32px;
+    opacity: 0.85;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.banniere-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-banniere {
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+}
+
+.btn-banniere-primary {
+    background: white;
+    color: #1a73e8;
+}
+
+.btn-banniere-primary:hover {
+    background: #f1f5f9;
+    transform: translateY(-1px);
+}
+
+.btn-banniere-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255,255,255,0.6) !important;
+}
+
+.btn-banniere-secondary:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: white !important;
+}
+
+.grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 40px 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.carte {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.carte:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+}
+
+.carte h2, .carte h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-weight: 400;
+    color: #0f172a;
+    margin-bottom: 14px;
+    font-size: 1.2rem;
+}
+
+.carte p, .carte li {
+    font-size: 0.9rem;
+    color: #475569;
+    line-height: 1.7;
+}
+
+.carte ul {
+    list-style: none;
+    padding: 0;
+}
+
+.carte ul li {
+    padding: 4px 0;
+}
+
+.carte strong {
+    color: #0f172a;
+}
+
+@media (max-width: 600px) {
+    .banniere h2 { font-size: 1.5rem; }
+    .grille { padding: 20px 16px; }
+}
+</style>
 </head>
 <body>
 
-<!-- NAVBAR EN PREMIER -->
+<!-- NAVBAR -->
 <nav class="navbar">
   <h1 class="titre-app">IFRI MentorLink</h1>
   <button class="burger-menu" id="burgerBtn">
@@ -16,7 +144,7 @@
     <span></span>
     <span></span>
   </button>
-<div class="nav-links" id="navLinks">
+  <div class="nav-links" id="navLinks">
     <a href="/accueil">Accueil</a>
     {% if connecte %}
         <a href="/profil-page">Mon profil</a>
@@ -28,46 +156,45 @@
         <a href="/page-connexion">Connexion</a>
         <a href="/page-inscription">S'inscrire</a>
     {% endif %}
-</div>
+  </div>
 </nav>
 
 <!-- BANNIÈRE -->
 <div class="banniere">
-  <h2>Entraide et mentorat estudiantins à l'IFRI</h2>
-  <p>Allions nos talents et comblons nos faiblesses ; c'est ainsi que nous bâtirons nos succès futurs.</p>
-  <div>
-    <button class="btn">Demander de l'aide</button>
-    <button class="btn btn-secondaire">Devenir mentor</button>
-  </div>
+    <h2>Entraide et mentorat entre étudiants de l'IFRI</h2>
+    <p>Allions nos talents et comblons nos faiblesses ; c'est ainsi que nous bâtirons nos succès futurs.</p>
+    <div class="banniere-buttons">
+        <button class="btn-banniere btn-banniere-primary" onclick="window.location.href='/page-inscription'">Demander de l'aide</button>
+        <button class="btn-banniere btn-banniere-secondary" onclick="window.location.href='/page-inscription'">Devenir mentor</button>
+    </div>
 </div>
 
 <!-- CARTES -->
 <div class="grille">
-  <div class="carte">
-    <h3>Pourquoi nous rejoindre ?</h3>
-    <ul>
-      <li>⚡ Trouver de l'aide rapidement</li>
-      <li>📢 Partager ses connaissances</li>
-      <li>👥 Travailler en groupe</li>
-      <li>🏆 Réussir ensemble</li>
-    </ul>
+    <div class="carte">
+        <h3>Pourquoi nous rejoindre ?</h3>
+        <ul>
+            <li>⚡ Trouver de l'aide rapidement</li>
+            <li>📢 Partager ses connaissances</li>
+            <li>👥 Travailler en groupe</li>
+            <li>🏆 Réussir ensemble</li>
+        </ul>
+    </div>
+    <div class="carte">
+      <h3>Notre communauté à IFRI</h3>
+      <p>La plateforme officielle de partage de connaissances entre étudiants de l'IFRI.</p>
+      <p style="margin-top:10px">Rejoignez une communauté d'étudiants qui s'entraident pour progresser ensemble dans leurs études.</p>
   </div>
-  <div class="carte">
-    <h3>Notre communauté à IFRI.</h3>
-    <p>La plateforme officielle de partage de connaissances entre étudiants de l'IFRI.</p>
-    <p><strong>Étudiants actifs :</strong> </p>
-    <p><strong>Sessions ce mois :</strong> </p>
-  </div>
-  <div class="carte">
-    <h2>Comment ça marche ?</h2>
-    <p><b>1.</b> Créez votre compte étudiant.</p>
-    <p><b>2.</b> Trouvez un mentor ou un élève à aider.</p>
-    <p><b>3.</b> Discutez et progressez ensemble.</p>
-  </div>
+    <div class="carte">
+        <h3>Comment ça marche ?</h3>
+        <p><b>1.</b> Créez votre compte étudiant.</p>
+        <p><b>2.</b> Trouvez un mentor ou un élève à aider.</p>
+        <p><b>3.</b> Discutez et progressez ensemble.</p>
+    </div>
 </div>
 
 <footer>
-  <p>&copy;2026 IFRI_Mentor_link. Tous droits réservés.</p>
+    <p>&copy;2026 IFRI_Mentor_link. Tous droits réservés.</p>
 </footer>
 
 <script>

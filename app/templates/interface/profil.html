@@ -4,8 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Profil - IFRI MentorLink</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/static/css/style.css">
-<link rel="stylesheet" href="/static/css/profil_style.css">
+<link rel="stylesheet" href="/static/css/modifie_profil_style.css">
 </head>
 <body>
 
@@ -19,58 +22,94 @@
   </button>
   <div class="nav-links" id="navLinks">
     <a href="/accueil">Accueil</a>
-    <a href="/chat">Messages</a>
     <a href="/profil-page" class="active">Mon profil</a>
+    <a href="/chat">Messages</a>
+    <a href="/matching">Matching</a>
     <a href="#" onclick="deconnexion()">Déconnexion</a>
   </div>
 </nav>
 
-<div id="page">
+<main class="page-main">
 
-  <!-- Bannière + photo -->
-  <div id="banniere">
-    <div id="photo-container">
-      <div id="photo">?</div>
+  <!-- Hero profil -->
+  <div class="page-hero">
+    <div class="avatar-ring" style="width:72px;height:72px;flex-shrink:0">
+      <div class="avatar-initials" id="photo">?</div>
+    </div>
+    <div class="hero-text">
+      <h1 class="page-title" id="nom-utilisateur">Chargement...</h1>
+      <p class="page-subtitle" id="filiere-niveau"></p>
+    </div>
+    <div id="actions-hero" style="display:flex;gap:10px;flex-wrap:wrap">
+      <button id="btn-message" class="btn-primary" onclick="contacter()" style="display:none">
+        💬 Contacter
+      </button>
+      <button id="btn-modifier" class="btn-secondary" onclick="window.location.href='/page-modifier-profil'">
+        ✏️ Modifier
+      </button>
+      <button id="btn-parametres" class="btn-secondary" onclick="window.location.href='/parametres'">
+        ⚙️ Paramètres
+      </button>
     </div>
   </div>
 
-  <!-- Infos principales -->
-  <div id="infos-principales">
-    <h1 id="nom-utilisateur">Chargement...</h1>
-    <p id="filiere-niveau"></p>
-    <p id="bio-utilisateur"></p>
-    <p id="disponibilites-utilisateur"></p>
-  </div>
+  <!-- Layout deux colonnes -->
+  <div class="editor-layout">
 
-  <!-- Compétences -->
-  <div id="section-competences">
-    <div class="bloc-competences">
-      <h3>✅ Points forts</h3>
-      <div id="competences-fortes"><p class="empty">Aucun</p></div>
+    <!-- Infos principales -->
+    <div class="editor-left">
+      <section class="card">
+        <div class="card-header">
+          <div class="card-header-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h2 class="card-title">Informations</h2>
+        </div>
+        <div class="card-body">
+          <div class="field-group">
+            <label class="field-label">Biographie</label>
+            <p id="bio-utilisateur" style="font-size:.9rem;color:#475569;line-height:1.7">—</p>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Disponibilités</label>
+            <p id="disponibilites-utilisateur" style="font-size:.9rem;color:#475569;line-height:1.7">—</p>
+          </div>
+        </div>
+      </section>
     </div>
-    <div class="bloc-competences">
-      <h3>📚 À améliorer</h3>
-      <div id="competences-faibles"><p class="empty">Aucun</p></div>
+
+    <!-- Compétences -->
+    <div class="editor-right">
+      <section class="card">
+        <div class="card-header">
+          <div class="card-header-icon card-header-icon--skills">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h2 class="card-title">Compétences</h2>
+        </div>
+        <div class="card-body">
+          <div class="skills-columns">
+            <div class="skills-col">
+              <div class="skills-col-header skills-col-header--fort">⭐ Points forts</div>
+              <div id="competences-fortes" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">
+                <p class="empty" style="font-size:.82rem;color:#94a3b8">Aucun</p>
+              </div>
+            </div>
+            <div class="skills-col">
+              <div class="skills-col-header skills-col-header--faible">📚 À améliorer</div>
+              <div id="competences-faibles" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">
+                <p class="empty" style="font-size:.82rem;color:#94a3b8">Aucun</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-  </div>
 
-  <!-- Actions -->
-  <div id="actions">
-    <button id="btn-message" onclick="contacter()">
-      💬 Envoyer un message
-    </button>
-    <button id="btn-modifier" onclick="window.location.href='/page-modifier-profil'">
-    ✏️ Modifier mon profil
-    </button>
-    <button id="btn-parametres" onclick="window.location.href='/parametres'">
-    ⚙️ Paramètres
-    </button>
   </div>
-
-</div>
+</main>
 
 <script>
-// Burger menu
 const burgerBtn = document.getElementById('burgerBtn');
 const navLinks = document.getElementById('navLinks');
 if (burgerBtn) {
@@ -92,61 +131,58 @@ async function chargerProfil() {
         return;
     }
 
-    // Nom
     document.getElementById('nom-utilisateur').textContent = data.prenom + ' ' + data.nom;
 
-    // Initiales
     const initiales = (data.prenom[0] + data.nom[0]).toUpperCase();
     document.getElementById('photo').textContent = initiales;
 
-    // Filière et niveau
     if (data.filiere || data.niveau) {
         document.getElementById('filiere-niveau').textContent =
             (data.filiere || '') + ' — ' + (data.niveau || '');
     }
 
-    // Bio
     document.getElementById('bio-utilisateur').textContent =
         data.bio || 'Aucune bio renseignée.';
 
-    // Disponibilités
-    if (data.disponibilites) {
-        document.getElementById('disponibilites-utilisateur').textContent =
-            '🕐 ' + data.disponibilites;
-    }
+    document.getElementById('disponibilites-utilisateur').textContent =
+        data.disponibilites ? '🕐 ' + data.disponibilites : 'Non renseignées.';
 
-    // Compétences
     const fortes = document.getElementById('competences-fortes');
     const faibles = document.getElementById('competences-faibles');
     fortes.innerHTML = '';
     faibles.innerHTML = '';
 
     if (data.competences.length === 0) {
-        fortes.innerHTML = '<p class="empty">Aucune</p>';
-        faibles.innerHTML = '<p class="empty">Aucune</p>';
+        fortes.innerHTML = '<p style="font-size:.82rem;color:#94a3b8">Aucune</p>';
+        faibles.innerHTML = '<p style="font-size:.82rem;color:#94a3b8">Aucune</p>';
     } else {
         data.competences.forEach(function(comp) {
             const tag = document.createElement('span');
-            tag.className = 'tag ' + comp.type;
+            tag.style.cssText = `
+                display:inline-block;padding:4px 12px;border-radius:20px;
+                font-size:.78rem;font-weight:600;margin:2px;
+                background:${comp.type === 'fort' ? '#dcfce7' : '#fef9c3'};
+                color:${comp.type === 'fort' ? '#166534' : '#854d0e'};
+            `;
             tag.textContent = comp.nom;
-            if (comp.type === 'fort') {
-                fortes.appendChild(tag);
-            } else {
-                faibles.appendChild(tag);
-            }
+            if (comp.type === 'fort') fortes.appendChild(tag);
+            else faibles.appendChild(tag);
         });
     }
 
-    // Cacher le bouton message si c'est mon propre profil
     if (!userId) {
         document.getElementById('btn-message').style.display = 'none';
+        document.getElementById('btn-modifier').style.display = 'inline-flex';
+        document.getElementById('btn-parametres').style.display = 'inline-flex';
+    } else {
+        document.getElementById('btn-message').style.display = 'inline-flex';
+        document.getElementById('btn-modifier').style.display = 'none';
+        document.getElementById('btn-parametres').style.display = 'none';
     }
 }
 
 function contacter() {
-    if (userId) {
-        window.location.href = '/chat?avec=' + userId;
-    }
+    if (userId) window.location.href = '/chat?avec=' + userId;
 }
 
 async function deconnexion() {
