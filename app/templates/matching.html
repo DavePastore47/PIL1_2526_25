@@ -92,6 +92,21 @@ async function chargerMentors() {
         const scorePercent = Math.min(Math.round(mentor.score_total * 20), 100);
         const scoreColor = scorePercent >= 60 ? '#1D9E75' : scorePercent >= 40 ? '#f59e0b' : '#0077cc';
 
+        // Matières en commun
+        const matieres = mentor.matieres_communes || [];
+        const matieresVisibles = matieres.slice(0, 3);
+        const reste = matieres.length - 3;
+
+        const matieresHTML = matieres.length > 0 ? `
+            <div class="matieres-communes">
+                <p class="matieres-label">📚 Matières en commun :</p>
+                <div class="matieres-tags">
+                    ${matieresVisibles.map(m => `<span class="matiere-tag">${m}</span>`).join('')}
+                    ${reste > 0 ? `<span class="matiere-tag matiere-plus">+${reste} autres</span>` : ''}
+                </div>
+            </div>
+        ` : '';
+
         return `
             <div class="mentor-card">
                 <div class="mentor-top">
@@ -106,6 +121,7 @@ async function chargerMentors() {
                 </div>
                 ${mentor.bio ? `<p class="mentor-bio">${mentor.bio}</p>` : ''}
                 ${mentor.disponibilites ? `<p class="mentor-dispo">🕐 ${mentor.disponibilites}</p>` : ''}
+                ${matieresHTML}
                 <div class="mentor-actions">
                     <button class="btn-contacter" onclick="contacter(${mentor.id})">
                         💬 Contacter

@@ -1,5 +1,4 @@
 def get_mentors_potentiels(db, utilisateur_id):
-
     cursor = db.cursor()
     cursor.execute("""
         SELECT
@@ -18,26 +17,41 @@ def get_mentors_potentiels(db, utilisateur_id):
                 ELSE COUNT(uc_mentor.competence_id)
             END AS score_total
         FROM utilisateurs u
-
         JOIN utilisateur_competences uc_mentor
             ON uc_mentor.utilisateur_id = u.id
             AND uc_mentor.type = 'fort'
-
         JOIN utilisateur_competences uc_moi
             ON uc_moi.competence_id = uc_mentor.competence_id
             AND uc_moi.utilisateur_id = %s
             AND uc_moi.type = 'faible'
-
         WHERE u.id != %s
         GROUP BY u.id, u.nom, u.prenom, u.filiere, u.niveau, u.bio, u.disponibilites
-
         ORDER BY score_total DESC
     """, (utilisateur_id, utilisateur_id, utilisateur_id))
-    return cursor.fetchall()
+    mentors = cursor.fetchall()
+
+    result = []
+    for mentor in mentors:
+        m = dict(mentor)
+        cursor.execute("""
+            SELECT c.nom
+            FROM utilisateur_competences uc_mentor
+            JOIN competences c ON c.id = uc_mentor.competence_id
+            JOIN utilisateur_competences uc_moi
+                ON uc_moi.competence_id = uc_mentor.competence_id
+                AND uc_moi.utilisateur_id = %s
+                AND uc_moi.type = 'faible'
+            WHERE uc_mentor.utilisateur_id = %s
+            AND uc_mentor.type = 'fort'
+        """, (utilisateur_id, m['id']))
+        matieres = cursor.fetchall()
+        m['matieres_communes'] = [mat['nom'] for mat in matieres]
+        result.append(m)
+
+    return result
 
 
 def sauvegarder_matching(db, mentor_id, mentore_id, score):
-
     cursor = db.cursor()
     cursor.execute("""
         INSERT INTO matchings (mentor_id, mentore_id, score, statut)
@@ -49,7 +63,6 @@ def sauvegarder_matching(db, mentor_id, mentore_id, score):
 
 
 def get_matchings_utilisateur(db, utilisateur_id):
-
     cursor = db.cursor()
     cursor.execute("""
         SELECT
@@ -73,7 +86,6 @@ def get_matchings_utilisateur(db, utilisateur_id):
 
 
 def mettre_a_jour_statut_matching(db, matching_id, statut):
-
     cursor = db.cursor()
     cursor.execute("""
         UPDATE matchings SET statut = %s WHERE id = %s

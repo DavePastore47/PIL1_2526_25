@@ -120,6 +120,19 @@
     transition: background 0.2s;
 }
 
+.matieres-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.matiere-plus {
+    background: #e0e0e0;
+    color: #555;
+    cursor: pointer;
+}
+
 .btn-contacter:hover { background: #005fa3; }
 
 .btn-voir {
