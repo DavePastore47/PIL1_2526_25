@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Connexion - IFRI MentorLink</title>
-<link rel="stylesheet" href="/static/css/style.css">
-<link rel="stylesheet" href="/static/css/connexion_style.css">
+
+<link rel="stylesheet" href="/app/static/css/connexion_style.css">
 </head>
 <body>
 
@@ -22,6 +22,9 @@
     <a href="/apropos">À propos</a>
     <a href="/page-connexion" class="active">Connexion</a>
     <a href="/page-inscription">S'inscrire</a>
+    <a href="#">À propos</a>
+    <a href="/app/templates/connexion.html" class="active">Connexion</a>
+    <a href="/app/templates/inscription.html">S'inscrire</a>
   </div>
 </nav>
 
@@ -33,7 +36,7 @@
     <form id="form-connexion">
       <div class="form-group">
         <label for="email">Email ou téléphone</label>
-        <input type="text" id="email" name="email" placeholder="Ex : david@ifri.bj" required />
+        <input type="text" id="email" name="email" placeholder="Ex : yannick@ifri.bj" required />
       </div>
       <div class="form-group">
         <label for="mot_de_passe">Mot de passe</label>
@@ -42,7 +45,7 @@
       <button class="primary-button" type="submit">Se connecter</button>
     </form>
     <p class="auth-switch">
-      Pas encore de compte ? <a href="/page-inscription">Créer un compte</a>
+      Pas encore de compte ? <a href="/app/templates/inscription.html">Créer un compte</a>
     </p>
   </section>
 </main>
