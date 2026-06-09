@@ -2,6 +2,24 @@
     box-sizing: border-box;
 }
 
+
+
+.nav-links a {
+    color: #374151;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(31, 41, 55, 0.08);
+}
 main {
     display: flex;
     align-items: center;

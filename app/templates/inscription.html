@@ -4,10 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Inscription - IFRI MentorLink</title>
-<link rel="stylesheet" href="/static/css/style.css">
-<link rel="stylesheet" href="/static/css/inscription_style.css">
+<!-- <link rel="stylesheet" href="/static/css/style.css"> -->
+<link rel="stylesheet" href="/app/static/css/inscription_style.css">
 </head>
 <body>
+
+<style>
+</style>
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-blue">
@@ -20,77 +23,110 @@
   <div class="nav-links" id="navLinks">
     <a href="/accueil">Accueil</a>
     <a href="#">À propos</a>
-    <a href="/page-connexion">Connexion</a>
-    <a href="/page-inscription" class="active">S'inscrire</a>
+    <a href="/app/templates/connexion.html">Connexion</a>
+    <a href="/app/templates/inscription.html" class="active">S'inscrire</a>
   </div>
 </nav>
 
 <main>
   <section class="auth-card">
-    <h1>Inscription</h1>
-    <p class="intro">Créez votre compte pour rejoindre MentorLink.</p>
+
+    <!-- En-tête -->
+    <h1>Créer un compte</h1>
+    <p class="intro">Rejoignez la communauté MentorLink</p>
+
+    <!-- Barre de progression -->
+    <div class="progress-bar">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
     <form id="form-inscription">
-      <div class="form-group">
-        <label for="nom">Nom</label>
-        <input type="text" id="nom" name="nom" placeholder="Ex : NOm" required>
+
+      <!-- Section : Informations personnelles -->
+      <p class="section-label">Informations personnelles</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nom">Nom</label>
+          <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+        </div>
+        <div class="form-group">
+          <label for="prenom">Prénom</label>
+          <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="prenom">Prénom</label>
-        <input type="text" id="prenom" name="prenom" placeholder="Ex : Prenom" required>
-      </div>
+
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Ex : email@..." required>
+        <input type="email" id="email" name="email" placeholder="email@exemple.com" required>
       </div>
+
       <div class="form-group">
         <label for="telephone">Téléphone</label>
         <input type="text" id="telephone" name="telephone" placeholder="+229 0129000000" required>
-        <small style="color:#7a7870">Format : +229 suivi de 10 chiffres</small>
+        <small style="font-size:0.6875rem;color:#9ca3af">Format : +229 suivi de 10 chiffres</small>
       </div>
-      <div class="form-group">
-        <label for="filiere">Filière</label>
-        <select id="filiere" name="filiere">
-          <option value="">-- Choisir votre filière --</option>
-          <option value="GL">Génie Logiciel (GL)</option>
-          <option value="SI">Sécurité Informatique (SI)</option>
-          <option value="IM">Internet et Multimédia (IM)</option>
-          <option value="IA">Intelligence Artificielle (IA)</option>
-          <option value="SE&IoT">Systèmes Embarqués & IoT</option>
-        </select>
+
+      <!-- Section : Parcours académique -->
+      <div class="section-divider"></div>
+      <p class="section-label">Parcours académique</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="filiere">Filière</label>
+          <select id="filiere" name="filiere">
+            <option value="">Choisir…</option>
+            <option value="GL">Génie Logiciel (GL)</option>
+            <option value="SI">Sécurité Informatique (SI)</option>
+            <option value="IM">Internet et Multimédia (IM)</option>
+            <option value="IA">Intelligence Artificielle (IA)</option>
+            <option value="SE&IoT">Systèmes Embarqués & IoT</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="niveau">Niveau</label>
+          <select id="niveau" name="niveau">
+            <option value="">Choisir…</option>
+            <option value="L1">Licence 1</option>
+            <option value="L2">Licence 2</option>
+            <option value="L3">Licence 3</option>
+            <option value="M1">Master 1</option>
+            <option value="M2">Master 2</option>
+          </select>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="niveau">Niveau</label>
-        <select id="niveau" name="niveau">
-          <option value="">-- Choisir votre niveau --</option>
-          <option value="L1">Licence 1</option>
-          <option value="L2">Licence 2</option>
-          <option value="L3">Licence 3</option>
-          <option value="M1">Master 1</option>
-          <option value="M2">Master 2</option>
-        </select>
-      </div>
+
+      <!-- Section : Mot de passe -->
+      <div class="section-divider"></div>
+      <p class="section-label">Sécurité</p>
+
       <div class="form-group">
         <label for="mot_de_passe">Mot de passe</label>
         <input type="password" id="mot_de_passe" name="mot_de_passe" placeholder="Minimum 6 caractères" required>
       </div>
+
       <div class="form-group">
         <label for="confirm">Confirmer le mot de passe</label>
         <input type="password" id="confirm" name="confirm" placeholder="Répétez le mot de passe" required>
       </div>
-      <button class="primary-button" type="submit">S'inscrire</button>
+
+      <button class="primary-button" type="submit">Créer mon compte</button>
     </form>
+
     <p class="auth-switch">
-      Déjà un compte ? <a href="/page-connexion">Connectez-vous</a>
+      Déjà un compte ? <a href="/app/templates/connexion.html">Connectez-vous</a>
     </p>
   </section>
 </main>
 
 <footer>
-  <p>&copy;2026 IFRI_Mentor_link. Tous droits réservés.</p>
+  <p>&copy;2026 IFRI_Mentor_link.</p>
 </footer>
 
 <script>
-// Burger menu
+
 const burgerBtn = document.getElementById('burgerBtn');
 const navLinks = document.getElementById('navLinks');
 if (burgerBtn) {
@@ -99,7 +135,7 @@ if (burgerBtn) {
     });
 }
 
-// Formulaire inscription
+
 document.getElementById('form-inscription').addEventListener('submit', async function(e) {
     e.preventDefault();
 
