@@ -4,7 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Matching - IFRI MentorLink</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/css/modifie_profil_style.css">
 <link rel="stylesheet" href="/static/css/matching_style.css">
 </head>
 <body>
@@ -27,9 +31,14 @@
 </nav>
 
 <main id="main">
-  <div class="matching-header">
-    <h1>Mentors recommandés</h1>
-    <p>Ces mentors correspondent à vos points faibles. Contactez-en un pour commencer !</p>
+  <div class="page-hero" style="margin-bottom:2rem">
+    <div class="hero-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </div>
+    <div class="hero-text">
+      <h1 class="page-title">Mentors recommandés</h1>
+      <p class="page-subtitle">Ces mentors correspondent à vos points faibles. Contactez-en un pour commencer !</p>
+    </div>
   </div>
 
   <div id="mentors-grid">
@@ -42,7 +51,6 @@
 </footer>
 
 <script>
-// Burger menu
 const burgerBtn = document.getElementById('burgerBtn');
 const navLinks = document.getElementById('navLinks');
 if (burgerBtn) {
@@ -90,9 +98,8 @@ async function chargerMentors() {
     grid.innerHTML = data.mentors.map(function(mentor) {
         const initiales = (mentor.prenom[0] + mentor.nom[0]).toUpperCase();
         const scorePercent = Math.min(Math.round(mentor.score_total * 20), 100);
-        const scoreColor = scorePercent >= 60 ? '#1D9E75' : scorePercent >= 40 ? '#f59e0b' : '#0077cc';
+        const scoreColor = scorePercent >= 60 ? '#1D9E75' : scorePercent >= 40 ? '#f59e0b' : '#1a73e8';
 
-        // Matières en commun
         const matieres = mentor.matieres_communes || [];
         const matieresVisibles = matieres.slice(0, 3);
         const reste = matieres.length - 3;

@@ -9,6 +9,13 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/static/css/style.css">
 <link rel="stylesheet" href="/static/css/modifie_profil_style.css">
+<style>
+    @media (max-width: 900px) {
+        #params-grid {
+            grid-template-columns: 1fr !important;
+        }
+    }
+</style>
 </head>
 <body>
 
@@ -42,110 +49,110 @@
     </div>
   </div>
 
-  <div class="editor-layout" style="grid-template-columns:1fr">
-    <div style="max-width:600px;width:100%;display:flex;flex-direction:column;gap:1.5rem">
+  <!-- Grille 3 cartes -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1rem" id="params-grid">
 
-      <!-- CHANGER EMAIL -->
-      <section class="card">
-        <div class="card-header">
-          <div class="card-header-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    <!-- CHANGER EMAIL -->
+    <section class="card">
+      <div class="card-header">
+        <div class="card-header-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <h2 class="card-title">Changer l'email</h2>
+      </div>
+      <div class="card-body">
+        <form id="form-email">
+          <div class="field-group" style="margin-bottom:1.2rem">
+            <label class="field-label">Nouvel email</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <input type="email" id="nouvel-email" class="field-input" placeholder="nouveau@email.com" required />
+            </div>
           </div>
-          <h2 class="card-title">Changer l'email</h2>
-        </div>
-        <div class="card-body">
-          <form id="form-email">
-            <div class="field-group" style="margin-bottom:1.2rem">
-              <label class="field-label">Nouvel email</label>
-              <div class="input-wrapper">
-                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <input type="email" id="nouvel-email" class="field-input" placeholder="nouveau@email.com" required />
-              </div>
+          <div class="field-group" style="margin-bottom:1.5rem">
+            <label class="field-label">Mot de passe actuel</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="mdp-email" class="field-input" placeholder="Confirmer avec votre mot de passe" required />
             </div>
-            <div class="field-group" style="margin-bottom:1.5rem">
-              <label class="field-label">Mot de passe actuel</label>
-              <div class="input-wrapper">
-                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                <input type="password" id="mdp-email" class="field-input" placeholder="Confirmer avec votre mot de passe" required />
-              </div>
-            </div>
-            <button class="btn-primary" type="submit" style="border-radius:12px;padding:.7rem 1.5rem">Mettre à jour l'email</button>
-          </form>
-        </div>
-      </section>
-
-      <!-- CHANGER TÉLÉPHONE -->
-      <section class="card">
-        <div class="card-header">
-          <div class="card-header-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.82 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 3.12 4.18 2 2 0 0 1 5.09 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L9.91 9.6a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           </div>
-          <h2 class="card-title">Changer le téléphone</h2>
-        </div>
-        <div class="card-body">
-          <form id="form-tel">
-            <div class="field-group" style="margin-bottom:1.2rem">
-              <label class="field-label">Nouveau téléphone</label>
-              <div class="input-wrapper">
-                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.82 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 3.12 4.18 2 2 0 0 1 5.09 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L9.91 9.6a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <input type="text" id="nouveau-tel" class="field-input" placeholder="+229 0129000000" required />
-              </div>
-              <small style="font-size:.7rem;color:#94a3b8;margin-top:4px;display:block">Format : +229 suivi de 10 chiffres</small>
-            </div>
-            <div class="field-group" style="margin-bottom:1.5rem">
-              <label class="field-label">Mot de passe actuel</label>
-              <div class="input-wrapper">
-                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                <input type="password" id="mdp-tel" class="field-input" placeholder="Confirmer avec votre mot de passe" required />
-              </div>
-            </div>
-            <button class="btn-primary" type="submit" style="border-radius:12px;padding:.7rem 1.5rem">Mettre à jour le téléphone</button>
-          </form>
-        </div>
-      </section>
+          <button class="btn-primary" type="submit" style="border-radius:12px;padding:.7rem 1.5rem;width:100%;justify-content:center">Mettre à jour l'email</button>
+        </form>
+      </div>
+    </section>
 
-      <!-- CHANGER MOT DE PASSE -->
-      <section class="card">
-        <div class="card-header">
-          <div class="card-header-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    <!-- CHANGER TÉLÉPHONE -->
+    <section class="card">
+      <div class="card-header">
+        <div class="card-header-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.82 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 3.12 4.18 2 2 0 0 1 5.09 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L9.91 9.6a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <h2 class="card-title">Changer le téléphone</h2>
+      </div>
+      <div class="card-body">
+        <form id="form-tel">
+          <div class="field-group" style="margin-bottom:1.2rem">
+            <label class="field-label">Nouveau téléphone</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.82 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 3.12 4.18 2 2 0 0 1 5.09 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L9.91 9.6a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <input type="text" id="nouveau-tel" class="field-input" placeholder="+229 0129000000" required />
+            </div>
+            <small style="font-size:.7rem;color:#94a3b8;margin-top:4px;display:block">Format : +229 suivi de 10 chiffres</small>
           </div>
-          <h2 class="card-title">Changer le mot de passe</h2>
-        </div>
-        <div class="card-body">
-          <form id="form-mdp">
-            <div class="field-group" style="margin-bottom:1.2rem">
-              <label class="field-label">Ancien mot de passe</label>
-              <div class="input-wrapper">
-                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                <input type="password" id="ancien-mdp" class="field-input" placeholder="Votre mot de passe actuel" required />
-              </div>
+          <div class="field-group" style="margin-bottom:1.5rem">
+            <label class="field-label">Mot de passe actuel</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="mdp-tel" class="field-input" placeholder="Confirmer avec votre mot de passe" required />
             </div>
-            <div class="field-group" style="margin-bottom:1.2rem">
-              <label class="field-label">Nouveau mot de passe</label>
-              <div class="input-wrapper">
-                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                <input type="password" id="nouveau-mdp" class="field-input" placeholder="Minimum 6 caractères" required />
-              </div>
-            </div>
-            <div class="field-group" style="margin-bottom:1.5rem">
-              <label class="field-label">Confirmer le nouveau mot de passe</label>
-              <div class="input-wrapper">
-                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                <input type="password" id="confirm-mdp" class="field-input" placeholder="Répétez le nouveau mot de passe" required />
-              </div>
-            </div>
-            <button class="btn-primary" type="submit" style="border-radius:12px;padding:.7rem 1.5rem">Changer le mot de passe</button>
-          </form>
-        </div>
-      </section>
+          </div>
+          <button class="btn-primary" type="submit" style="border-radius:12px;padding:.7rem 1.5rem;width:100%;justify-content:center">Mettre à jour le téléphone</button>
+        </form>
+      </div>
+    </section>
 
-      <p style="font-size:.85rem;color:#475569">
-        <a href="/profil-page" style="color:#1a73e8;font-weight:600;text-decoration:none">← Retour au profil</a>
-      </p>
+    <!-- CHANGER MOT DE PASSE -->
+    <section class="card">
+      <div class="card-header">
+        <div class="card-header-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h2 class="card-title">Changer le mot de passe</h2>
+      </div>
+      <div class="card-body">
+        <form id="form-mdp">
+          <div class="field-group" style="margin-bottom:1.2rem">
+            <label class="field-label">Ancien mot de passe</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="ancien-mdp" class="field-input" placeholder="Votre mot de passe actuel" required />
+            </div>
+          </div>
+          <div class="field-group" style="margin-bottom:1.2rem">
+            <label class="field-label">Nouveau mot de passe</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="nouveau-mdp" class="field-input" placeholder="Minimum 6 caractères" required />
+            </div>
+          </div>
+          <div class="field-group" style="margin-bottom:1.5rem">
+            <label class="field-label">Confirmer le nouveau mot de passe</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="confirm-mdp" class="field-input" placeholder="Répétez le nouveau mot de passe" required />
+            </div>
+          </div>
+          <button class="btn-primary" type="submit" style="border-radius:12px;padding:.7rem 1.5rem;width:100%;justify-content:center">Changer le mot de passe</button>
+        </form>
+      </div>
+    </section>
 
-    </div>
   </div>
+
+  <p style="font-size:.85rem;color:#475569;margin-top:1.5rem">
+    <a href="/profil-page" style="color:#1a73e8;font-weight:600;text-decoration:none">← Retour au profil</a>
+  </p>
+
 </main>
 
 <footer>

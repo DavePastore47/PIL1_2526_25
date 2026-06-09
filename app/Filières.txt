@@ -16,7 +16,7 @@ SEMESTRE 1 :+
   - Logique, arithmétique et applications
   - Mathématiques fondamentales
   - Probabilités et statistiques
-  - Architecture et topologie des réseaux informatiques
+  - Architecture et topologie des reseaux informatiques
   - Système d'exploitation et outils de bases en informatique
   - Bases de la programmation
   - Déontologie et droit liés aux TIC

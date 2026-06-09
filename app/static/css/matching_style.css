@@ -1,43 +1,29 @@
 #main {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 2rem 1rem 3rem;
-}
-
-.matching-header {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.matching-header h1 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #1a1916;
-    margin-bottom: 8px;
-}
-
-.matching-header p {
-    font-size: 0.95rem;
-    color: #7a7870;
+    padding: 2rem 1.5rem 3rem;
 }
 
 #mentors-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
 }
 
 .mentor-card {
     background: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 14px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.06);
     transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .mentor-card:hover {
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
     transform: translateY(-2px);
 }
 
@@ -49,39 +35,38 @@
 }
 
 .mentor-avatar {
-    width: 52px;
-    height: 52px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
-    background: #0077cc;
+    background: linear-gradient(135deg, #1a73e8, #0f172a);
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(26,115,232,0.3);
 }
 
-.mentor-info {
-    flex: 1;
-    min-width: 0;
-}
+.mentor-info { flex: 1; min-width: 0; }
 
 .mentor-info h3 {
     font-size: 1rem;
-    font-weight: 700;
-    color: #1a1916;
+    font-weight: 600;
+    color: #0f172a;
     margin-bottom: 3px;
+    font-family: 'DM Sans', sans-serif;
 }
 
 .mentor-filiere {
     font-size: 0.78rem;
-    color: #0077cc;
+    color: #1a73e8;
     font-weight: 600;
 }
 
 .score-badge {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 700;
     border: 2px solid;
     border-radius: 20px;
@@ -91,15 +76,44 @@
 
 .mentor-bio {
     font-size: 0.82rem;
-    color: #555;
+    color: #475569;
     margin-bottom: 8px;
     line-height: 1.5;
 }
 
 .mentor-dispo {
     font-size: 0.78rem;
-    color: #7a7870;
-    margin-bottom: 14px;
+    color: #94a3b8;
+    margin-bottom: 12px;
+}
+
+.matieres-communes { margin-bottom: 14px; }
+
+.matieres-label {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    margin-bottom: 6px;
+}
+
+.matieres-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.matiere-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.matiere-plus {
+    background: #f1f5f9;
+    color: #475569;
 }
 
 .mentor-actions {
@@ -110,7 +124,7 @@
 .btn-contacter {
     flex: 1;
     padding: 9px;
-    background: #0077cc;
+    background: #1a73e8;
     color: white;
     border: none;
     border-radius: 8px;
@@ -120,27 +134,14 @@
     transition: background 0.2s;
 }
 
-.matieres-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 4px;
-}
-
-.matiere-plus {
-    background: #e0e0e0;
-    color: #555;
-    cursor: pointer;
-}
-
-.btn-contacter:hover { background: #005fa3; }
+.btn-contacter:hover { background: #0f62c0; }
 
 .btn-voir {
     flex: 1;
     padding: 9px;
-    background: #f4f7f6;
-    color: #1a1916;
-    border: 1px solid #e0e0e0;
+    background: #f8fafc;
+    color: #0f172a;
+    border: 1px solid #e2e8f0;
     border-radius: 8px;
     font-size: 0.85rem;
     font-weight: 600;
@@ -149,20 +150,20 @@
     transition: background 0.2s;
 }
 
-.btn-voir:hover { background: #e0e0e0; }
+.btn-voir:hover { background: #f1f5f9; }
 
 .empty-state {
     grid-column: 1 / -1;
     text-align: center;
     padding: 60px 20px;
-    color: #7a7870;
+    color: #94a3b8;
 }
 
 .empty-icon { font-size: 3rem; margin-bottom: 16px; }
 
 .empty-state h3 {
     font-size: 1.2rem;
-    color: #1a1916;
+    color: #0f172a;
     margin-bottom: 8px;
 }
 
@@ -174,7 +175,7 @@
 .btn-profil {
     display: inline-block;
     padding: 10px 24px;
-    background: #0077cc;
+    background: #1a73e8;
     color: white;
     border-radius: 8px;
     text-decoration: none;
@@ -186,16 +187,12 @@
     grid-column: 1 / -1;
     text-align: center;
     padding: 40px;
-    color: #7a7870;
+    color: #94a3b8;
     font-size: 0.9rem;
 }
 
 @media (max-width: 600px) {
-    #mentors-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .mentor-actions {
-        flex-direction: column;
-    }
+    #main { padding: 1rem 1rem 3rem; }
+    #mentors-grid { grid-template-columns: 1fr; }
+    .mentor-actions { flex-direction: column; }
 }
