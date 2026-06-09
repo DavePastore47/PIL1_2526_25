@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matching - IFRI MentorLink</title>
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/css/matching_style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <h1 class="titre-app">IFRI MentorLink</h1>
+  <button class="burger-menu" id="burgerBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="/accueil">Accueil</a>
+    <a href="/profil-page">Mon profil</a>
+    <a href="/chat">Messages</a>
+    <a href="/matching" class="active">Matching</a>
+    <a href="#" onclick="deconnexion()">Déconnexion</a>
+  </div>
+</nav>
+
+<main id="main">
+  <div class="matching-header">
+    <h1>Mentors recommandés</h1>
+    <p>Ces mentors correspondent à vos points faibles. Contactez-en un pour commencer !</p>
+  </div>
+
+  <div id="mentors-grid">
+    <div class="loading">Chargement des mentors...</div>
+  </div>
+</main>
+
+<footer>
+  <p>&copy;2026 IFRI_Mentor_link. Tous droits réservés.</p>
+</footer>
+
+<script>
+// Burger menu
+const burgerBtn = document.getElementById('burgerBtn');
+const navLinks = document.getElementById('navLinks');
+if (burgerBtn) {
+    burgerBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('open');
+    });
+}
+
+async function deconnexion() {
+    await fetch('/deconnexion', { method: 'POST' });
+    window.location.href = '/accueil';
+}
+
+async function contacter(mentorId) {
+    const response = await fetch('/conversations', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ utilisateur_id: mentorId })
+    });
+    const data = await response.json();
+    if (response.ok) {
+        window.location.href = '/chat';
+    } else {
+        alert('Erreur : ' + data.erreur);
+    }
+}
+
+async function chargerMentors() {
+    const response = await fetch('/api/matching');
+    const data = await response.json();
+    const grid = document.getElementById('mentors-grid');
+
+    if (!data.mentors || data.mentors.length === 0) {
+        grid.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-icon">🔍</div>
+                <h3>Aucun mentor trouvé</h3>
+                <p>Complétez votre profil avec vos points faibles pour trouver des mentors compatibles.</p>
+                <a href="/profil-page" class="btn-profil">Compléter mon profil</a>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = data.mentors.map(function(mentor) {
+        const initiales = (mentor.prenom[0] + mentor.nom[0]).toUpperCase();
+        const scorePercent = Math.min(Math.round(mentor.score_total * 20), 100);
+        const scoreColor = scorePercent >= 60 ? '#1D9E75' : scorePercent >= 40 ? '#f59e0b' : '#0077cc';
+
+        return `
+            <div class="mentor-card">
+                <div class="mentor-top">
+                    <div class="mentor-avatar">${initiales}</div>
+                    <div class="mentor-info">
+                        <h3>${mentor.prenom} ${mentor.nom}</h3>
+                        <p class="mentor-filiere">${mentor.filiere || ''} — ${mentor.niveau || ''}</p>
+                    </div>
+                    <div class="score-badge" style="color:${scoreColor};border-color:${scoreColor}">
+                        ${scorePercent}%
+                    </div>
+                </div>
+                ${mentor.bio ? `<p class="mentor-bio">${mentor.bio}</p>` : ''}
+                ${mentor.disponibilites ? `<p class="mentor-dispo">🕐 ${mentor.disponibilites}</p>` : ''}
+                <div class="mentor-actions">
+                    <button class="btn-contacter" onclick="contacter(${mentor.id})">
+                        💬 Contacter
+                    </button>
+                    <a href="/profil-page?id=${mentor.id}" class="btn-voir">
+                        👤 Voir le profil
+                    </a>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+chargerMentors();
+</script>
+
+</body>
+</html>

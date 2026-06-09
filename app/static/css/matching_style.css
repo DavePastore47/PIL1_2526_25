@@ -1,0 +1,188 @@
+#main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem 3rem;
+}
+
+.matching-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.matching-header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a1916;
+    margin-bottom: 8px;
+}
+
+.matching-header p {
+    font-size: 0.95rem;
+    color: #7a7870;
+}
+
+#mentors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.mentor-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.mentor-card:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.mentor-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.mentor-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #0077cc;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.mentor-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.mentor-info h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1916;
+    margin-bottom: 3px;
+}
+
+.mentor-filiere {
+    font-size: 0.78rem;
+    color: #0077cc;
+    font-weight: 600;
+}
+
+.score-badge {
+    font-size: 1rem;
+    font-weight: 700;
+    border: 2px solid;
+    border-radius: 20px;
+    padding: 4px 10px;
+    flex-shrink: 0;
+}
+
+.mentor-bio {
+    font-size: 0.82rem;
+    color: #555;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.mentor-dispo {
+    font-size: 0.78rem;
+    color: #7a7870;
+    margin-bottom: 14px;
+}
+
+.mentor-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-contacter {
+    flex: 1;
+    padding: 9px;
+    background: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-contacter:hover { background: #005fa3; }
+
+.btn-voir {
+    flex: 1;
+    padding: 9px;
+    background: #f4f7f6;
+    color: #1a1916;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.btn-voir:hover { background: #e0e0e0; }
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: #7a7870;
+}
+
+.empty-icon { font-size: 3rem; margin-bottom: 16px; }
+
+.empty-state h3 {
+    font-size: 1.2rem;
+    color: #1a1916;
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.btn-profil {
+    display: inline-block;
+    padding: 10px 24px;
+    background: #0077cc;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #7a7870;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+    #mentors-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mentor-actions {
+        flex-direction: column;
+    }
+}
