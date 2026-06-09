@@ -16,6 +16,10 @@ def accueil():
     nom = session.get('nom', '')
     return render_template('accueil.html', connecte=connecte, nom=nom)
 
+@auth.route('/apropos', methods=['GET'])
+def apropos():
+    return render_template('apropos.html')
+
 @auth.route('/page-connexion', methods=['GET'])
 def page_connexion():
     return render_template('connexion.html')
