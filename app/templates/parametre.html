@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paramètres - IFRI MentorLink</title>
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/css/connexion_style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <h1 class="titre-app">IFRI MentorLink</h1>
+  <button class="burger-menu" id="burgerBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="/accueil">Accueil</a>
+    <a href="/profil-page">Mon profil</a>
+    <a href="/chat">Messages</a>
+    <a href="/matching">Matching</a>
+    <a href="#" onclick="deconnexion()">Déconnexion</a>
+  </div>
+</nav>
+
+<main>
+  <div class="auth-card" style="max-width:500px;margin:2rem auto">
+    <h1 style="margin-bottom:6px">⚙️ Paramètres</h1>
+    <p class="intro">Gérez vos informations de connexion</p>
+
+    <!-- CHANGER EMAIL -->
+    <div class="param-section">
+      <h3>📧 Changer l'email</h3>
+      <form id="form-email">
+        <div class="form-group">
+          <label>Nouvel email</label>
+          <input type="email" id="nouvel-email" placeholder="nouveau@email.com" required />
+        </div>
+        <div class="form-group">
+          <label>Mot de passe actuel</label>
+          <input type="password" id="mdp-email" placeholder="Confirmer avec votre mot de passe" required />
+        </div>
+        <button class="primary-button" type="submit">Mettre à jour l'email</button>
+      </form>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- CHANGER TÉLÉPHONE -->
+    <div class="param-section">
+      <h3>📱 Changer le téléphone</h3>
+      <form id="form-tel">
+        <div class="form-group">
+          <label>Nouveau téléphone</label>
+          <input type="text" id="nouveau-tel" placeholder="+229 0129000000" required />
+          <small style="color:#7a7870">Format : +229 suivi de 10 chiffres</small>
+        </div>
+        <div class="form-group">
+          <label>Mot de passe actuel</label>
+          <input type="password" id="mdp-tel" placeholder="Confirmer avec votre mot de passe" required />
+        </div>
+        <button class="primary-button" type="submit">Mettre à jour le téléphone</button>
+      </form>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- CHANGER MOT DE PASSE -->
+    <div class="param-section">
+      <h3>🔐 Changer le mot de passe</h3>
+      <form id="form-mdp">
+        <div class="form-group">
+          <label>Ancien mot de passe</label>
+          <input type="password" id="ancien-mdp" placeholder="Votre mot de passe actuel" required />
+        </div>
+        <div class="form-group">
+          <label>Nouveau mot de passe</label>
+          <input type="password" id="nouveau-mdp" placeholder="Minimum 6 caractères" required />
+        </div>
+        <div class="form-group">
+          <label>Confirmer le nouveau mot de passe</label>
+          <input type="password" id="confirm-mdp" placeholder="Répétez le nouveau mot de passe" required />
+        </div>
+        <button class="primary-button" type="submit">Changer le mot de passe</button>
+      </form>
+    </div>
+
+    <p class="auth-switch" style="margin-top:1.5rem">
+      <a href="/profil-page">← Retour au profil</a>
+    </p>
+  </div>
+</main>
+
+<footer>
+  <p>&copy;2026 IFRI_Mentor_link. Tous droits réservés.</p>
+</footer>
+
+<style>
+.param-section { margin: 1.5rem 0; }
+.param-section h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: #1a1916; }
+.divider { border: none; border-top: 1px solid #e0e0e0; margin: 1.5rem 0; }
+</style>
+
+<script>
+// Burger menu
+const burgerBtn = document.getElementById('burgerBtn');
+const navLinks = document.getElementById('navLinks');
+if (burgerBtn) {
+    burgerBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('open');
+    });
+}
+
+async function deconnexion() {
+    await fetch('/deconnexion', { method: 'POST' });
+    window.location.href = '/accueil';
+}
+
+function showToast(message, type) {
+    const toast = document.createElement('div');
+    toast.textContent = message;
+    toast.style.cssText = `
+        position: fixed; top: 20px; right: 20px;
+        background: ${type === 'success' ? '#1D9E75' : '#dc2626'};
+        color: white; padding: 14px 20px; border-radius: 8px;
+        font-size: 0.9rem; font-weight: bold;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999;
+        transition: opacity 0.5s;
+    `;
+    document.body.appendChild(toast);
+    setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 500); },
+        type === 'success' ? 2000 : 3000);
+}
+
+// Changer email
+document.getElementById('form-email').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const response = await fetch('/compte/email', {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            email: document.getElementById('nouvel-email').value,
+            mot_de_passe: document.getElementById('mdp-email').value
+        })
+    });
+    const result = await response.json();
+    showToast(response.ok ? result.message : result.erreur, response.ok ? 'success' : 'error');
+    if (response.ok) this.reset();
+});
+
+// Changer téléphone
+document.getElementById('form-tel').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const tel = document.getElementById('nouveau-tel').value;
+    const formatTel = /^\+\d{3}\s\d{10}$/.test(tel);
+    if (!formatTel) {
+        showToast('Format invalide. Exemple : +229 0129000000', 'error');
+        return;
+    }
+    const response = await fetch('/compte/telephone', {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            telephone: tel,
+            mot_de_passe: document.getElementById('mdp-tel').value
+        })
+    });
+    const result = await response.json();
+    showToast(response.ok ? result.message : result.erreur, response.ok ? 'success' : 'error');
+    if (response.ok) this.reset();
+});
+
+// Changer mot de passe
+document.getElementById('form-mdp').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const nouveau = document.getElementById('nouveau-mdp').value;
+    const confirm = document.getElementById('confirm-mdp').value;
+    if (nouveau !== confirm) {
+        showToast('Les mots de passe ne correspondent pas !', 'error');
+        return;
+    }
+    if (nouveau.length < 6) {
+        showToast('Le mot de passe doit contenir au moins 6 caractères !', 'error');
+        return;
+    }
+    const response = await fetch('/compte/mot-de-passe', {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            ancien_mot_de_passe: document.getElementById('ancien-mdp').value,
+            nouveau_mot_de_passe: nouveau
+        })
+    });
+    const result = await response.json();
+    showToast(response.ok ? result.message : result.erreur, response.ok ? 'success' : 'error');
+    if (response.ok) this.reset();
+});
+</script>
+
+</body>
+</html>
