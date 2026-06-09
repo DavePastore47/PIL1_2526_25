@@ -115,6 +115,20 @@ def modifier_profil_route():
         ajouter_competence(db, utilisateur_id, comp['nom'], comp['type'])
     return jsonify({'message': 'Profil mis à jour avec succès'}), 200
 
+@auth.route('/page-modifier-profil', methods=['GET'])
+def page_modifier_profil():
+    if 'utilisateur_id' not in session:
+        return redirect('/page-connexion')
+    return render_template('modifie_profil.html')
+
+@auth.route('/api/competences', methods=['GET'])
+def get_competences_liste():
+    db = request.environ.get('db')
+    cursor = db.cursor()
+    cursor.execute("SELECT nom, categorie FROM competences ORDER BY categorie, nom")
+    competences = cursor.fetchall()
+    return jsonify({'competences': [dict(c) for c in competences]}), 200
+
 @auth.route('/parametres', methods=['GET'])
 def page_parametres():
     if 'utilisateur_id' not in session:

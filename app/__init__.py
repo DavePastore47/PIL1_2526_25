@@ -13,7 +13,8 @@ def create_app():
         'host': 'localhost',
         'database': 'mentorlink_db',
         'user': 'mentorlink',
-        'password': 'mentorlink2526'
+        'password': 'mentorlink2526',
+        'options': '-c client_encoding=UTF8'
     }
 
     @app.before_request

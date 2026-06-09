@@ -676,37 +676,232 @@
 
   <script>
     (function(){
-      const MATIERES_IFRI = [
-        { id: "algo", nom: "Algorithmique", cat: "Fondamentaux" },{ id: "python", nom: "Python", cat: "Langages" },{ id: "java", nom: "Java", cat: "Langages" },{ id: "sql", nom: "SQL", cat: "Bases de données" },{ id: "reseaux", nom: "Réseaux TCP/IP", cat: "Réseaux" },{ id: "ia", nom: "Intelligence Artificielle", cat: "IA" },{ id: "ml", nom: "Machine Learning", cat: "IA" },{ id: "devops", nom: "DevOps", cat: "GL" },{ id: "cloud", nom: "Cloud Computing", cat: "Systèmes" },{ id: "cyber", nom: "Cybersécurité", cat: "Sécurité" },{ id: "uml", nom: "UML", cat: "GL" },{ id: "react", nom: "React", cat: "Web" }
-      ];
-      let state = { competences: { forts: [], faibles: [] }, selectedSubject: null, hasUnsavedChanges: false };
-      const dom = { nom: $("#nom"), prenom: $("#prenom"), bio: $("#bio"), dispo: $("#disponibilites"), filiere: $("#filiere"), niveau: $("#niveau"), skillSearch: $("#skillSearch"), clearSearch: $("#clearSearch"), dropdown: $("#skillDropdown"), dropdownList: $("#dropdownList"), subjectPanel: $("#selectedSubjectPanel"), subjectName: $("#selectedSubjectName"), btnFort: $("#btnAddFort"), btnFaible: $("#btnAddFaible"), listFort: $("#listFort"), listFaible: $("#listFaible"), fortCount: $("#fortCount"), faibleCount: $("#faibleCount"), emptyFort: $("#emptyFort"), emptyFaible: $("#emptyFaible"), btnSave: $("#btnEnregistrer"), btnCancel: $("#btnAnnuler"), actionStatus: $("#actionStatus"), toast: $("#toast"), toastMsg: $("#toastMsg"), modal: $("#modalOverlay"), modalCancel: $("#modalCancel"), modalConfirm: $("#modalConfirm"), avatarInitials: $("#avatarInitials") };
-      function updateAvatar(){ let n=dom.nom.value.trim(), p=dom.prenom.value.trim(); dom.avatarInitials.textContent = (p[0]||'')+(n[0]||'')||'--'; }
-      dom.nom.addEventListener("input", updateAvatar); dom.prenom.addEventListener("input", updateAvatar);
-      function markUnsaved(){ if(!state.hasUnsavedChanges){ state.hasUnsavedChanges=true; dom.actionStatus.textContent="● Modifications non sauvegardées"; dom.actionStatus.classList.add("unsaved"); } }
-      [dom.nom, dom.prenom, dom.bio, dom.dispo, dom.filiere, dom.niveau].forEach(el=>el.addEventListener("input",markUnsaved));
-      function getAlreadyAdded(){ return new Set([...state.competences.forts.map(c=>c.id),...state.competences.faibles.map(c=>c.id)]); }
-      function renderDropdown(q){ let query=q.toLowerCase().trim(), added=getAlreadyAdded(); let filtered=query.length===0?[]:MATIERES_IFRI.filter(m=>m.nom.toLowerCase().includes(query)); dom.dropdownList.innerHTML=""; if(filtered.length===0&&query.length){ dom.dropdownList.innerHTML='<div class="dropdown-no-results">Aucune matière</div>'; dom.dropdown.classList.add("open"); return; } if(filtered.length===0){ dom.dropdown.classList.remove("open"); return; } filtered.slice(0,20).forEach(m=>{ let div=document.createElement("div"); div.className="dropdown-item"+(added.has(m.id)?" already-added":""); div.dataset.id=m.id; div.innerHTML=`<span>${escapeHtml(m.nom)}</span><span class="item-cat">${escapeHtml(m.cat)}</span>`; div.onmousedown=(e)=>{ e.preventDefault(); if(!added.has(m.id)) selectSubject(m); }; dom.dropdownList.appendChild(div); }); dom.dropdown.classList.add("open"); }
-      function selectSubject(m){ state.selectedSubject=m; dom.subjectName.textContent=m.nom; dom.subjectPanel.style.display="flex"; dom.skillSearch.value=m.nom; dom.clearSearch.classList.add("visible"); dom.dropdown.classList.remove("open"); }
-      dom.skillSearch.addEventListener("input",()=>{ let val=dom.skillSearch.value; dom.clearSearch.classList.toggle("visible",val.length>0); if(!val){ dom.dropdown.classList.remove("open"); dom.subjectPanel.style.display="none"; state.selectedSubject=null; }else renderDropdown(val); });
-      dom.clearSearch.addEventListener("click",()=>{ dom.skillSearch.value=""; dom.clearSearch.classList.remove("visible"); dom.subjectPanel.style.display="none"; state.selectedSubject=null; dom.dropdown.classList.remove("open"); dom.skillSearch.focus(); });
-      document.addEventListener("mousedown",(e)=>{ if(!dom.dropdown.contains(e.target)&&e.target!==dom.skillSearch) dom.dropdown.classList.remove("open"); });
-      function addCompetence(type){ let m=state.selectedSubject; if(!m)return; if(getAlreadyAdded().has(m.id)){ showToast("Déjà ajouté","warn"); return; } state.competences[type].push({id:m.id,nom:m.nom}); renderSkills(); markUnsaved(); dom.skillSearch.value=""; dom.clearSearch.classList.remove("visible"); dom.subjectPanel.style.display="none"; state.selectedSubject=null; dom.dropdown.classList.remove("open"); showToast(`"${m.nom}" ajouté en ${type==='forts'?'point fort':'point faible'}`); }
-      dom.btnFort.onclick=()=>addCompetence("forts"); dom.btnFaible.onclick=()=>addCompetence("faibles");
-      function removeCompetence(type,id){ state.competences[type]=state.competences[type].filter(c=>c.id!==id); renderSkills(); markUnsaved(); }
-      function renderSkills(){ renderList("forts",dom.listFort,dom.fortCount,dom.emptyFort); renderList("faibles",dom.listFaible,dom.faibleCount,dom.emptyFaible); }
-      function renderList(type,listEl,countEl,emptyEl){ let items=state.competences[type]; countEl.innerText=items.length; listEl.querySelectorAll(".skill-item").forEach(el=>el.remove()); if(!items.length){ emptyEl.style.display="flex"; return; } emptyEl.style.display="none"; items.forEach(m=>{ let li=document.createElement("li"); li.className="skill-item"; li.innerHTML=`<span>${escapeHtml(truncate(m.nom,28))}</span><button class="skill-delete-btn">🗑️</button>`; li.querySelector(".skill-delete-btn").addEventListener("click",()=>removeCompetence(type,m.id)); listEl.appendChild(li); }); }
-      dom.btnSave.addEventListener("click",()=>{ if(!dom.nom.value.trim()||!dom.prenom.value.trim()||!dom.filiere.value||!dom.niveau.value){ showToast("Veuillez remplir les champs obligatoires","error"); return; } dom.btnSave.disabled=true; dom.btnSave.innerHTML="⏳ Enregistrement..."; setTimeout(()=>{ state.hasUnsavedChanges=false; dom.actionStatus.textContent="✓ Profil sauvegardé"; dom.actionStatus.classList.remove("unsaved"); dom.btnSave.disabled=false; dom.btnSave.innerHTML="Enregistrer"; showToast("Profil enregistré avec succès !"); },800); });
-      dom.btnCancel.addEventListener("click",()=>{ if(state.hasUnsavedChanges) dom.modal.classList.add("open"); else showToast("Aucune modification"); });
-      dom.modalCancel.addEventListener("click",()=>dom.modal.classList.remove("open"));
-      dom.modalConfirm.addEventListener("click",()=>{ resetForm(); dom.modal.classList.remove("open"); showToast("Modifications annulées."); });
-      function resetForm(){ dom.nom.value=""; dom.prenom.value=""; dom.bio.value=""; dom.dispo.value=""; dom.filiere.value=""; dom.niveau.value=""; state.competences.forts=[]; state.competences.faibles=[]; state.selectedSubject=null; state.hasUnsavedChanges=false; dom.actionStatus.textContent=""; dom.actionStatus.classList.remove("unsaved"); dom.subjectPanel.style.display="none"; dom.skillSearch.value=""; dom.clearSearch.classList.remove("visible"); renderSkills(); updateAvatar(); document.querySelector("#bioCount").innerText="0"; document.querySelector("#dispoCount").innerText="0"; }
-      function showToast(msg,type="success"){ dom.toastMsg.innerText=msg; dom.toast.classList.add("show"); setTimeout(()=>dom.toast.classList.remove("show"),2500); }
-      function escapeHtml(str){ return String(str).replace(/[&<>]/g,function(m){if(m==='&')return'&amp;';if(m==='<')return'&lt;';if(m==='>')return'&gt;';return m;}); }
-      function truncate(s,len){ return s.length>len?s.slice(0,len)+"…":s; }
-      renderSkills(); updateAvatar();
-      dom.bio.addEventListener("input",function(){ $("#bioCount").innerText=this.value.length; });
-      dom.dispo.addEventListener("input",function(){ $("#dispoCount").innerText=this.value.length; });
+        let state = { competences: { forts: [], faibles: [] }, selectedSubject: null, hasUnsavedChanges: false };
+        let MATIERES_IFRI = [];
+
+        function $(id){ return document.getElementById(id); }
+
+        const dom = {
+            nom: $("nom"), prenom: $("prenom"), bio: $("bio"), dispo: $("disponibilites"),
+            filiere: $("filiere"), niveau: $("niveau"), skillSearch: $("skillSearch"),
+            clearSearch: $("clearSearch"), dropdown: $("skillDropdown"), dropdownList: $("dropdownList"),
+            subjectPanel: $("selectedSubjectPanel"), subjectName: $("selectedSubjectName"),
+            btnFort: $("btnAddFort"), btnFaible: $("btnAddFaible"), listFort: $("listFort"),
+            listFaible: $("listFaible"), fortCount: $("fortCount"), faibleCount: $("faibleCount"),
+            emptyFort: $("emptyFort"), emptyFaible: $("emptyFaible"), btnSave: $("btnEnregistrer"),
+            btnCancel: $("btnAnnuler"), actionStatus: $("actionStatus"), toast: $("toast"),
+            toastMsg: $("toastMsg"), modal: $("modalOverlay"), modalCancel: $("modalCancel"),
+            modalConfirm: $("modalConfirm"), avatarInitials: $("avatarInitials")
+        };
+
+        // Charger le profil actuel
+        async function chargerProfil() {
+            const response = await fetch('/profil');
+            const data = await response.json();
+            if (data.erreur) { window.location.href = '/page-connexion'; return; }
+
+            dom.nom.value = data.nom || '';
+            dom.prenom.value = data.prenom || '';
+            dom.bio.value = data.bio || '';
+            dom.dispo.value = data.disponibilites || '';
+            dom.filiere.value = data.filiere || '';
+            dom.niveau.value = data.niveau || '';
+
+            $("bioCount").innerText = (data.bio || '').length;
+            $("dispoCount").innerText = (data.disponibilites || '').length;
+
+            // Charger les compétences
+            if (data.competences) {
+                data.competences.forEach(c => {
+                    if (c.type === 'fort') {
+                        state.competences.forts.push({id: c.nom, nom: c.nom});
+                    } else {
+                        state.competences.faibles.push({id: c.nom, nom: c.nom});
+                    }
+                });
+            }
+
+            updateAvatar();
+            renderSkills();
+        }
+
+        // Charger les matières depuis la base
+        async function chargerMatieres() {
+            const response = await fetch('/api/competences');
+            const data = await response.json();
+            MATIERES_IFRI = data.competences.map(c => ({
+                id: c.nom,
+                nom: c.nom,
+                cat: c.categorie || 'Général'
+            }));
+        }
+
+        function updateAvatar(){
+            let n=dom.nom.value.trim(), p=dom.prenom.value.trim();
+            dom.avatarInitials.textContent = (p[0]||'')+(n[0]||'')||'--';
+        }
+
+        dom.nom.addEventListener("input", updateAvatar);
+        dom.prenom.addEventListener("input", updateAvatar);
+
+        function markUnsaved(){
+            if(!state.hasUnsavedChanges){
+                state.hasUnsavedChanges=true;
+                dom.actionStatus.textContent="● Modifications non sauvegardées";
+                dom.actionStatus.classList.add("unsaved");
+            }
+        }
+
+        [dom.nom, dom.prenom, dom.bio, dom.dispo, dom.filiere, dom.niveau].forEach(el=>el.addEventListener("input",markUnsaved));
+
+        function getAlreadyAdded(){
+            return new Set([...state.competences.forts.map(c=>c.id),...state.competences.faibles.map(c=>c.id)]);
+        }
+
+        function renderDropdown(q){
+            let query=q.toLowerCase().trim(), added=getAlreadyAdded();
+            let filtered=query.length===0?[]:MATIERES_IFRI.filter(m=>m.nom.toLowerCase().includes(query));
+            dom.dropdownList.innerHTML="";
+            if(filtered.length===0&&query.length){
+                dom.dropdownList.innerHTML='<div style="padding:10px;color:#aaa;text-align:center;font-size:.85rem">Aucune matière trouvée</div>';
+                dom.dropdown.classList.add("open"); return;
+            }
+            if(filtered.length===0){ dom.dropdown.classList.remove("open"); return; }
+            filtered.slice(0,20).forEach(m=>{
+                let div=document.createElement("div");
+                div.className="dropdown-item"+(added.has(m.id)?" already-added":"");
+                div.innerHTML=`<span>${m.nom}</span><span class="item-cat">${m.cat}</span>`;
+                div.onmousedown=(e)=>{ e.preventDefault(); if(!added.has(m.id)) selectSubject(m); };
+                dom.dropdownList.appendChild(div);
+            });
+            dom.dropdown.classList.add("open");
+        }
+
+        function selectSubject(m){
+            state.selectedSubject=m;
+            dom.subjectName.textContent=m.nom;
+            dom.subjectPanel.style.display="flex";
+            dom.skillSearch.value=m.nom;
+            dom.clearSearch.classList.add("visible");
+            dom.dropdown.classList.remove("open");
+        }
+
+        dom.skillSearch.addEventListener("input",()=>{
+            let val=dom.skillSearch.value;
+            dom.clearSearch.classList.toggle("visible",val.length>0);
+            if(!val){ dom.dropdown.classList.remove("open"); dom.subjectPanel.style.display="none"; state.selectedSubject=null; }
+            else renderDropdown(val);
+        });
+
+        dom.clearSearch.addEventListener("click",()=>{
+            dom.skillSearch.value=""; dom.clearSearch.classList.remove("visible");
+            dom.subjectPanel.style.display="none"; state.selectedSubject=null;
+            dom.dropdown.classList.remove("open"); dom.skillSearch.focus();
+        });
+
+        document.addEventListener("mousedown",(e)=>{
+            if(!dom.dropdown.contains(e.target)&&e.target!==dom.skillSearch)
+                dom.dropdown.classList.remove("open");
+        });
+
+        function addCompetence(type){
+            let m=state.selectedSubject; if(!m)return;
+            if(getAlreadyAdded().has(m.id)){ showToast("Déjà ajouté","warn"); return; }
+            state.competences[type].push({id:m.id,nom:m.nom});
+            renderSkills(); markUnsaved();
+            dom.skillSearch.value=""; dom.clearSearch.classList.remove("visible");
+            dom.subjectPanel.style.display="none"; state.selectedSubject=null;
+            dom.dropdown.classList.remove("open");
+            showToast(`"${m.nom}" ajouté en ${type==='forts'?'point fort':'point faible'}`);
+        }
+
+        dom.btnFort.onclick=()=>addCompetence("forts");
+        dom.btnFaible.onclick=()=>addCompetence("faibles");
+
+        function removeCompetence(type,id){
+            state.competences[type]=state.competences[type].filter(c=>c.id!==id);
+            renderSkills(); markUnsaved();
+        }
+
+        function renderSkills(){
+            renderList("forts",dom.listFort,dom.fortCount,dom.emptyFort);
+            renderList("faibles",dom.listFaible,dom.faibleCount,dom.emptyFaible);
+        }
+
+        function renderList(type,listEl,countEl,emptyEl){
+            let items=state.competences[type];
+            countEl.innerText=items.length;
+            listEl.querySelectorAll(".skill-item").forEach(el=>el.remove());
+            if(!items.length){ emptyEl.style.display="flex"; return; }
+            emptyEl.style.display="none";
+            items.forEach(m=>{
+                let li=document.createElement("li");
+                li.className="skill-item";
+                li.innerHTML=`<span>${m.nom}</span><button class="skill-delete-btn">🗑️</button>`;
+                li.querySelector(".skill-delete-btn").addEventListener("click",()=>removeCompetence(type,m.id));
+                listEl.appendChild(li);
+            });
+        }
+
+        // Enregistrer branché sur le backend
+        dom.btnSave.addEventListener("click", async ()=>{
+            if(!dom.nom.value.trim()||!dom.prenom.value.trim()||!dom.filiere.value||!dom.niveau.value){
+                showToast("Veuillez remplir les champs obligatoires","error"); return;
+            }
+            dom.btnSave.disabled=true; dom.btnSave.innerHTML="⏳ Enregistrement...";
+
+            const competences = [
+                ...state.competences.forts.map(c=>({nom:c.nom, type:'fort'})),
+                ...state.competences.faibles.map(c=>({nom:c.nom, type:'faible'}))
+            ];
+
+            const response = await fetch('/profil', {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    nom: dom.nom.value.trim(),
+                    prenom: dom.prenom.value.trim(),
+                    filiere: dom.filiere.value,
+                    niveau: dom.niveau.value,
+                    bio: dom.bio.value,
+                    disponibilites: dom.dispo.value,
+                    competences: competences
+                })
+            });
+
+            const result = await response.json();
+            dom.btnSave.disabled=false; dom.btnSave.innerHTML="Enregistrer";
+
+            if(response.ok){
+                state.hasUnsavedChanges=false;
+                dom.actionStatus.textContent="✓ Profil sauvegardé";
+                dom.actionStatus.classList.remove("unsaved");
+                showToast("Profil enregistré avec succès !");
+                setTimeout(()=>{ window.location.href='/profil-page'; }, 1500);
+            } else {
+                showToast(result.erreur || "Erreur lors de la sauvegarde", "error");
+            }
+        });
+
+        dom.btnCancel.addEventListener("click",()=>{
+            if(state.hasUnsavedChanges) dom.modal.classList.add("open");
+            else window.location.href='/profil-page';
+        });
+
+        dom.modalCancel.addEventListener("click",()=>dom.modal.classList.remove("open"));
+        dom.modalConfirm.addEventListener("click",()=>{ window.location.href='/profil-page'; });
+
+        function showToast(msg,type="success"){
+            dom.toastMsg.innerText=msg;
+            dom.toast.classList.add("show");
+            setTimeout(()=>dom.toast.classList.remove("show"),2500);
+        }
+
+        dom.bio.addEventListener("input",function(){ $("bioCount").innerText=this.value.length; });
+        dom.dispo.addEventListener("input",function(){ $("dispoCount").innerText=this.value.length; });
+
+        // Initialisation
+        chargerMatieres().then(()=>chargerProfil());
     })();
   </script>
 </body>
