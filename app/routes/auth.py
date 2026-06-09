@@ -110,3 +110,67 @@ def modifier_profil_route():
     for comp in competences:
         ajouter_competence(db, utilisateur_id, comp['nom'], comp['type'])
     return jsonify({'message': 'Profil mis à jour avec succès'}), 200
+
+@auth.route('/parametres', methods=['GET'])
+def page_parametres():
+    if 'utilisateur_id' not in session:
+        return redirect('/page-connexion')
+    return render_template('parametres.html')
+
+@auth.route('/compte/email', methods=['PUT'])
+def changer_email():
+    if 'utilisateur_id' not in session:
+        return jsonify({'erreur': 'Non connecté'}), 401
+    db = request.environ.get('db')
+    data = request.get_json()
+    nouvel_email = data.get('email')
+    mot_de_passe = data.get('mot_de_passe')
+    if not all([nouvel_email, mot_de_passe]):
+        return jsonify({'erreur': 'Email et mot de passe requis'}), 400
+    utilisateur = get_utilisateur_par_id(db, session['utilisateur_id'])
+    if not verifier_mot_de_passe(utilisateur['mot_de_passe'], mot_de_passe):
+        return jsonify({'erreur': 'Mot de passe incorrect'}), 401
+    cursor = db.cursor()
+    cursor.execute("UPDATE utilisateurs SET email = %s WHERE id = %s", (nouvel_email, session['utilisateur_id']))
+    db.commit()
+    return jsonify({'message': 'Email mis à jour'}), 200
+
+@auth.route('/compte/telephone', methods=['PUT'])
+def changer_telephone():
+    if 'utilisateur_id' not in session:
+        return jsonify({'erreur': 'Non connecté'}), 401
+    db = request.environ.get('db')
+    data = request.get_json()
+    nouveau_tel = data.get('telephone')
+    mot_de_passe = data.get('mot_de_passe')
+    if not all([nouveau_tel, mot_de_passe]):
+        return jsonify({'erreur': 'Téléphone et mot de passe requis'}), 400
+    utilisateur = get_utilisateur_par_id(db, session['utilisateur_id'])
+    if not verifier_mot_de_passe(utilisateur['mot_de_passe'], mot_de_passe):
+        return jsonify({'erreur': 'Mot de passe incorrect'}), 401
+    cursor = db.cursor()
+    cursor.execute("UPDATE utilisateurs SET telephone = %s WHERE id = %s", (nouveau_tel, session['utilisateur_id']))
+    db.commit()
+    return jsonify({'message': 'Téléphone mis à jour'}), 200
+
+@auth.route('/compte/mot-de-passe', methods=['PUT'])
+def changer_mot_de_passe():
+    if 'utilisateur_id' not in session:
+        return jsonify({'erreur': 'Non connecté'}), 401
+    db = request.environ.get('db')
+    data = request.get_json()
+    ancien = data.get('ancien_mot_de_passe')
+    nouveau = data.get('nouveau_mot_de_passe')
+    if not all([ancien, nouveau]):
+        return jsonify({'erreur': 'Ancienne et nouvelle mot de passe requis'}), 400
+    if len(nouveau) < 6:
+        return jsonify({'erreur': 'Le mot de passe doit contenir au moins 6 caractères'}), 400
+    utilisateur = get_utilisateur_par_id(db, session['utilisateur_id'])
+    if not verifier_mot_de_passe(utilisateur['mot_de_passe'], ancien):
+        return jsonify({'erreur': 'Ancien mot de passe incorrect'}), 401
+    from werkzeug.security import generate_password_hash
+    nouveau_hash = generate_password_hash(nouveau)
+    cursor = db.cursor()
+    cursor.execute("UPDATE utilisateurs SET mot_de_passe = %s WHERE id = %s", (nouveau_hash, session['utilisateur_id']))
+    db.commit()
+    return jsonify({'message': 'Mot de passe mis à jour'}), 200
