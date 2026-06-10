@@ -1,154 +1,165 @@
-<!DOCTYPE html>
-<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>IFRI MentorLink — Page de Couverture</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>IFRI MentorLink — Rapport de Projet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/modifie_profil_style.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-    * { box-sizing: border-box; }
-
     body {
-      background: #f0f4fa;
-      font-family: 'Inter', 'Segoe UI', sans-serif;
-      color: #1a2233;
-      min-height: 100vh;
-      padding: 2.5rem 1rem;
+      background: #f8fafc;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      color: #0f172a;
+      padding: 2rem 1rem;
     }
-
-    /* ── Page (feuille blanche) ── */
 
     .page {
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.06);
       max-width: 820px;
       width: 100%;
-      padding: 0;
+      margin: 0 auto 2rem;
       overflow: hidden;
+      border: 1px solid #e2e8f0;
     }
 
-    /* ── Header barre bleue ── */
     .page-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      border-bottom: 2.5px solid #2563eb;
+      border-bottom: 2px solid #1a73e8;
+      background: white;
     }
+
     .page-header .brand {
-      font-weight: 700;
-      font-size: 1.15rem;
-      color: #2563eb;
-      letter-spacing: 0.5px;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 400;
+      font-size: 1.2rem;
+      color: #1a73e8;
     }
+
     .page-header .subtitle {
-      font-size: 0.92rem;
-      color: #6b7280;
+      font-size: 0.85rem;
+      color: #94a3b8;
       font-weight: 500;
     }
 
-    /* ── Hero bloc titre ── */
     .hero {
       margin: 2.5rem 2rem 2rem;
-      border: 2px solid #bfdbfe;
+      border: 1px solid #e2e8f0;
       border-radius: 16px;
-      padding: 2.5rem 2rem 2rem;
+      padding: 2.5rem 2rem;
       text-align: center;
-      background: #f8faff;
-    }
-    .hero h1 {
-      font-size: 2.8rem;
-      font-weight: 800;
-      color: #1d4ed8;
-      margin-bottom: 0.5rem;
-      letter-spacing: -1px;
-    }
-    .hero .tagline {
-      font-size: 1.1rem;
-      color: #2563eb;
-      font-weight: 600;
-      margin-bottom: 1.2rem;
-    }
-    .hero .badge-group {
-      display: inline-block;
-      border: 1.5px solid #93c5fd;
-      border-radius: 20px;
-      padding: 0.35rem 1.2rem;
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: #1d4ed8;
-      background: #fff;
+      background: #f8fafc;
     }
 
-    /* ── Section label ── */
+    .hero h1 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 2.8rem;
+      font-weight: 400;
+      color: #1a73e8;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .tagline {
+      font-size: 1rem;
+      color: #475569;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero .badge-group {
+      display: inline-block;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 0.35rem 1.2rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #1a73e8;
+      background: white;
+    }
+
     .section-label {
       font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: #2563eb;
+      color: #1a73e8;
       margin-bottom: 0.9rem;
     }
 
-    /* ── Grille infos ── */
     .info-section {
-      padding: 0 2rem 1.5rem;
+      padding: 1.5rem 2rem;
     }
+
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0.9rem;
     }
+
     .info-card {
-      border-left: 3px solid #2563eb;
+      border-left: 3px solid #1a73e8;
       padding: 0.7rem 1rem;
-      background: #f8faff;
+      background: #f8fafc;
       border-radius: 0 8px 8px 0;
     }
+
     .info-card .label {
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 1.2px;
       text-transform: uppercase;
-      color: #2563eb;
+      color: #1a73e8;
       margin-bottom: 0.2rem;
     }
+
     .info-card .value {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 600;
-      color: #1a2233;
+      color: #0f172a;
     }
 
-    /* ── Section Contexte ── */
     .context-section {
-      padding: 0 2rem 2.5rem;
+      padding: 0 2rem 2rem;
     }
+
     .context-box {
-      border: 1.5px solid #bfdbfe;
+      border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 1.5rem 1.5rem 1.2rem;
-      background: #f8faff;
-      min-height: 180px;
+      padding: 1.5rem;
+      background: #f8fafc;
     }
+
     .context-box p {
-      font-size: 1rem;
-      color: #374151;
-      line-height: 1.75;
+      font-size: 0.95rem;
+      color: #475569;
+      line-height: 1.8;
       margin: 0;
     }
 
-    /* ── Footer ── */
+    .page-body {
+      padding: 1.5rem 2rem;
+    }
+
     .page-footer {
-      border-top: 1.5px solid #e5e7eb;
+      border-top: 1px solid #e2e8f0;
       padding: 0.75rem 2rem;
       display: flex;
       justify-content: space-between;
-      font-size: 0.8rem;
-      color: #6b7280;
+      font-size: 0.78rem;
+      color: #94a3b8;
       background: #fafafa;
+    }
+
+    @media (max-width: 600px) {
+      .info-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2rem; }
+      .page-header { flex-direction: column; gap: 4px; text-align: center; }
     }
   </style>
 </head>
@@ -233,12 +244,12 @@
       <div class="info-card">
         <div class="label">Membre 2</div>
         <div class="value">ASSANGBE Yannick</div>
-        <div style="font-size:0.85rem; color:#2563eb; margin-top:0.3rem;">Frontend(Profi,inscription)</div>
+        <div style="font-size:0.85rem; color:#2563eb; margin-top:0.3rem;">Frontend(Profil,Connexion,Inscription,Chat)</div>
       </div>
       <div class="info-card">
         <div class="label">Membre 3</div>
         <div class="value">GBAGUIDI Akpédjé Marie-Merveille Dylan</div>
-        <div style="font-size:0.85rem; color:#2563eb; margin-top:0.3rem;">Frontend(Base),Documentaion,Rapport</div>
+        <div style="font-size:0.85rem; color:#2563eb; margin-top:0.3rem;">Frontend(Base),Recherche des matières,Rapport</div>
       </div>
       <div class="info-card">
         <div class="label">Membre 4</div>
@@ -253,12 +264,12 @@
       <div class="info-card">
         <div class="label">Membre 6</div>
         <div class="value">HOUESSOU Armel</div>
-        <div style="font-size:0.85rem; color:#2563eb; margin-top:0.3rem;">Frontend(connexion)</div>
+        <div style="font-size:0.85rem; color:#2563eb; margin-top:0.3rem;">Frontend(Matching,Paramètre,A Propos)</div>
       </div>
       <div class="info-card">
         <div class="label">Membre 7</div>
-        <div class="value">GANHOUNSO Enselme</div>
-        <div style="font-size:0.85rem; color:#2563eb; margin-top:0.3rem;">Frontend(Matching)</div>
+        <div class="value">GANHOUNSO Anselme</div>
+        <div style="font-size:0.85rem; color:#2563eb; margin-top:0.3rem;">Frontend(Modifier le Profil)</div>
       </div>
     </div>
   </div>
@@ -278,39 +289,38 @@
     <div class="info-grid">
 
       <div class="info-card">
-        <div class="label">Problème 1</div>
+        <div class="label">Problème </div>
         <div class="value">Difficulté d'envoi du code de la base.html dans le dépôt github.</div>
         <div style="font-size:0.85rem; color:#2563eb; margin-top:0.3rem;">Réglé par : GBAGUIDI Merveille</div>
       </div>
 
       <div class="info-card">
-        <div class="label">Poblème 2</div>
+        <div class="label">Problème </div>
         <div class="value">Mauvais fonctionnement de la messagerie suite au lancement de la prévisualisation de ce dernier.</div>
         <div style="font-size:0.85rem; color:#2563eb; margin-top:0.3rem;">Réglé par : ADJAKA David et DAHOUE Gracias</div>
       </div>
 
       <div class="info-card">
-        <div class="label">Problème 3</div>
+        <div class="label">Problème </div>
         <div class="value">Suivi de l'evolution du code </div>
         <div style="font-size:0.85rem; color:#2563eb; margin-top:0.3rem;">Réglé par : Tout les membres actifs</div>
       </div>
 
       <div class="info-card">
-        <div class="label">Problème 4</div>
+        <div class="label">Problème </div>
         <div class="value">Difficulté d'envoi du code de la connexion.html dans le dépôt github</div>
-        <div style="font-size:0.85rem; color:#2563eb; margin-top:0.3rem;">Réglé par : ADJAKA David</div>
+        <div style="font-size:0.85rem; color:#2563eb; margin-top:0.3rem;">Réglé par : ADJAKA David Geoffroy</div>
       </div>
 
       <div class="info-card">
-        <div class="label">Problème 5</div>
+        <div class="label">Problème </div>
         <div class="value">Retard du membre 7 dans la pratique des activités du projet.</div>
-        <div style="font-size:0.85rem; color:#2563eb; margin-top:0.3rem;">Réglé par :  Nom</div>
-      </div>
+      <div style="font-size:0.85rem; color:#2563eb; margin-top:0.3rem;">Non résolu</div>
 
       <div class="info-card">
-        <div class="label">Problème 6</div>
-        <div class="value">Description du problème</div>
-        <div style="font-size:0.85rem; color:#2563eb; margin-top:0.3rem;">Réglé par : Nom</div>
+        <div class="label">Problème </div>
+        <div class="value">Correction du style des pages</div>
+        <div style="font-size:0.85rem; color:#2563eb; margin-top:0.3rem;">Réglé par : ADJAKA David Geoffroy</div>
       </div>
 
     </div>
@@ -338,12 +348,12 @@
 
       <div style="margin-bottom: 1.5rem;">
         <div style="font-size:0.75rem; font-weight:700; color:#2563eb; text-transform:uppercase; letter-spacing:1px;">04/06/26 au 05/06/26</div>
-        <div style="font-weight:600; font-size:1rem; color:#1a2233; margin: 0.2rem 0;">Création du dépôt github et partage des tâches sur le frontend le backend.</div>
+        <div style="font-weight:600; font-size:1rem; color:#1a2233; margin: 0.2rem 0;">Création du dépôt github et partage des tâches sur le frontend et le backend.</div>
       </div>
 
       <div style="margin-bottom: 1.5rem;">
-        <div style="font-size:0.75rem; font-weight:700; color:#2563eb; text-transform:uppercase; letter-spacing:1px;">Date 06/06/26 au 07/06/26</div>
-        <div style="font-weight:600; font-size:1rem; color:#1a2233; margin: 0.2rem 0;">Je sais pas quoi mettre</div>
+        <div style="font-size:0.75rem; font-weight:700; color:#2563eb; text-transform:uppercase; letter-spacing:1px;">06/06/26 au 07/06/26</div>
+        <div style="font-weight:600; font-size:1rem; color:#1a2233; margin: 0.2rem 0;">Rendu du frontend et liaison avec la base de données.</div>
       </div>
 
       <div style="margin-bottom: 1.5rem;">
@@ -352,7 +362,7 @@
       </div>
 
       <div style="margin-bottom: 1.5rem;">
-        <div style="font-size:0.75rem; font-weight:700; color:#2563eb; text-transform:uppercase; letter-spacing:1px;">10.06/26</div>
+        <div style="font-size:0.75rem; font-weight:700; color:#2563eb; text-transform:uppercase; letter-spacing:1px;">10/06/26</div>
         <div style="font-weight:600; font-size:1rem; color:#1a2233; magin: 0.2rem 0;">Rendu final du projet.</div>
       </div>
 
@@ -363,7 +373,30 @@
     <span>2025 – 2026 &nbsp;|&nbsp; Page 4</span>
   </div>
 </div>
-
+<div class="page">
+  <div class="page-header">
+    <span class="brand">IFRI MentorLink</span>
+    <span class="subtitle">Rapport de Projet — PIL1_2526_25</span>
+  </div>
+  <div class="page-body" style="text-align:center;padding:3rem 2rem;">
+    <div class="section-label">Réalisé par</div>
+    <h2 style="font-family:'DM Serif Display',Georgia,serif;font-weight:400;color:#1a73e8;font-size:1.8rem;margin-bottom:2rem">Groupe 25 — PIL1_2526_25</h2>
+    <div class="info-grid">
+      <div class="info-card"><div class="value">ADJAKA David Geoffroy</div></div>
+      <div class="info-card"><div class="value">ASSANGBE Yannick</div></div>
+      <div class="info-card"><div class="value">GBAGUIDI Akpédjé Marie-Merveille Dylan</div></div>
+      <div class="info-card"><div class="value">DAGBO Ohèl</div></div>
+      <div class="info-card"><div class="value">DAHOUE Gracias</div></div>
+      <div class="info-card"><div class="value">HOUESSOU Armel</div></div>
+      <div class="info-card"><div class="value">GANHOUNSO Anselme</div></div>
+    </div>
+    <p style="margin-top:2rem;font-size:0.9rem;color:#94a3b8">Institut de Formation et de Recherche en Informatique (IFRI) — UAC &nbsp;|&nbsp; 2025 – 2026</p>
+  </div>
+  <div class="page-footer">
+    <span>Université d'Abomey-Calavi — IFRI</span>
+    <span>2025 – 2026 &nbsp;|&nbsp; Page 5</span>
+  </div>
+</div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
