@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mot de passe oublié - IFRI MentorLink</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/css/modifie_profil_style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <h1 class="titre-app">IFRI MentorLink</h1>
+  <button class="burger-menu" id="burgerBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="/accueil">Accueil</a>
+    <a href="/apropos">À propos</a>
+    <a href="/page-connexion">Connexion</a>
+    <a href="/page-inscription">S'inscrire</a>
+  </div>
+</nav>
+
+<main style="display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 65px);padding:2rem 1rem;background:#f8fafc;">
+  <div style="width:min(100%,460px);">
+
+    <div style="text-align:center;margin-bottom:2rem;">
+      <div style="width:56px;height:56px;border-radius:12px;background:#1a73e810;border:1px solid #1a73e840;display:grid;place-items:center;color:#1a73e8;margin:0 auto 1rem;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <h1 style="font-family:'DM Serif Display',Georgia,serif;font-size:1.9rem;font-weight:400;color:#0f172a;margin-bottom:.3rem">Mot de passe oublié</h1>
+      <p style="color:#475569;font-size:.9rem">Entrez votre email et téléphone pour réinitialiser votre mot de passe</p>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+
+        <!-- ÉTAPE 1 -->
+        <div id="etape1">
+          <form id="form-verification">
+            <div class="field-group" style="margin-bottom:1.2rem">
+              <label class="field-label">Email <span style="color:#ef4444">*</span></label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <input type="email" id="email" class="field-input" placeholder="votre@email.com" required />
+              </div>
+            </div>
+            <div class="field-group" style="margin-bottom:1.5rem">
+              <label class="field-label">Téléphone <span style="color:#ef4444">*</span></label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.82 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 3.12 4.18 2 2 0 0 1 5.09 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L9.91 9.6a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <input type="text" id="telephone" class="field-input" placeholder="+229 0129000000" required />
+              </div>
+              <small style="font-size:.7rem;color:#94a3b8;margin-top:4px;display:block">Format : +229 suivi de 10 chiffres</small>
+            </div>
+            <button class="btn-primary" type="submit" style="width:100%;justify-content:center;border-radius:12px;padding:.8rem">
+              Vérifier mon identité
+            </button>
+          </form>
+        </div>
+
+        <!-- ÉTAPE 2 (cachée au début) -->
+        <div id="etape2" style="display:none">
+          <div style="text-align:center;margin-bottom:1.5rem;padding:12px;background:#dcfce7;border-radius:10px;color:#166534;font-size:.9rem">
+            ✅ Identité vérifiée ! Choisissez un nouveau mot de passe.
+          </div>
+          <form id="form-nouveau-mdp">
+            <div class="field-group" style="margin-bottom:1.2rem">
+              <label class="field-label">Nouveau mot de passe <span style="color:#ef4444">*</span></label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <input type="password" id="nouveau-mdp" class="field-input" placeholder="Minimum 6 caractères" required />
+              </div>
+            </div>
+            <div class="field-group" style="margin-bottom:1.5rem">
+              <label class="field-label">Confirmer <span style="color:#ef4444">*</span></label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <input type="password" id="confirm-mdp" class="field-input" placeholder="Répétez le mot de passe" required />
+              </div>
+            </div>
+            <button class="btn-primary" type="submit" style="width:100%;justify-content:center;border-radius:12px;padding:.8rem">
+              Réinitialiser le mot de passe
+            </button>
+          </form>
+        </div>
+
+        <p style="text-align:center;margin-top:1.2rem;font-size:.85rem;color:#475569">
+          <a href="/page-connexion" style="color:#1a73e8;font-weight:600;text-decoration:none">← Retour à la connexion</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>&copy;2026 IFRI_Mentor_link. Tous droits réservés.</p>
+</footer>
+
+<script>
+const burgerBtn = document.getElementById('burgerBtn');
+const navLinks = document.getElementById('navLinks');
+if (burgerBtn) {
+    burgerBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('open');
+    });
+}
+
+function showToast(message, type) {
+    const toast = document.createElement('div');
+    toast.textContent = message;
+    toast.style.cssText = `
+        position: fixed; top: 20px; right: 20px;
+        background: ${type === 'success' ? '#1a73e8' : '#dc2626'};
+        color: white; padding: 14px 20px; border-radius: 8px;
+        font-size: 0.9rem; font-weight: bold;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; transition: opacity 0.5s;
+    `;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 500);
+    }, type === 'success' ? 2000 : 3000);
+}
+
+let emailVerifie = '';
+let telVerifie = '';
+
+// Étape 1 — Vérification identité
+document.getElementById('form-verification').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const telephone = document.getElementById('telephone').value;
+
+    const formatTel = /^\+\d{3}\s\d{10}$/.test(telephone);
+    if (!formatTel) {
+        showToast('Format téléphone invalide. Exemple : +229 0129000000', 'error');
+        return;
+    }
+
+    // Vérifier si l'utilisateur existe
+    const response = await fetch('/reinitialiser-mot-de-passe', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            email: email,
+            telephone: telephone,
+            nouveau_mot_de_passe: 'VERIFICATION_SEULEMENT'
+        })
+    });
+
+    if (response.ok || response.status === 400) {
+        // On vérifie juste l'existence — si 404 c'est que l'utilisateur n'existe pas
+        emailVerifie = email;
+        telVerifie = telephone;
+        document.getElementById('etape1').style.display = 'none';
+        document.getElementById('etape2').style.display = 'block';
+    } else {
+        const result = await response.json();
+        showToast(result.erreur || 'Email ou téléphone incorrect', 'error');
+    }
+});
+
+// Étape 2 — Nouveau mot de passe
+document.getElementById('form-nouveau-mdp').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const nouveau = document.getElementById('nouveau-mdp').value;
+    const confirm = document.getElementById('confirm-mdp').value;
+
+    if (nouveau !== confirm) {
+        showToast('Les mots de passe ne correspondent pas !', 'error');
+        return;
+    }
+    if (nouveau.length < 6) {
+        showToast('Minimum 6 caractères !', 'error');
+        return;
+    }
+
+    const response = await fetch('/reinitialiser-mot-de-passe', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            email: emailVerifie,
+            telephone: telVerifie,
+            nouveau_mot_de_passe: nouveau
+        })
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+        showToast('Mot de passe réinitialisé avec succès !', 'success');
+        setTimeout(() => { window.location.href = '/page-connexion'; }, 2000);
+    } else {
+        showToast(result.erreur || 'Erreur lors de la réinitialisation', 'error');
+    }
+});
+</script>
+
+</body>
+</html>

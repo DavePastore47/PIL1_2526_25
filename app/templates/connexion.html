@@ -60,6 +60,9 @@
         <p style="text-align:center;margin-top:1.2rem;font-size:.85rem;color:#475569">
           Pas encore de compte ? <a href="/page-inscription" style="color:#1a73e8;font-weight:600;text-decoration:none">Créer un compte</a>
         </p>
+        <p style="text-align:center;margin-top:.8rem;font-size:.85rem;color:#475569">
+          <a href="/mot-de-passe-oublie" style="color:#1a73e8;font-weight:600;text-decoration:none">Mot de passe oublié ?</a>
+        </p>
       </div>
     </div>
   </div>
@@ -112,6 +115,8 @@ document.getElementById('form-connexion').addEventListener('submit', async funct
         setTimeout(() => {
             window.location.href = '/matching';
         }, 1500);
+    } else {
+        showToast(result.erreur || 'Email ou mot de passe incorrect', 'error');
     }
 });
 </script>

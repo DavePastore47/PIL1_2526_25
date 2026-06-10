@@ -171,6 +171,46 @@ def changer_telephone():
     db.commit()
     return jsonify({'message': 'Téléphone mis à jour'}), 200
 
+@auth.route('/mot-de-passe-oublie', methods=['GET'])
+def page_mot_de_passe_oublie():
+    return render_template('mot_de_passe_oublie.html')
+
+@auth.route('/reinitialiser-mot-de-passe', methods=['POST'])
+def reinitialiser_mot_de_passe():
+    db = request.environ.get('db')
+    data = request.get_json()
+    email = data.get('email')
+    telephone = data.get('telephone')
+    nouveau_mot_de_passe = data.get('nouveau_mot_de_passe')
+
+    if not all([email, telephone, nouveau_mot_de_passe]):
+        return jsonify({'erreur': 'Tous les champs sont obligatoires'}), 400
+
+    if len(nouveau_mot_de_passe) < 6:
+        return jsonify({'erreur': 'Le mot de passe doit contenir au moins 6 caractères'}), 400
+
+    # Vérifier que l'utilisateur existe avec cet email ET ce téléphone
+    cursor = db.cursor()
+    cursor.execute(
+        "SELECT id FROM utilisateurs WHERE email = %s AND telephone = %s",
+        (email, telephone)
+    )
+    utilisateur = cursor.fetchone()
+
+    if not utilisateur:
+        return jsonify({'erreur': 'Email ou téléphone incorrect'}), 404
+
+    # Mettre à jour le mot de passe
+    from werkzeug.security import generate_password_hash
+    nouveau_hash = generate_password_hash(nouveau_mot_de_passe)
+    cursor.execute(
+        "UPDATE utilisateurs SET mot_de_passe = %s WHERE id = %s",
+        (nouveau_hash, utilisateur['id'])
+    )
+    db.commit()
+
+    return jsonify({'message': 'Mot de passe réinitialisé avec succès'}), 200
+
 @auth.route('/compte/mot-de-passe', methods=['PUT'])
 def changer_mot_de_passe():
     if 'utilisateur_id' not in session:
