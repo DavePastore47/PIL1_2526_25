@@ -1,4 +1,3 @@
-cat > ~/PIL1_2526_25/README.md << 'EOF'
 # IFRI MentorLink — PIL1_2526_25
 
 Application web de mise en relation mentor-mentoré pour les étudiants de l'IFRI — Université d'Abomey-Calavi.
@@ -42,10 +41,11 @@ pip install -r requirements.txt
 
 **4. Configurer PostgreSQL**
 
-```bash
 ## Installation sur Linux
 
 Avant toute connexion, vérifier que postgres est demarré.
+
+
 ```bash
 sudo systemctl status postgresql
 ```
@@ -54,13 +54,14 @@ Si ce n'est pas actif :
 ```bash
 sudo systemctl start postgresql
 ```
-Et connectez voous
+Et connectez vous
 ```bash
 sudo -u postgres psql
 CREATE USER mentorlink WITH PASSWORD 'mentorlink2526';
 CREATE DATABASE mentorlink_db OWNER mentorlink;
 GRANT ALL PRIVILEGES ON DATABASE mentorlink_db TO mentorlink;
 \q
+```
 
 ---
 
@@ -135,5 +136,3 @@ Des comptes de test sont disponibles. Exécutez `init_data.sql` puis connectez-v
 | GANHOUNSO Anselme | Frontend |
 
 **Licence 1 — IFRI · UAC · 2025-2026**
-EOF
-echo "OK"
