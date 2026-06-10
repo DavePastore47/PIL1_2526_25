@@ -130,7 +130,19 @@ async function init() {
     const initiales = (profil.prenom[0] + profil.nom[0]).toUpperCase();
     document.getElementById('myAvatar').textContent = initiales;
     document.getElementById('myName').textContent = profil.prenom + ' ' + profil.nom;
-    chargerConversations();
+    
+    await chargerConversations();
+
+    const params = new URLSearchParams(window.location.search);
+    const convId = params.get('conv');
+    if (convId) {
+        const items = document.querySelectorAll('.contact-item');
+        items.forEach(function(item) {
+            if (item.dataset.convId == convId) {
+                item.click();
+            }
+        });
+    }
 }
 
 async function chargerConversations() {
@@ -164,6 +176,7 @@ async function chargerConversations() {
         el.onclick = function() {
             ouvrirConversation(conv.id, conv.interlocuteur, color);
         };
+        el.dataset.convId = conv.id;
         container.appendChild(el);
     });
 }

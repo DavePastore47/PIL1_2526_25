@@ -72,7 +72,7 @@ async function contacter(mentorId) {
     });
     const data = await response.json();
     if (response.ok) {
-        window.location.href = '/chat';
+        window.location.href = '/chat?conv=' + data.conversation_id;
     } else {
         alert('Erreur : ' + data.erreur);
     }

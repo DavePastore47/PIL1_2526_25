@@ -181,8 +181,21 @@ async function chargerProfil() {
     }
 }
 
-function contacter() {
-    if (userId) window.location.href = '/chat?avec=' + userId;
+async function contacter() {
+    if (userId) {
+
+        const response = await fetch('/conversations', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ utilisateur_id: parseInt(userId) })
+        });
+        const data = await response.json();
+        if (response.ok) {
+            window.location.href = '/chat?conv=' + data.conversation_id;
+        } else {
+            alert('Erreur : ' + data.erreur);
+        }
+    }
 }
 
 async function deconnexion() {
