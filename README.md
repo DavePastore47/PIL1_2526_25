@@ -86,17 +86,17 @@ GRANT ALL PRIVILEGES ON DATABASE mentorlink_db TO mentorlink;
 
 **5. Créer les tables**
 ```bash
-psql -U mentorlink -h localhost -d mentorlink_db -f database.sql
+psql -U mentorlink -h localhost -d mentorlink_db -f database.sql;
 ```
 
 **6. Insérer les matières IFRI**
 ```bash
-psql -U mentorlink -h localhost -d mentorlink_db -f competences_ifri.sql
+psql -U mentorlink -h localhost -d mentorlink_db -f competences_ifri.sql;
 ```
 
 **7. Insérer les données de test (optionnel)**
 ```bash
-psql -U mentorlink -h localhost -d mentorlink_db -f init_data.sql
+psql -U mentorlink -h localhost -d mentorlink_db -f init_data.sql;
 ```
 
 **8. Lancer l'application**
