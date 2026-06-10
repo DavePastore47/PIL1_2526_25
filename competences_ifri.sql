@@ -35,7 +35,7 @@ INSERT INTO competences (nom, categorie) VALUES
 ('Bases de donnees avancees', 'General'),
 ('Bases de donnees distribuees', 'General'),
 ('Bases de donnees multimedia et web semantique', 'General'),
-('Bases de donnees relationnelles et noSQL', 'General'),
+('Bases de donnees relationnelles et mySQL', 'General'),
 ('Bases du genie logiciel', 'General'),
 ('Communication manageriale', 'General'),
 ('Communication en Anglais', 'General'),

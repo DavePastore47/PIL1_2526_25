@@ -41,8 +41,42 @@ pip install -r requirements.txt
 ```
 
 **4. Configurer PostgreSQL**
+
+```bash
+## Installation sur Linux
+
+Avant toute connexion, vérifier que postgres est demarré.
+```bash
+sudo systemctl status postgresql
+```
+
+Si ce n'est pas actif : 
+```bash
+sudo systemctl start postgresql
+```
+Et connectez voous
 ```bash
 sudo -u postgres psql
+CREATE USER mentorlink WITH PASSWORD 'mentorlink2526';
+CREATE DATABASE mentorlink_db OWNER mentorlink;
+GRANT ALL PRIVILEGES ON DATABASE mentorlink_db TO mentorlink;
+\q
+
+---
+
+## Installation sur Windows
+
+Si vous êtes sous Windows, utilisez uniquement le terminal (CMD ou PowerShell) avec PostgreSQL installé.
+
+### 1. Accéder à PostgreSQL
+
+```bash
+psql -U postgres
+```
+
+⚠️ Si la commande psql n’est pas reconnue, assurez-vous que PostgreSQL est bien installé et ajouté au PATH système.
+
+```bash
 CREATE USER mentorlink WITH PASSWORD 'mentorlink2526';
 CREATE DATABASE mentorlink_db OWNER mentorlink;
 GRANT ALL PRIVILEGES ON DATABASE mentorlink_db TO mentorlink;
@@ -56,7 +90,7 @@ psql -U mentorlink -h localhost -d mentorlink_db -f database.sql
 
 **6. Insérer les matières IFRI**
 ```bash
-psql -U mentorlink -h localhost -d mentorlink_db -f competences_ifri_EC.sql
+psql -U mentorlink -h localhost -d mentorlink_db -f competences_ifri.sql
 ```
 
 **7. Insérer les données de test (optionnel)**

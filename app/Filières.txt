@@ -32,7 +32,7 @@ MATIÈRES IFRI — 119 EC recensées
 29. Bases de données avancées
 30. Bases de données distribuées
 31. Bases de données multimédia et web sémantique
-32. Bases de données relationnelles et noSQL
+32. Bases de données relationnelles et mySQL
 33. Bases du génie logiciel
 34. Communication managériale
 35. Communication en Anglais
